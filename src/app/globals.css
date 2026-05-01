@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+  /* Editorial colour palette — refined, paper-like */
+  --color-bg: #f4f0e8;
+  --color-bg-deep: #ebe4d3;
+  --color-paper: #fbf8f1;
+  --color-ink: #1a1815;
+  --color-ink-soft: #4a463e;
+  --color-rust: #b8482a;
+  --color-rust-deep: #8a3520;
+  --color-rule: #c9c0ad;
+  --color-gold: #c9a052;
+
+  /* Typography stack — variables injected by next/font on <html> */
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-handwritten: var(--font-caveat), cursive;
+}
+
+@layer base {
+  :root {
+    color-scheme: light only;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-serif);
+    font-feature-settings: "kern", "liga", "onum";
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle paper texture via radial gradients */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(184, 72, 42, 0.03) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(26, 24, 21, 0.02) 0%,
+        transparent 40%
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Tailwind v4 italic+font-weight conflict fix */
+  .not-italic-fix {
+    font-style: italic;
+  }
+
+  /* Override browser autofill colours to match the editorial palette */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-bg) inset;
+    -webkit-text-fill-color: var(--color-ink);
+    caret-color: var(--color-ink);
+    border-color: var(--color-rule);
+    transition:
+      background-color 5000s ease-in-out 0s,
+      color 5000s ease-in-out 0s;
+  }
+
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-paper) inset;
+    border-color: var(--color-rust);
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .font-handwritten {
+    font-family: var(--font-handwritten);
+  }
+  .animate-reveal {
+    animation: reveal 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .animate-reveal {
+    animation-delay: 0ms !important;
+  }
+
+  .pulse-dot {
+    animation: none;
+  }
+}
