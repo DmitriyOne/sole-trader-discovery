@@ -103,7 +103,6 @@ export function SurveyFlow() {
         role="note"
         className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
       >
-        <span aria-hidden="true" className="text-[15px] shrink-0 mt-px">🔒</span>
         <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft leading-[1.6]">
           {TEXT.SurveyPage.confidentiality}
         </p>
