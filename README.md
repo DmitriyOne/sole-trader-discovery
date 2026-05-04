@@ -11,6 +11,24 @@ You deploy this site. You share the link with UK sole traders / freelancers / on
 If no shared pain emerges → the segment doesn't have an urgent enough problem → you pivot or stop. Either way, you saved yourself months of building the wrong thing.
 
 ---
+## Free tier gotcha
+
+Supabase free tier **pauses your project after 7 days of inactivity**. To prevent this during the validation phase:
+
+Add a Vercel cron job (free) that pings your API once a week:
+
+`vercel.json`:
+```json
+{
+  "crons": [{ "path": "/api/health", "schedule": "0 9 * * 1" }]
+}
+```
+
+(You'd need to add a simple `/api/health` route that does a Supabase `select count(*)`.)
+
+Or just remember to visit your Supabase dashboard once a week.
+
+---
 
 ## Stack
 
