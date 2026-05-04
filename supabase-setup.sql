@@ -21,14 +21,10 @@ create table if not exists public.responses (
   business        text not null,
   tenure          text not null check (tenure in ('under-1y', '1-3y', '3-5y', '5y-plus')),
 
-  -- Mom Test responses
-  q1_typical_week     text not null,
-  q2_last_stress_day  text not null,
-  q3_uk_bureaucracy   text not null,
-  q4_what_costs_most  text not null,
-  q5_currently_paying text not null,
-  q6_magic_wand       text not null,
-  q7_referrals        text,
+  -- Mom Test responses (numbered in survey order)
+  q1_admin_task        text not null,
+  q2_currently_paying  text not null,
+  q3_magic_wand        text not null,
 
   -- GDPR consent record (regulatory requirement)
   consent             boolean not null,
@@ -38,28 +34,6 @@ create table if not exists public.responses (
   -- is later updated. Server stamps this from PRIVACY_NOTICE_VERSION.
   notice_version      text not null default '2026-04'
 );
-
--- ─────────────────────────────────────────────────────────────────
--- Migration for existing installations (idempotent)
--- ─────────────────────────────────────────────────────────────────
--- Safe to re-run. Adds notice_version to a pre-existing responses
--- table without dropping data. Rows that pre-date the column are
--- labelled 'pre-2026-04' so they remain distinguishable from rows
--- that consented under the current notice.
--- ─────────────────────────────────────────────────────────────────
-
-alter table public.responses
-  add column if not exists notice_version text;
-
-update public.responses
-  set notice_version = 'pre-2026-04'
-  where notice_version is null;
-
-alter table public.responses
-  alter column notice_version set not null;
-
-alter table public.responses
-  alter column notice_version set default '2026-04';
 
 -- Useful indexes for analysis queries
 create index if not exists responses_submitted_at_idx
@@ -90,12 +64,9 @@ select
   email,
   notice_version,
   -- Show first 100 chars of each long answer for quick scanning
-  left(q1_typical_week, 100)     as q1_preview,
-  left(q2_last_stress_day, 100)  as q2_preview,
-  left(q3_uk_bureaucracy, 100)   as q3_preview,
-  left(q4_what_costs_most, 100)  as q4_preview,
-  left(q5_currently_paying, 100) as q5_preview,
-  left(q6_magic_wand, 100)       as q6_preview
+  left(q1_admin_task, 100)        as q1_preview,
+  left(q2_currently_paying, 100)  as q2_preview,
+  left(q3_magic_wand, 100)        as q3_preview
 from public.responses
 order by submitted_at desc;
 
