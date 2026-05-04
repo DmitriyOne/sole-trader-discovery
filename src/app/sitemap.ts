@@ -17,31 +17,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/survey`,
       lastModified,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/privacy`,
       lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/terms`,
       lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/cookies`,
       lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/disclaimer`,
       lastModified,
-      changeFrequency: "yearly",
+      changeFrequency: "monthly",
       priority: 0.5,
     },
   ];
