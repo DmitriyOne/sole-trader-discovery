@@ -32,31 +32,18 @@ export const responseSchema = z.object({
   }),
 
   // Mom Test questions — open-ended, demand specifics
-  q1_typical_week: z
+  q1_admin_task: z
     .string()
     .min(20, "Give me a real answer — at least a sentence or two")
     .max(2000),
-  q2_last_stress_day: z
-    .string()
-    .min(20, "Give me a real answer — at least a sentence or two")
-    .max(2000),
-  q3_uk_bureaucracy: z
-    .string()
-    .min(20, "Give me a real answer — at least a sentence or two")
-    .max(2000),
-  q4_what_costs_most: z
-    .string()
-    .min(10, "Even one line works — just be specific")
-    .max(2000),
-  q5_currently_paying: z
+  q2_currently_paying: z
     .string()
     .min(10, "Even one line works — what tools / who do you pay")
     .max(2000),
-  q6_magic_wand: z
+  q3_magic_wand: z
     .string()
     .min(15, "This is the most important question — give me something real")
     .max(2000),
-  q7_referrals: z.string().max(2000).optional().or(z.literal("")),
 
   // GDPR consent — must be true to submit
   consent: z.literal(true, {
@@ -86,37 +73,17 @@ export const SURVEY_STEPS: ReadonlyArray<TStep> = [
   },
   {
     id: "q1",
-    title: "Your week",
-    fields: ["q1_typical_week"],
+    title: "Admin that ate the time",
+    fields: ["q1_admin_task"],
   },
   {
     id: "q2",
-    title: "Last stress day",
-    fields: ["q2_last_stress_day"],
+    title: "Current spending",
+    fields: ["q2_currently_paying"],
   },
   {
     id: "q3",
-    title: "UK bureaucracy",
-    fields: ["q3_uk_bureaucracy"],
-  },
-  {
-    id: "q4",
-    title: "What annoys most",
-    fields: ["q4_what_costs_most"],
-  },
-  {
-    id: "q5",
-    title: "Current spending",
-    fields: ["q5_currently_paying"],
-  },
-  {
-    id: "q6",
     title: "Magic wand",
-    fields: ["q6_magic_wand"],
-  },
-  {
-    id: "q7",
-    title: "Last bits",
-    fields: ["q7_referrals", "consent"],
+    fields: ["q3_magic_wand", "consent"],
   },
 ] as const;

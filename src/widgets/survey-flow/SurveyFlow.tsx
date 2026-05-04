@@ -26,9 +26,20 @@ type TSubmissionState = "idle" | "submitting" | "success" | "error";
 
 function DictationHint() {
   return (
-    <p className="font-serif text-[12px] italic text-ink-soft/70 leading-[1.5] mt-2">
-      {TEXT.SurveyPage.dictationHint}
-    </p>
+    <aside
+      role="note"
+      className="mt-3 flex gap-3 items-start border-l-2 border-gold bg-gold/10 pl-3 pr-3.5 py-2.5"
+    >
+      <span
+        aria-hidden="true"
+        className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold text-gold pt-[3px] shrink-0"
+      >
+        {TEXT.SurveyPage.dictationHintLabel}
+      </span>
+      <p className="font-serif text-[13px] italic leading-[1.55] text-ink-soft">
+        {TEXT.SurveyPage.dictationHint}
+      </p>
+    </aside>
   );
 }
 
@@ -88,6 +99,16 @@ export function SurveyFlow() {
 
   return (
     <div className="bg-paper border border-rule p-9 sm:p-10">
+      <aside
+        role="note"
+        className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
+      >
+        <span aria-hidden="true" className="text-[15px] shrink-0 mt-px">🔒</span>
+        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft leading-[1.6]">
+          {TEXT.SurveyPage.confidentiality}
+        </p>
+      </aside>
+
       <SectionLabel>
         {TEXT.SurveyPage.progress(currentStep + 1, totalSteps)}
       </SectionLabel>
@@ -156,84 +177,37 @@ export function SurveyFlow() {
 
         {currentStepData.id === "q1" && (
           <Field
-            label="Walk me through your typical work week. What do you actually spend hours doing?"
+            label="What’s a recent admin task that took longer than it should have?"
             required
-            help="Not what you’d like to be doing — what eats your real hours."
-            error={errors.q1_typical_week?.message}
+            help="Tax, invoicing, the bank, your accountant, scheduling — anything boring but unavoidable. What was it, and roughly how long did it actually take?"
+            error={errors.q1_admin_task?.message}
           >
-            <TextArea {...register("q1_typical_week")} />
+            <TextArea {...register("q1_admin_task")} />
             <DictationHint />
           </Field>
         )}
 
         {currentStepData.id === "q2" && (
           <Field
-            label="Tell me about the last work day when you were genuinely stressed or frustrated. What happened?"
+            label="What tools, services or people are you currently paying for to keep your business running?"
             required
-            help="Be specific — what triggered it, how did it end? If you have to think hard, that’s fine. Just one real example."
-            error={errors.q2_last_stress_day?.message}
+            help="Accountant, Xero, Wise, a virtual assistant, ChatGPT Plus, etc. Roughly what does it cost you per month total?"
+            error={errors.q2_currently_paying?.message}
           >
-            <TextArea {...register("q2_last_stress_day")} />
+            <TextArea {...register("q2_currently_paying")} />
             <DictationHint />
           </Field>
         )}
 
         {currentStepData.id === "q3" && (
-          <Field
-            label="Last time you had to deal with UK bureaucracy — what was it about?"
-            required
-            help="HMRC, Companies House, your bank, your accountant, NI, VAT, anything official. What was hard about it (if anything)? How long did it take?"
-            error={errors.q3_uk_bureaucracy?.message}
-          >
-            <TextArea {...register("q3_uk_bureaucracy")} />
-            <DictationHint />
-          </Field>
-        )}
-
-        {currentStepData.id === "q4" && (
-          <Field
-            label="Of all the recurring tasks that aren’t the actual work you get paid for — which one annoys you the most?"
-            required
-            help="Admin, taxes, invoicing, chasing payments, etc. And roughly how many hours per month does it eat?"
-            error={errors.q4_what_costs_most?.message}
-          >
-            <TextArea {...register("q4_what_costs_most")} />
-            <DictationHint />
-          </Field>
-        )}
-
-        {currentStepData.id === "q5" && (
-          <Field
-            label="What tools, services or people are you currently paying for to keep your business running?"
-            required
-            help="Accountant, Xero, Wise, a virtual assistant, ChatGPT Plus, etc. Roughly what does it cost you per month total?"
-            error={errors.q5_currently_paying?.message}
-          >
-            <TextArea {...register("q5_currently_paying")} />
-            <DictationHint />
-          </Field>
-        )}
-
-        {currentStepData.id === "q6" && (
-          <Field
-            label="If you could make one problem in your business life disappear tomorrow, what would it be?"
-            required
-            help="This is the one that matters most. Don’t filter for ‘realistic’. Just whatever genuinely makes you sigh."
-            error={errors.q6_magic_wand?.message}
-          >
-            <TextArea {...register("q6_magic_wand")} />
-            <DictationHint />
-          </Field>
-        )}
-
-        {currentStepData.id === "q7" && (
           <>
             <Field
-              label="Who else do you know who’s a UK sole trader / freelancer / small business owner?"
-              help="Could you name 1–3 people I might also reach out to? Username, name, or just ‘a friend who runs X’. Totally optional."
-              error={errors.q7_referrals?.message}
+              label="If you could make one problem in your business life disappear tomorrow, what would it be?"
+              required
+              help="This is the one that matters most. Don’t filter for ‘realistic’. Just whatever genuinely makes you sigh."
+              error={errors.q3_magic_wand?.message}
             >
-              <TextArea {...register("q7_referrals")} rows={4} />
+              <TextArea {...register("q3_magic_wand")} />
               <DictationHint />
             </Field>
 
@@ -370,11 +344,20 @@ function SuccessPanel() {
       </p>
 
       {/* Email fallback — for follow-ups beyond what the form captured */}
-      <div className="border-t border-rule pt-6 mt-6 max-w-md mx-auto">
+      <div className="border-t border-rule pt-6 mt-6 max-w-md mx-auto space-y-3">
         <p className="font-serif text-[15px] text-ink-soft leading-[1.55]">
           {TEXT.SurveyPage.success.followUpPrompt}{" "}
           <a
             href={`mailto:${TEXT.Footer.contact}`}
+            className="text-rust-deep underline underline-offset-2 hover:text-rust"
+          >
+            {TEXT.Footer.contact}
+          </a>
+        </p>
+        <p className="font-serif text-[15px] text-ink-soft leading-[1.55]">
+          {TEXT.SurveyPage.success.referralPrompt}{" "}
+          <a
+            href={`mailto:${TEXT.Footer.contact}?subject=${encodeURIComponent(TEXT.SurveyPage.success.referralMailSubject)}`}
             className="text-rust-deep underline underline-offset-2 hover:text-rust"
           >
             {TEXT.Footer.contact}
