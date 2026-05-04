@@ -44,9 +44,9 @@ export const TEXT = {
         "This isn’t a marketing funnel. There’s no upsell. The exchange is direct and the terms are below.",
       youGive: {
         label: "You give",
-        part1: "7 honest questions in a survey.",
+        part1: "3 honest questions in a survey.",
         part2: "About",
-        emphasis: "10 minutes",
+        emphasis: "15 minutes",
         part3: "of your time. Nothing more.",
       },
       youGet: {
@@ -57,16 +57,17 @@ export const TEXT = {
         part3: "after launch. No payment ever requested.",
       },
       closing:
-        "If I build nothing, you’ve lost 10 minutes. If I build something good, you’ve helped shape it and you use it free for half a year. That’s the entire deal.",
+        "If I build nothing, you’ve lost 15 minutes. If I build something good, you’ve helped shape it and you use it free for 1–3 months. That’s the entire deal.",
       cta: "Open the survey →",
     },
   },
 
   SurveyPage: {
+    confidentiality: "Your answers are strictly confidential. They go directly into a private database — no third parties, no marketing lists, no sharing. Only I read them.",
     intro: {
-      kicker: "Discovery survey · 7 questions",
+      kicker: "Discovery survey · 3 questions",
       title: "Tell me what actually slows you down.",
-      lede: "Some questions are open-ended — please type real answers, not ‘all good’ or ‘depends’. The whole point is the specifics. About 10 minutes.",
+      lede: "Each question is open-ended — please type real answers, not ‘all good’ or ‘depends’. The whole point is the specifics. About 15 minutes.",
       cta: "Begin →",
     },
     progress: (current: number, total: number) =>
@@ -74,12 +75,13 @@ export const TEXT = {
     consentLabel:
       "I’ve read the privacy notice and I agree to my answers being stored and used to contact me if a product is built. I can withdraw consent and request deletion at any time.",
     privacyLinkText: "Read the privacy notice",
+    dictationHintLabel: "Tip",
     dictationHint:
-      "Prefer talking to typing? Tap the 🎤 mic on your keyboard and dictate it. Messy transcription is fine — I read every word anyway.",
+      "Prefer talking to typing? Tap the mic on your keyboard and dictate it. Messy transcription is fine — I read every word anyway.",
     nav: {
       back: "← Back",
       next: "Next →",
-      submit: "Submit ↗",
+      submit: "Submit",
       submitting: "Submitting…",
     },
     success: {
@@ -90,13 +92,17 @@ export const TEXT = {
       bullets: [
         "I’ll keep collecting responses for ~2 weeks.",
         "If I find a real pattern, I’ll build something narrow and specific around it.",
-        "When it’s ready, you get 6 months free — no card, no asking.",
+        "When it’s ready, you get 1–3 months free — no card, no asking.",
         "If I find no pattern, I’ll email you and tell you why I’m not building it.",
       ],
       closing: "Either way, you’ll hear from me. Honest deal.",
       signature: "— Dmitry",
       followUpPrompt:
         "Want to add something the form didn’t cover? Reply to your confirmation email or write to me at",
+      referralPrompt:
+        "Know another UK sole trader I should hear from? Send me their name or handle at",
+      referralMailSubject:
+        "Another sole trader you should talk to",
     },
     error: {
       before: "Something went wrong. Please try again — or email ",
@@ -121,7 +127,7 @@ export const TEXT = {
       },
       {
         heading: "What I collect",
-        body: "Only what you type into the survey: your email, a short description of your business, how long you’ve been running it, and your free-text answers to 7 questions. I don’t use analytics, cookies, fingerprinting, or session recording. There’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
+        body: "Only what you type into the survey: your email, a short description of your business, how long you’ve been running it, and your free-text answers to 3 questions. I don’t use analytics, cookies, fingerprinting, or session recording. There’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
       },
       {
         heading: "Why I collect it",
@@ -137,7 +143,7 @@ export const TEXT = {
       },
       {
         heading: "Your rights (UK GDPR)",
-        body: "Under UK GDPR you have the right to: access a copy of your data; correct anything inaccurate; have your data deleted; restrict how I use it; receive your data in a portable format (e.g. a CSV); object to processing; and withdraw your consent at any time. To exercise any of these, email [PLACEHOLDER: contact email]. I’ll respond within 14 days — usually much faster.",
+        body: "Under UK GDPR you have the right to: access a copy of your data; correct anything inaccurate; have your data deleted; restrict how I use it; receive your data in a portable format (e.g. a CSV); object to processing; and withdraw your consent at any time. To exercise any of these, email [PLACEHOLDER: contact email]. I’ll respond within one month — usually much faster.",
       },
       {
         heading: "Lawful basis",
@@ -175,7 +181,7 @@ export const TEXT = {
       },
       {
         heading: "The free access offer",
-        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for six months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won't charge you without asking first.",
+        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 1–3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won't charge you without asking first.",
       },
       {
         heading: "Acceptable use",
