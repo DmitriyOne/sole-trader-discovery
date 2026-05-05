@@ -8,6 +8,8 @@ export const TEXT = {
   Footer: {
     issue: "Discovery № 001 · UK · 2026",
     contact: "[PLACEHOLDER: contact email]",
+    legal:
+      "Sole Trader Discovery is a trading name of Dmytro Fenko, a UK sole trader · [PLACEHOLDER: business address]",
   },
 
   HomePage: {
@@ -73,7 +75,7 @@ export const TEXT = {
     progress: (current: number, total: number) =>
       `Question ${current} of ${total}`,
     consentLabel:
-      "I’ve read the privacy notice and I agree to my answers being stored and used to contact me if a product is built. I can withdraw consent and request deletion at any time.",
+      "I’m 18 or over. I’ve read the privacy notice and I agree to my answers being stored and used to contact me if a product is built. I can withdraw consent and request deletion at any time.",
     privacyLinkText: "Read the privacy notice",
     dictationHintLabel: "Tip",
     dictationHint:
@@ -119,15 +121,15 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Privacy notice",
     headline: "What happens to your answers.",
-    lastUpdated: "Last updated: April 2026",
+    lastUpdated: "Last updated: May 2026",
     sections: [
       {
         heading: "Who runs this",
-        body: "This research project is operated by Dmitry Fenko, a UK sole trader. I’m the data controller for everything described below. If you need to reach me about your data — for any reason — write to [PLACEHOLDER: contact email] and I’ll reply personally.",
+        body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to [PLACEHOLDER: contact email] and I’ll reply personally.",
       },
       {
         heading: "What I collect",
-        body: "Only what you type into the survey: your email, a short description of your business, how long you’ve been running it, and your free-text answers to 3 questions. I don’t use analytics, cookies, fingerprinting, or session recording. There’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
+        body: "Only what you type into the survey, in four categories: (a) contact data — your email address; (b) business context — a short description of your business and how long you’ve been running it; (c) research content — your free-text answers to 3 open-ended questions; and (d) consent metadata — a server-stamped timestamp confirming when you ticked the consent box and which version of this notice was in force at that moment. All of it is collected directly from you when you submit the form; no data is bought, scraped, or inferred from other sources. I don’t use analytics, cookies, fingerprinting, or session recording, and there’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
       },
       {
         heading: "Why I collect it",
@@ -135,7 +137,7 @@ export const TEXT = {
       },
       {
         heading: "Where it’s stored",
-        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt). Supabase Inc. — the company behind it — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR. The website itself is served by Vercel, which processes request data (including form submissions in transit) as a data processor under similar safeguards. I’m the only person with access to the stored data.",
+        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc., a US-incorporated company whose global edge network may route the in-transit form submission through points of presence outside the UK or EU before it reaches the database. Vercel acts as a data processor under its own data processing addendum, which incorporates the IDTA and standard contractual clauses as the transfer mechanism. I’m the only person with access to the stored data.",
       },
       {
         heading: "How long I keep it",
@@ -169,11 +171,11 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Terms of use",
     headline: "How this site works and what you're agreeing to.",
-    lastUpdated: "Last updated: April 2026",
+    lastUpdated: "Last updated: May 2026",
     sections: [
       {
         heading: "Who runs this site",
-        body: "This website is operated by Dmitry Fenko, a UK sole trader. It is not a company. It is not a startup. It is one person running a research project to understand what's genuinely painful about running a UK sole trader business. You can reach me at [PLACEHOLDER: contact email].",
+        body: "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. It is not a company. It is not a startup. It is one person running a research project to understand what's genuinely painful about running a UK sole trader business. The address for service of any document under these terms is [PLACEHOLDER: business address]. You can reach me at [PLACEHOLDER: contact email].",
       },
       {
         heading: "What this site is",
@@ -185,7 +187,11 @@ export const TEXT = {
       },
       {
         heading: "Acceptable use",
-        body: "You may use this site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person's personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form.",
+        body: "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person's personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form.",
+      },
+      {
+        heading: "Ownership of content",
+        body: "The text, design, layout, and source code of this website are mine, copyright © Dmytro Fenko 2026, and may not be copied, republished, or reused without written permission. Short quotation for the purpose of criticism, review, or commentary remains permitted under UK fair dealing rules (Copyright, Designs and Patents Act 1988, ss.29–30). You retain full ownership of the answers you submit through the survey. By submitting them, you grant me a non-exclusive, royalty-free, worldwide licence to use them for the research purposes described in the privacy notice — analysing patterns in the responses, summarising findings in any public write-up of the project, and informing the design of any product I subsequently build. If I quote your words publicly, I will do so anonymously unless you have explicitly told me you are happy to be named. You can withdraw this licence at any time by emailing me to request deletion of your record.",
       },
       {
         heading: "No warranties",
@@ -219,11 +225,11 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Cookie notice",
     headline: "No cookies. No tracking. Nothing.",
-    lastUpdated: "Last updated: April 2026",
+    lastUpdated: "Last updated: May 2026",
     sections: [
       {
         heading: "The short version",
-        body: "This website does not use cookies. It does not track you. It does not run analytics. It does not fingerprint your browser or device. There is no third-party script of any kind loaded on these pages.",
+        body: "This website does not use cookies. It also does not store anything in your browser through localStorage, sessionStorage, IndexedDB, the Cache API, or any other client-side storage technology. It does not track you. It does not run analytics. It does not fingerprint your browser or device. There is no third-party script of any kind loaded on these pages.",
       },
       {
         heading: "What cookies are",
@@ -231,7 +237,7 @@ export const TEXT = {
       },
       {
         heading: "What this site actually does",
-        body: "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site. There is no session token, no persistent identifier, and no tracking pixel.",
+        body: "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site — no entries in localStorage, no entries in sessionStorage, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), consent is required for any storage of information on a user's terminal equipment beyond what is strictly necessary for a service the user has requested — this site avoids that situation entirely by storing nothing on your device.",
       },
       {
         heading: "If that ever changes",
@@ -302,7 +308,7 @@ export const TEXT = {
   },
 } as const;
 
-export const PRIVACY_NOTICE_VERSION = "2026-04";
+export const PRIVACY_NOTICE_VERSION = "2026-05";
 
 export const PRIVACY_ICO_REGISTRATION_OPTIONAL = {
   heading: "ICO registration",
