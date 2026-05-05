@@ -26,13 +26,14 @@ There is no test suite. Verify changes via `npm run typecheck` + manual browser 
 
 ### FSD layering (strict)
 
-Imports flow downward only: `app → widgets → features → entities → shared`. A lower layer must never import from a higher one. Path aliases (`@/app/*`, `@/widgets/*`, `@/features/*`, `@/entities/*`, `@/shared/*`) make accidental upward imports visible at review time.
+Imports flow downward only: `app → pages → widgets → features → entities → shared`. A lower layer must never import from a higher one. Path aliases (`@/app/*`, `@/pages/*`, `@/widgets/*`, `@/features/*`, `@/entities/*`, `@/shared/*`) make accidental upward imports visible at review time.
 
-- `app/` — Next.js App Router only. Pages, layouts, API routes. No business logic.
-- `widgets/` — Page-level compositions (`landing-hero`, `landing-deal`, `survey-flow`).
+- `app/` — Next.js App Router infrastructure only: routing, `metadata`, `layout.tsx`, `error.tsx`, `not-found.tsx`, API route handlers, sitemap/robots/icons. Each `app/<route>/page.tsx` is a thin wrapper that re-exports a page component from `pages/` and (where needed) defines `metadata`. No JSX composition lives here.
+- `pages/` — Page-level UI compositions, one folder per route (`home`, `survey`, `privacy`, `terms`, `cookies`, `disclaimer`, `not-found`, `error`). Each exposes a `<RouteName>Page` component via `index.ts`. The `error/ui/ErrorPage.tsx` is a `"use client"` component (it uses `reset` and `useEffect`). **Physical folder is `src/views/`, not `src/pages/`** — Next.js auto-mounts `src/pages/` as the legacy Pages Router, which conflicts with App Router. The FSD-canonical name `pages` is preserved at the import level via the `@/pages/* → views/*` alias in `tsconfig.json`. Always import as `@/pages/<route>`; never reference `src/views/` directly in imports.
+- `widgets/` — Reusable page-level compositions: domain widgets (`landing-hero`, `landing-deal`, `survey-flow`) and shell widgets (`site-header`, `site-footer`, `legal-article`).
 - `features/` — User-facing capabilities (`multi-step-form`, `submit-survey`).
 - `entities/response/` — The single domain entity. Owns the zod schema, types, step definitions, and DB insert.
-- `shared/` — `ui/` (primitives), `api/supabase.ts`, `config/env.ts`, `config/text.ts` (single `TEXT` constant, keyed per page), `lib/`.
+- `shared/` — `ui/` (primitives), `api/supabase.ts`, `config/env.ts`, `config/text.ts` (single `TEXT` constant, keyed per page), `lib/` (`slugify`, `cn`, etc.).
 
 ### Single source of truth: `src/entities/response/model/schema.ts`
 
