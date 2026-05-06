@@ -18,7 +18,7 @@ export async function insertResponse(payload: TResponseInput) {
     .single();
 
   if (error) {
-    throw new Error(`Supabase insert failed: ${error.message}`);
+    throw new Error(`Supabase insert failed: ${JSON.stringify(error)}`);
   }
 
   return data;
