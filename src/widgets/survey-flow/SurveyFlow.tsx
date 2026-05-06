@@ -54,6 +54,7 @@ export function SurveyFlow() {
     goNext,
     goBack,
     currentStepData,
+    resetDraft,
   } = useMultiStepForm();
 
   const [submissionState, setSubmissionState] =
@@ -98,6 +99,8 @@ export function SurveyFlow() {
 
     if (result.ok) {
       setSubmissionState("success");
+      resetDraft();
+      form.reset();
       scrollToTop();
     } else {
       setSubmissionState("error");

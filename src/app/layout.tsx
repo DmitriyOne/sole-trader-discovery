@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Fraunces, JetBrains_Mono, Caveat } from "next/font/google";
 import { TEXT } from "@/shared/config/text";
+import { SurveyDraftProvider } from "@/features/multi-step-form";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -65,9 +66,11 @@ export default function RootLayout({ children }: TRootLayoutProps) {
         >
           Skip to content
         </a>
-        <div className="container max-w-[720px] mx-auto px-6 relative z-10">
-          {children}
-        </div>
+        <SurveyDraftProvider>
+          <div className="container max-w-[720px] mx-auto px-6 relative z-10">
+            {children}
+          </div>
+        </SurveyDraftProvider>
       </body>
     </html>
   );

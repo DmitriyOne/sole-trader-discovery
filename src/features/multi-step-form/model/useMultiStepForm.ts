@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm, type UseFormReturn } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -9,6 +9,7 @@ import {
   type TResponseInput,
 } from "@/entities/response";
 import { scrollToTop } from "@/shared/lib/scrollToTop";
+import { useSurveyDraft } from "./SurveyDraftContext";
 
 type TUseMultiStepFormReturn = {
   form: UseFormReturn<TResponseInput>;
@@ -19,24 +20,41 @@ type TUseMultiStepFormReturn = {
   goNext: () => Promise<void>;
   goBack: () => void;
   currentStepData: (typeof SURVEY_STEPS)[number];
+  resetDraft: () => void;
 };
 
 export function useMultiStepForm(): TUseMultiStepFormReturn {
-  const [currentStep, setCurrentStep] = useState(0);
+  const { draft, step, saveDraft, saveStep, resetDraft } = useSurveyDraft();
+
+  const [currentStep, setCurrentStep] = useState(step);
 
   const form = useForm<TResponseInput>({
     resolver: zodResolver(responseSchema),
     mode: "onBlur",
     defaultValues: {
-      email: "",
-      business: "",
-      tenure: undefined,
-      q1_admin_task: "",
-      q2_currently_paying: "",
-      q3_magic_wand: "",
-      consent: undefined,
+      email: draft.email ?? "",
+      business: draft.business ?? "",
+      tenure: draft.tenure,
+      q1_admin_task: draft.q1_admin_task ?? "",
+      q2_currently_paying: draft.q2_currently_paying ?? "",
+      q3_magic_wand: draft.q3_magic_wand ?? "",
+      consent: draft.consent,
     },
   });
+
+  // Persist current step into context whenever it changes,
+  // so navigation away and back resumes on the same step.
+  useEffect(() => {
+    saveStep(currentStep);
+  }, [currentStep, saveStep]);
+
+  // Persist form values on unmount (e.g. user navigates to /cookies),
+  // so the draft survives SPA route changes within the same tab.
+  useEffect(() => {
+    return () => {
+      saveDraft(form.getValues());
+    };
+  }, [form, saveDraft]);
 
   const totalSteps = SURVEY_STEPS.length;
   const isFirstStep = currentStep === 0;
@@ -44,7 +62,6 @@ export function useMultiStepForm(): TUseMultiStepFormReturn {
   const currentStepData = SURVEY_STEPS[currentStep];
 
   const goNext = useCallback(async () => {
-    // Validate only the fields visible on the current step
     const fieldsToValidate = currentStepData.fields;
     const isValid = await form.trigger(fieldsToValidate);
 
@@ -59,18 +76,19 @@ export function useMultiStepForm(): TUseMultiStepFormReturn {
     }
 
     if (currentStep < totalSteps - 1) {
+      saveDraft(form.getValues());
       setCurrentStep((prev) => prev + 1);
-      // Smooth scroll to top of form on step change
       scrollToTop();
     }
-  }, [currentStep, currentStepData, form, totalSteps]);
+  }, [currentStep, currentStepData, form, totalSteps, saveDraft]);
 
   const goBack = useCallback(() => {
     if (currentStep > 0) {
+      saveDraft(form.getValues());
       setCurrentStep((prev) => prev - 1);
       scrollToTop();
     }
-  }, [currentStep]);
+  }, [currentStep, form, saveDraft]);
 
   return {
     form,
@@ -81,5 +99,6 @@ export function useMultiStepForm(): TUseMultiStepFormReturn {
     goNext,
     goBack,
     currentStepData,
+    resetDraft,
   };
 }
