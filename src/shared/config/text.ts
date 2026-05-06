@@ -2,7 +2,7 @@ export const TEXT = {
   GlobalMeta: {
     title: "What actually slows down UK sole traders",
     description:
-      "A short research project trying to find out which parts of running a UK sole trader business eat the most time and energy. Free 6-month access to whatever gets built.",
+      "A short research project trying to find out which parts of running a UK sole trader business eat the most time and energy. Free 3 months of access to whatever gets built.",
   },
 
   Footer: {
@@ -55,11 +55,11 @@ export const TEXT = {
         label: "You get",
         part1: "Free access to whatever I build —",
         part2: "for",
-        emphasis: "1-3 full months",
+        emphasis: "3 full months",
         part3: "after launch. No payment ever requested.",
       },
       closing:
-        "If I build nothing, you’ve lost 15 minutes. If I build something good, you’ve helped shape it and you use it free for 1–3 months. That’s the entire deal.",
+        "If I build nothing, you’ve lost 15 minutes. If I build something good, you’ve helped shape it and you use it free for 3 months. That’s the entire deal.",
       cta: "Open the survey →",
     },
   },
@@ -74,6 +74,8 @@ export const TEXT = {
     },
     progress: (current: number, total: number) =>
       `Question ${current} of ${total}`,
+    stepAnnouncement: (current: number, total: number, title: string) =>
+      `Step ${current} of ${total}: ${title}`,
     consentLabel:
       "I’m 18 or over. I’ve read the privacy notice and I agree to my answers being stored and used to contact me if a product is built. I can withdraw consent and request deletion at any time.",
     privacyLinkText: "Read the privacy notice",
@@ -85,6 +87,10 @@ export const TEXT = {
       next: "Next →",
       submit: "Submit",
       submitting: "Submitting…",
+      backAria: "Go to previous question",
+      nextAria: "Go to next question",
+      submitAria: "Submit survey",
+      submittingAria: "Submitting survey, please wait",
     },
     success: {
       title: "That’s it. Thank you — genuinely.",
@@ -129,7 +135,7 @@ export const TEXT = {
       },
       {
         heading: "What I collect",
-        body: "Only what you type into the survey, in four categories: (a) contact data — your email address; (b) business context — a short description of your business and how long you’ve been running it; (c) research content — your free-text answers to 3 open-ended questions; and (d) consent metadata — a server-stamped timestamp confirming when you ticked the consent box and which version of this notice was in force at that moment. All of it is collected directly from you when you submit the form; no data is bought, scraped, or inferred from other sources. I don’t use analytics, cookies, fingerprinting, or session recording, and there’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
+        body: "Only what you type into the survey: your email address, a short description of your business, how long you’ve been running it, your free-text answers to three open-ended questions, and a server-stamped timestamp recording when you ticked the consent box and which version of this notice was in force at that moment. All of it is collected directly from you when you submit the form; nothing is bought, scraped, or inferred from other sources. I don’t use analytics, cookies, fingerprinting, or session recording, and there’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
       },
       {
         heading: "Why I collect it",
@@ -137,7 +143,7 @@ export const TEXT = {
       },
       {
         heading: "Where it’s stored",
-        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc., a US-incorporated company whose global edge network may route the in-transit form submission through points of presence outside the UK or EU before it reaches the database. Vercel acts as a data processor under its own data processing addendum, which incorporates the IDTA and standard contractual clauses as the transfer mechanism. I’m the only person with access to the stored data.",
+        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc. (US). Their edge network may route your form submission through servers outside the UK or EU on its way to the database. Vercel processes the data under their own DPA, which uses the IDTA and standard contractual clauses as the transfer mechanism. I’m the only person with access to the stored data.",
       },
       {
         heading: "How long I keep it",
@@ -170,12 +176,12 @@ export const TEXT = {
     },
     backLink: "← Back to home",
     label: "Terms of use",
-    headline: "How this site works and what you're agreeing to.",
+    headline: "How this site works and what you’re agreeing to.",
     lastUpdated: "Last updated: May 2026",
     sections: [
       {
         heading: "Who runs this site",
-        body: "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. It is not a company. It is not a startup. It is one person running a research project to understand what's genuinely painful about running a UK sole trader business. The address for service of any document under these terms is [PLACEHOLDER: business address]. You can reach me at [PLACEHOLDER: contact email].",
+        body: "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. It is not a company. It is not a startup. It is one person running a research project to understand what’s genuinely painful about running a UK sole trader business. The address for service of any document under these terms is [PLACEHOLDER: business address]. You can reach me at [PLACEHOLDER: contact email].",
       },
       {
         heading: "What this site is",
@@ -183,11 +189,11 @@ export const TEXT = {
       },
       {
         heading: "The free access offer",
-        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 1–3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won't charge you without asking first.",
+        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 1–3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won’t charge you without asking first.",
       },
       {
         heading: "Acceptable use",
-        body: "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person's personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form.",
+        body: "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person’s personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form.",
       },
       {
         heading: "Ownership of content",
@@ -211,7 +217,7 @@ export const TEXT = {
       },
       {
         heading: "Contact",
-        body: "Questions about these terms? Email [PLACEHOLDER: contact email]. I'll reply personally.",
+        body: "Questions about these terms? Email [PLACEHOLDER: contact email]. I’ll reply personally.",
       },
     ],
   },
@@ -220,7 +226,7 @@ export const TEXT = {
     meta: {
       title: "Cookie notice — Sole Trader Discovery",
       description:
-        "This site uses no cookies, no tracking, and no analytics. Here's what that means.",
+        "This site uses no cookies, no tracking, and no analytics. Here’s what that means.",
     },
     backLink: "← Back to home",
     label: "Cookie notice",
@@ -237,7 +243,7 @@ export const TEXT = {
       },
       {
         heading: "What this site actually does",
-        body: "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site — no entries in localStorage, no entries in sessionStorage, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), consent is required for any storage of information on a user's terminal equipment beyond what is strictly necessary for a service the user has requested — this site avoids that situation entirely by storing nothing on your device.",
+        body: "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site — no entries in localStorage, no entries in sessionStorage, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), consent is required for any storage of information on a user’s terminal equipment beyond what is strictly necessary for a service the user has requested — this site avoids that situation entirely by storing nothing on your device.",
       },
       {
         heading: "If that ever changes",
@@ -259,7 +265,7 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Disclaimer",
     headline: "Research, not advice.",
-    lastUpdated: "Last updated: April 2026",
+    lastUpdated: "Last updated: May 2026",
     sections: [
       {
         heading: "This is not professional advice",
@@ -267,11 +273,11 @@ export const TEXT = {
       },
       {
         heading: "Tax and HMRC matters",
-        body: "If you have questions about Self Assessment, VAT, National Insurance, allowable expenses, or any other tax matter as a sole trader, please consult HMRC directly at gov.uk/hmrc or speak to a qualified accountant. HMRC's guidance is free and authoritative. This site is not a substitute for it.",
+        body: "If you have questions about Self Assessment, VAT, National Insurance, allowable expenses, or any other tax matter as a sole trader, please consult HMRC directly at gov.uk/hmrc or speak to a qualified accountant. HMRC’s guidance is free and authoritative. This site is not a substitute for it.",
       },
       {
         heading: "Legal matters",
-        body: "If you need legal advice — on contracts, intellectual property, employment, or anything else — please consult a qualified solicitor. The Law Society's 'Find a Solicitor' tool at solicitors.lawsociety.org.uk is a good starting point.",
+        body: "If you need legal advice — on contracts, intellectual property, employment, or anything else — please consult a qualified solicitor. The Law Society’s ‘Find a Solicitor’ tool at solicitors.lawsociety.org.uk is a good starting point.",
       },
       {
         heading: "No liability for decisions",
