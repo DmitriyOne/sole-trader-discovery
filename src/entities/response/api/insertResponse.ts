@@ -1,3 +1,5 @@
+import "server-only";
+
 import { getSupabaseAdmin } from "@/shared/api/supabase";
 import type { TResponseInput } from "@/entities/response/model/schema";
 import { PRIVACY_NOTICE_VERSION } from "@/shared/config/text";

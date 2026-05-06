@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { ZodError } from "zod";
-import { responseSchema, insertResponse } from "@/entities/response";
+import { responseSchema } from "@/entities/response";
+import { insertResponse } from "@/entities/response/api/insertResponse";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
