@@ -1,3 +1,4 @@
+import { PATHS } from "@/shared/config/paths";
 import { TEXT } from "@/shared/config/text";
 import { LandingHero } from "@/widgets/landing-hero/LandingHero";
 import { LandingDeal } from "@/widgets/landing-deal/LandingDeal";
@@ -24,10 +25,10 @@ export function HomePage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href="/privacy">Privacy</FooterLink>
-        <FooterLink href="/terms">Terms</FooterLink>
-        <FooterLink href="/cookies">Cookies</FooterLink>
-        <FooterLink href="/disclaimer">Disclaimer</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
+        <FooterLink href={PATHS.TERMS}>Terms</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
+        <FooterLink href={PATHS.DISCLAIMER}>Disclaimer</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

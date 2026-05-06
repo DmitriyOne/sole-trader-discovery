@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PATHS } from "@/shared/config/paths";
 import { SurveyFlow } from "@/widgets/survey-flow/SurveyFlow";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
@@ -8,7 +9,7 @@ export function SurveyPage() {
     <>
       <SiteHeader>
         <Link
-          href="/"
+          href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
           ← Discovery № 001
@@ -23,7 +24,7 @@ export function SurveyPage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href="/privacy">Privacy</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

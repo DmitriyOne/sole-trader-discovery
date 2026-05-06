@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PATHS } from "@/shared/config/paths";
 import { TEXT } from "@/shared/config/text";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
@@ -9,7 +10,7 @@ export function TermsPage() {
     <>
       <SiteHeader>
         <Link
-          href="/"
+          href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
           {TEXT.TermsPage.backLink}
@@ -27,9 +28,9 @@ export function TermsPage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href="/privacy">Privacy</FooterLink>
-        <FooterLink href="/cookies">Cookies</FooterLink>
-        <FooterLink href="/disclaimer">Disclaimer</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
+        <FooterLink href={PATHS.DISCLAIMER}>Disclaimer</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

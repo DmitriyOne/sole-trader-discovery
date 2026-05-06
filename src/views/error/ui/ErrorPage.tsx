@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { PATHS } from "@/shared/config/paths";
 import { TEXT } from "@/shared/config/text";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 
@@ -20,7 +21,7 @@ export function ErrorPage({ error, reset }: TErrorPageProps) {
       <header className="border-b border-rule">
         <div className="max-w-[720px] mx-auto px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-ink-soft flex justify-between items-center">
           <Link
-            href="/"
+            href={PATHS.HOME}
             className="text-ink-soft hover:text-rust transition-colors"
           >
             ← Back to home
@@ -66,7 +67,7 @@ export function ErrorPage({ error, reset }: TErrorPageProps) {
               </span>
             </button>
             <Link
-              href="/"
+              href={PATHS.HOME}
               className="inline-flex items-center justify-center border border-rule px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium text-ink-soft hover:text-rust hover:border-rust transition-colors duration-200"
             >
               {TEXT.ErrorPage.ctaSecondary} →

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PATHS } from "@/shared/config/paths";
 import { TEXT } from "@/shared/config/text";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 
@@ -51,7 +52,7 @@ export function LandingDeal() {
       </p>
 
       <Link
-        href="/survey"
+        href={PATHS.SURVEY}
         className="inline-flex items-center justify-center bg-ink text-paper px-8 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium hover:bg-rust-deep transition-colors duration-200"
       >
         {TEXT.HomePage.deal.cta}

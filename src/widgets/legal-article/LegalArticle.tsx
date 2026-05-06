@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PATHS } from "@/shared/config/paths";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 import { slugify } from "@/shared/lib/slugify";
 
@@ -55,7 +56,7 @@ export function LegalArticle({
 
       <div className="mt-16 pt-8 border-t border-rule">
         <Link
-          href="/survey"
+          href={PATHS.SURVEY}
           className="inline-flex items-center justify-center bg-ink text-paper px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium hover:bg-rust-deep transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
         >
           {ctaLabel}

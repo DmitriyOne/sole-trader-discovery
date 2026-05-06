@@ -1,6 +1,7 @@
 "use client";
 
 import type { TResponseInput } from "@/entities/response";
+import { API } from "@/shared/config/api";
 
 export type TSubmitResult =
   | { ok: true; id: string }
@@ -10,7 +11,7 @@ export async function submitSurvey(
   payload: TResponseInput
 ): Promise<TSubmitResult> {
   try {
-    const response = await fetch("/api/submit", {
+    const response = await fetch(API.SUBMIT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
