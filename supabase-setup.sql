@@ -45,17 +45,49 @@ create index if not exists responses_tenure_idx
 -- ─────────────────────────────────────────────────────────────────
 -- Row Level Security
 -- ─────────────────────────────────────────────────────────────────
--- RLS enabled but no anon policies — only the service_role key
--- (used by our Next.js API route) can read/write. Browser requests
--- with the anon key are blocked. Secure default for survey data.
+-- Threat model: only our Next.js API route (under service_role key)
+-- inserts into this table; browser never talks to Supabase directly,
+-- and there is no auth system. So anon and authenticated must be
+-- locked out completely. service_role bypasses RLS by design.
+--
+-- Why explicit deny policies instead of just "RLS enabled, no policy"?
+-- Functionally identical (Postgres denies access when RLS is on and
+-- no policy matches), but explicit policies:
+--   1. silence the "RLS Enabled No Policy" lint warning,
+--   2. document the security intent in version-controlled SQL,
+--   3. surface as a conflict if someone later adds a permissive policy.
 -- ─────────────────────────────────────────────────────────────────
 
 alter table public.responses enable row level security;
 
+-- Anon: no read/insert/update/delete via PostgREST
+create policy "responses_deny_anon"
+on public.responses
+for all
+to anon
+using (false)
+with check (false);
+
+-- Authenticated: no auth system in this MVP, but lock the role anyway
+create policy "responses_deny_authenticated"
+on public.responses
+for all
+to authenticated
+using (false)
+with check (false);
+
 -- ─────────────────────────────────────────────────────────────────
 -- Convenience view for quick analysis in Supabase Studio
 -- ─────────────────────────────────────────────────────────────────
-create or replace view public.responses_summary as
+-- security_invoker=true makes the view execute with the caller's
+-- privileges instead of the owner's. Without it, the view bypasses
+-- the RLS on `responses` (Postgres default), and PostgREST exposes
+-- /rest/v1/responses_summary to anyone with the anon key. With it,
+-- anon callers hit RLS (no policy = 0 rows) and only service_role
+-- (used by Studio + our API route) can read.
+-- ─────────────────────────────────────────────────────────────────
+create or replace view public.responses_summary
+with (security_invoker = true) as
 select
   id,
   submitted_at,
