@@ -13,6 +13,12 @@ export const TEXT = {
   },
 
   HomePage: {
+    meta: {
+      title: "Sole Trader Discovery — what actually slows down UK sole traders",
+      description:
+        "A 15-minute research survey for UK sole traders. Tell me what slows you down, get free 3 months of whatever I build. No marketing, no upsell, no tracking.",
+    },
+
     strip: {
       status: "Discovery phase / open",
       issue: "№ 001 · 2026",
@@ -32,7 +38,7 @@ export const TEXT = {
           " for other sole traders, and where AI could realistically help instead of just adding another dashboard nobody opens.",
       },
       note: {
-        body: "I don’t have a product to sell you. I have a hypothesis: that there’s at least one specific repetitive task in the life of a UK sole trader that everyone hates and nobody’s properly solved. I refuse to write a single line of product code until I’ve heard from real people doing real work. That’s where you come in.",
+        body: "I don’t have a product to sell you. I have a hypothesis: that there’s at least one specific repetitive task in the life of a UK sole trader that everyone hates and nobody’s properly solved. I refuse to write a single line of product code until I’ve heard from people actually doing the work. That’s where you come in.",
         signature: "— Dmitry Fenko",
         meta: "Fellow sole trader · UK",
       },
@@ -65,6 +71,12 @@ export const TEXT = {
   },
 
   SurveyPage: {
+    meta: {
+      title: "Take the survey — Sole Trader Discovery",
+      description:
+        "Three honest questions about admin, tools and pain points in your UK sole trader business. About 15 minutes, fully confidential, no tracking.",
+    },
+
     confidentiality: "Your answers are strictly confidential. They go directly into a private database — no third parties, no marketing lists, no sharing. Only I read them.",
     intro: {
       kicker: "Discovery survey · 3 questions",
@@ -98,15 +110,15 @@ export const TEXT = {
         "Your answers are saved privately. I’ll read every single one personally.",
       body2: "Here’s what happens next:",
       bullets: [
-        "I’ll keep collecting responses for ~2 weeks.",
+        "I’ll keep collecting responses for about 2 weeks.",
         "If I find a real pattern, I’ll build something narrow and specific around it.",
-        "When it’s ready, you get 1–3 months free — no card, no asking.",
+        "When it’s ready, you get 3 months free — no payment card requested, no questions asked.",
         "If I find no pattern, I’ll email you and tell you why I’m not building it.",
       ],
       closing: "Either way, you’ll hear from me. Honest deal.",
       signature: "— Dmitry",
       followUpPrompt:
-        "Want to add something the form didn’t cover? Reply to your confirmation email or write to me at",
+        "Want to add something the form didn’t cover? Email me at",
       referralPrompt:
         "Know another UK sole trader I should hear from? Send me their name or handle at",
       referralMailSubject:
@@ -134,6 +146,10 @@ export const TEXT = {
         body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to [PLACEHOLDER: contact email] and I’ll reply personally.",
       },
       {
+        heading: "ICO registration",
+        body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is [PLACEHOLDER: ICO registration number]. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
+      },
+      {
         heading: "What I collect",
         body: "Only what you type into the survey: your email address, a short description of your business, how long you’ve been running it, your free-text answers to three open-ended questions, and a server-stamped timestamp recording when you ticked the consent box and which version of this notice was in force at that moment. All of it is collected directly from you when you submit the form; nothing is bought, scraped, or inferred from other sources. I don’t use analytics, cookies, fingerprinting, or session recording, and there’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey.",
       },
@@ -143,11 +159,11 @@ export const TEXT = {
       },
       {
         heading: "Where it’s stored",
-        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc. (US). Their edge network may route your form submission through servers outside the UK or EU on its way to the database. Vercel processes the data under their own DPA, which uses the IDTA and standard contractual clauses as the transfer mechanism. I’m the only person with access to the stored data.",
+        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc. (US). Their edge network may route your form submission through servers outside the UK or EU on its way to the database. Vercel processes the data under their own Data Processing Agreement (DPA), which uses the IDTA and standard contractual clauses as the transfer mechanism. If a server-side validation error occurs while you submit the form, a small fragment of your submitted answer (up to about 1,000 characters) may transiently appear in Vercel’s function logs for up to one hour before being auto-deleted; these logs are accessible only to me. Beyond the platform staff at Supabase and Vercel (who have administrative access to their infrastructure under their respective DPAs), I’m the only person who reads and analyses the data.",
       },
       {
         heading: "How long I keep it",
-        body: "I keep your responses for as long as the project is active, plus up to 12 months after, in case I need to come back to the data. After that, or whenever you ask, I delete your record permanently.",
+        body: "I keep your responses for as long as the project is active, plus up to 12 months after, to allow follow-up analysis and any final write-up of findings. After that, or whenever you ask, I delete your record permanently.",
       },
       {
         heading: "Your rights (UK GDPR)",
@@ -189,7 +205,7 @@ export const TEXT = {
       },
       {
         heading: "The free access offer",
-        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 1–3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won’t charge you without asking first.",
+        body: "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won’t charge you without asking first.",
       },
       {
         heading: "Acceptable use",
@@ -304,6 +320,11 @@ export const TEXT = {
   },
 
   ErrorPage: {
+    meta: {
+      title: "Something broke — Sole Trader Discovery",
+      description:
+        "The page hit an unexpected error. Try again, or email me directly if it keeps happening.",
+    },
     label: "500 · Something broke",
     headline: "Something broke on my end.",
     body: "Sorry. The page hit an unexpected error. Try again — and if it keeps happening, write to me directly so I can look at it.",
@@ -315,8 +336,3 @@ export const TEXT = {
 } as const;
 
 export const PRIVACY_NOTICE_VERSION = "2026-05";
-
-export const PRIVACY_ICO_REGISTRATION_OPTIONAL = {
-  heading: "ICO registration",
-  body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is [PLACEHOLDER: ICO registration number]. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
-} as const;

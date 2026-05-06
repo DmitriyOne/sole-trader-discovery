@@ -16,6 +16,13 @@ export function ErrorPage({ error, reset }: TErrorPageProps) {
     console.error(error);
   }, [error]);
 
+  // error.tsx is a Client Component — Next does not let it export `metadata`.
+  // Set the document title manually so the browser tab/screen reader reflects
+  // the error state instead of inheriting the underlying route's title.
+  useEffect(() => {
+    document.title = TEXT.ErrorPage.meta.title;
+  }, []);
+
   return (
     <div className="relative left-1/2 -ml-[50vw] w-screen min-h-screen flex flex-col">
       <header className="border-b border-rule">
