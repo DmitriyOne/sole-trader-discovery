@@ -1,6 +1,6 @@
 "use client";
 
-import type { ChangeEvent } from "react";
+import { useId, type ChangeEvent } from "react";
 import { cn } from "@/shared/lib/cn";
 
 type TRadioOption = {
@@ -14,6 +14,10 @@ type TRadioGroupProps = {
   value?: string;
   onChange?: (value: string) => void;
   className?: string;
+  id?: string;
+  "aria-required"?: boolean;
+  "aria-invalid"?: boolean;
+  "aria-describedby"?: string;
 };
 
 export function RadioGroup({
@@ -22,7 +26,14 @@ export function RadioGroup({
   value,
   onChange,
   className,
+  id,
+  "aria-required": ariaRequired,
+  "aria-invalid": ariaInvalid,
+  "aria-describedby": ariaDescribedby,
 }: TRadioGroupProps) {
+  const reactId = useId();
+  const baseId = id ?? reactId;
+
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     onChange?.(event.target.value);
   }
@@ -31,9 +42,11 @@ export function RadioGroup({
     <div className={cn("flex flex-col gap-2.5", className)}>
       {options.map((option) => {
         const checked = value === option.value;
+        const inputId = `${baseId}-${option.value}`;
         return (
           <label
             key={option.value}
+            htmlFor={inputId}
             className={cn(
               "flex items-start px-3.5 py-3 border cursor-pointer",
               "transition-[color,background-color,border-color] duration-150",
@@ -43,11 +56,15 @@ export function RadioGroup({
             )}
           >
             <input
+              id={inputId}
               type="radio"
               name={name}
               value={option.value}
               checked={checked}
               onChange={handleChange}
+              aria-required={ariaRequired}
+              aria-invalid={ariaInvalid}
+              aria-describedby={ariaDescribedby}
               className="mr-3 mt-1 accent-rust"
             />
             <span className="text-[16px] text-ink font-serif">

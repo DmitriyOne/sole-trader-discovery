@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Controller } from "react-hook-form";
+import { PATHS } from "@/shared/config/paths";
 import { TEXT } from "@/shared/config/text";
 import { Button } from "@/shared/ui/Button";
 import { Field } from "@/shared/ui/Field";
@@ -59,6 +60,17 @@ export function SurveyFlow() {
     useState<TSubmissionState>("idle");
   const [submissionError, setSubmissionError] = useState<string | null>(null);
 
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const isInitialStep = useRef(true);
+
+  useEffect(() => {
+    if (isInitialStep.current) {
+      isInitialStep.current = false;
+      return;
+    }
+    headingRef.current?.focus();
+  }, [currentStep]);
+
   const {
     register,
     control,
@@ -114,11 +126,27 @@ export function SurveyFlow() {
 
       <StepIndicator current={currentStep} total={totalSteps} />
 
-      <h2 className="font-serif font-medium text-[28px] leading-[1.2] tracking-[-0.01em] mb-8 text-ink">
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {TEXT.SurveyPage.stepAnnouncement(
+          currentStep + 1,
+          totalSteps,
+          currentStepData.title
+        )}
+      </div>
+
+      <h2
+        ref={headingRef}
+        tabIndex={-1}
+        className="font-serif font-medium text-[28px] leading-[1.2] tracking-[-0.01em] mb-8 text-ink focus:outline-none"
+      >
         {currentStepData.title}
       </h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        aria-busy={submissionState === "submitting"}
+      >
         {currentStepData.id === "intro" && (
           <>
             <Field
@@ -226,7 +254,7 @@ export function SurveyFlow() {
                   >
                     {TEXT.SurveyPage.consentLabel}
                     <Link
-                      href="/privacy"
+                      href={PATHS.PRIVACY}
                       target="_blank"
                       rel="noopener"
                       className="block mt-2 text-rust-deep underline underline-offset-2 hover:text-rust"
@@ -267,6 +295,7 @@ export function SurveyFlow() {
               variant="ghost"
               onClick={goBack}
               disabled={submissionState === "submitting"}
+              aria-label={TEXT.SurveyPage.nav.backAria}
             >
               {TEXT.SurveyPage.nav.back}
             </Button>
@@ -278,6 +307,7 @@ export function SurveyFlow() {
               variant="primary"
               onClick={goNext}
               className="sm:ml-auto"
+              aria-label={TEXT.SurveyPage.nav.nextAria}
             >
               {TEXT.SurveyPage.nav.next}
             </Button>
@@ -289,6 +319,11 @@ export function SurveyFlow() {
               variant="primary"
               disabled={submissionState === "submitting"}
               className="sm:ml-auto"
+              aria-label={
+                submissionState === "submitting"
+                  ? TEXT.SurveyPage.nav.submittingAria
+                  : TEXT.SurveyPage.nav.submitAria
+              }
             >
               {submissionState === "submitting"
                 ? TEXT.SurveyPage.nav.submitting

@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode, Ref } from "react";
 import { cn } from "@/shared/lib/cn";
 
 type TButtonVariant = "primary" | "ghost";
@@ -8,6 +8,7 @@ type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: TButtonVariant;
   size?: TButtonSize;
   children: ReactNode;
+  ref?: Ref<HTMLButtonElement>;
 };
 
 const baseClasses =
@@ -30,10 +31,12 @@ export function Button({
   size = "md",
   className,
   children,
+  ref,
   ...rest
 }: TButtonProps) {
   return (
     <button
+      ref={ref}
       className={cn(
         baseClasses,
         variantClasses[variant],

@@ -22,6 +22,7 @@ type TInjectableProps = {
   id?: string;
   "aria-invalid"?: boolean;
   "aria-describedby"?: string;
+  "aria-required"?: boolean;
 };
 
 export function Field({
@@ -86,14 +87,24 @@ export function Field({
   ) : null;
 
   if (asFieldset) {
+    const enhancedChild = isValidElement(children)
+      ? cloneElement(children as ReactElement<TInjectableProps>, {
+          "aria-invalid": error ? true : undefined,
+          "aria-describedby": describedBy,
+          "aria-required": required || undefined,
+        })
+      : children;
+
     return (
       <fieldset
         className={cn("mb-7 border-0 p-0 m-0", className)}
         aria-describedby={describedBy}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
       >
         <legend className={cn(titleClasses, "p-0")}>{titleInner}</legend>
         {helpEl}
-        {children}
+        {enhancedChild}
         {errorEl}
       </fieldset>
     );
@@ -104,6 +115,7 @@ export function Field({
         id: inputId,
         "aria-invalid": error ? true : undefined,
         "aria-describedby": describedBy,
+        "aria-required": required || undefined,
       })
     : children;
 
