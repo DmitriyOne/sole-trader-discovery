@@ -1,9 +1,17 @@
 import { ImageResponse } from "next/og";
+import { env } from "@/shared/config/env";
 import { loadGoogleFont } from "@/shared/lib/loadGoogleFont";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt = "What actually slows down UK sole traders.";
+
+// Skip build-time prerender. The image fetches 4 Google Fonts via the
+// network; on Vercel's build environment this occasionally times out
+// (ETIMEDOUT) and breaks the whole deploy. Generating on demand is fine
+// — the result is cached by Vercel's edge after the first request, so
+// social-media crawlers still see a near-instant response.
+export const dynamic = "force-dynamic";
 
 const HEADLINE_NORMAL = "What  slows down UK sole traders.";
 const HEADLINE_ITALIC = "actually";
@@ -13,9 +21,7 @@ const SIGNATURE = "— Dmitry Fenko · UK sole trader";
 const STATUS = "Research in progress";
 
 export default async function OpenGraphImage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL).host
-    : "[PLACEHOLDER: site URL]";
+  const siteUrl = new URL(env.NEXT_PUBLIC_SITE_URL).host;
 
   const monoText = `${MASTHEAD_LEFT}${MASTHEAD_RIGHT}${STATUS}${siteUrl}`;
 
