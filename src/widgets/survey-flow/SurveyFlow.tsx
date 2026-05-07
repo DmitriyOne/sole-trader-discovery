@@ -153,38 +153,38 @@ export function SurveyFlow() {
         {currentStepData.id === "intro" && (
           <>
             <Field
-              number="01"
-              label="Email"
+              number={TEXT.SurveyPage.questions.email.number}
+              label={TEXT.SurveyPage.questions.email.label}
               required
-              help="Used once: to send you the bot link and notify you at launch."
+              help={TEXT.SurveyPage.questions.email.help}
               error={errors.email?.message}
             >
               <TextInput
                 type="email"
-                placeholder="you@example.co.uk"
+                placeholder={TEXT.SurveyPage.questions.email.placeholder}
                 autoComplete="email"
                 {...register("email")}
               />
             </Field>
 
             <Field
-              number="02"
-              label="What does your sole trader business do?"
+              number={TEXT.SurveyPage.questions.business.number}
+              label={TEXT.SurveyPage.questions.business.label}
               required
-              help={"One line is enough. “Freelance designer.” “Photography studio.” “Online tutor.”"}
+              help={TEXT.SurveyPage.questions.business.help}
               error={errors.business?.message}
             >
               <TextInput
                 type="text"
-                placeholder="e.g. Freelance designer"
+                placeholder={TEXT.SurveyPage.questions.business.placeholder}
                 autoComplete="organization"
                 {...register("business")}
               />
             </Field>
 
             <Field
-              number="03"
-              label="How long have you been running it?"
+              number={TEXT.SurveyPage.questions.tenure.number}
+              label={TEXT.SurveyPage.questions.tenure.label}
               required
               error={errors.tenure?.message}
               asFieldset
@@ -207,9 +207,9 @@ export function SurveyFlow() {
 
         {currentStepData.id === "q1" && (
           <Field
-            label="What’s a recent admin task that took longer than it should have?"
+            label={TEXT.SurveyPage.questions.q1_admin_task.label}
             required
-            help="Tax, invoicing, the bank, your accountant, scheduling — anything boring but unavoidable. What was it, and roughly how long did it actually take?"
+            help={TEXT.SurveyPage.questions.q1_admin_task.help}
             error={errors.q1_admin_task?.message}
           >
             <TextArea {...register("q1_admin_task")} />
@@ -219,9 +219,9 @@ export function SurveyFlow() {
 
         {currentStepData.id === "q2" && (
           <Field
-            label="What tools, services or people are you currently paying for to keep your business running?"
+            label={TEXT.SurveyPage.questions.q2_currently_paying.label}
             required
-            help="Accountant, Xero, Wise, a virtual assistant, ChatGPT Plus, etc. Roughly what does it cost you per month total?"
+            help={TEXT.SurveyPage.questions.q2_currently_paying.help}
             error={errors.q2_currently_paying?.message}
           >
             <TextArea {...register("q2_currently_paying")} />
@@ -232,9 +232,9 @@ export function SurveyFlow() {
         {currentStepData.id === "q3" && (
           <>
             <Field
-              label="If you could make one problem in your business life disappear tomorrow, what would it be?"
+              label={TEXT.SurveyPage.questions.q3_magic_wand.label}
               required
-              help="This is the one that matters most. Don’t filter for ‘realistic’. Just whatever genuinely makes you sigh."
+              help={TEXT.SurveyPage.questions.q3_magic_wand.help}
               error={errors.q3_magic_wand?.message}
             >
               <TextArea {...register("q3_magic_wand")} />
@@ -242,7 +242,7 @@ export function SurveyFlow() {
             </Field>
 
             <Field
-              label="Privacy & consent"
+              label={TEXT.SurveyPage.questions.consent.label}
               required
               error={errors.consent?.message}
               asFieldset

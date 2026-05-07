@@ -78,6 +78,45 @@ export const TEXT = {
     },
 
     confidentiality: "Your answers are strictly confidential. They go directly into a private database — no third parties, no marketing lists, no sharing. Only I read them.",
+
+    // Per-field copy for the multi-step survey. Question keys mirror the
+    // schema field names in entities/response/model/schema.ts (email,
+    // business, tenure, q1_admin_task, q2_currently_paying, q3_magic_wand,
+    // consent) so it's easy to find which prompt belongs to which field.
+    questions: {
+      email: {
+        number: "01",
+        label: "Email",
+        help: "Used once: to email you if a product is built.",
+        placeholder: "you@example.co.uk",
+      },
+      business: {
+        number: "02",
+        label: "What does your sole trader business do?",
+        help: "One line is enough. “Freelance designer.” “Photography studio.” “Online tutor.”",
+        placeholder: "e.g. Freelance designer",
+      },
+      tenure: {
+        number: "03",
+        label: "How long have you been running it?",
+      },
+      q1_admin_task: {
+        label: "What’s a recent admin task that took longer than it should have?",
+        help: "Tax, invoicing, the bank, your accountant, scheduling — anything boring but unavoidable. What was it, and roughly how long did it actually take?",
+      },
+      q2_currently_paying: {
+        label: "What tools, services or people are you currently paying for to keep your business running?",
+        help: "Accountant, Xero, Wise, a virtual assistant, ChatGPT Plus, etc. Roughly what does it cost you per month total?",
+      },
+      q3_magic_wand: {
+        label: "If you could make one problem in your business life disappear tomorrow, what would it be?",
+        help: "This is the one that matters most. Don’t filter for ‘realistic’. Just whatever genuinely makes you sigh.",
+      },
+      consent: {
+        label: "Privacy & consent",
+      },
+    },
+
     intro: {
       kicker: "Discovery survey · 3 questions",
       title: "Tell me what actually slows you down.",
