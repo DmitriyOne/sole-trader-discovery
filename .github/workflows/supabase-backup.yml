@@ -28,7 +28,12 @@ jobs:
             | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
           sudo apt-get update
           sudo apt-get install -y postgresql-client-17
-          pg_dump --version
+          # ubuntu-latest ships postgresql-client-16 pre-installed; the
+          # /usr/bin/pg_dump wrapper picks the oldest installed major by
+          # default. Prepend the v17 bin dir so subsequent steps resolve
+          # `pg_dump` to the 17 binary.
+          echo "/usr/lib/postgresql/17/bin" >> "$GITHUB_PATH"
+          /usr/lib/postgresql/17/bin/pg_dump --version
 
       - name: Run pg_dump
         env:
