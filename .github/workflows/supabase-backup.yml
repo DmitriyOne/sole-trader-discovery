@@ -1,0 +1,62 @@
+name: Daily Supabase backup
+
+# Dumps the public schema from Supabase (data + DDL) once a day and stores
+# the result as a GitHub Actions artifact. Free Supabase tier has no built-in
+# automated backups, so we self-host this. Repo MUST be private — the dump
+# contains PII (emails, free-text survey answers).
+#
+# Security note: this workflow uses no untrusted user input. All inputs are
+# either GitHub-controlled (run_id) or come from secrets/env. No issue/PR/
+# commit fields touch the run: blocks, so command-injection vectors are nil.
+
+on:
+  schedule:
+    # Every day at 09:17 UTC (offset minute keeps us out of the :00 rush).
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Install pg_dump 16 (matches Supabase server)
+        run: |
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-16
+          pg_dump --version
+
+      - name: Run pg_dump
+        env:
+          DATABASE_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: |
+          set -euo pipefail
+          STAMP=$(date -u +%Y-%m-%d-%H%M)
+          OUT="backup-${STAMP}.dump"
+
+          pg_dump \
+            --no-owner \
+            --no-privileges \
+            --schema=public \
+            --format=custom \
+            "$DATABASE_URL" > "$OUT"
+
+          ls -lh "$OUT"
+          MIN_BYTES=512
+          ACTUAL=$(stat -c%s "$OUT")
+          if [ "$ACTUAL" -lt "$MIN_BYTES" ]; then
+            echo "Dump is only $ACTUAL bytes — bailing out." >&2
+            exit 1
+          fi
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-backup-${{ github.run_id }}
+          path: backup-*.dump
+          retention-days: 90
+          if-no-files-found: error
