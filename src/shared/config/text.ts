@@ -105,6 +105,7 @@ export const TEXT = {
       submittingAria: "Submitting survey, please wait",
     },
     success: {
+      kicker: "Response received · Discovery № 001",
       title: "That’s it. Thank you — genuinely.",
       body1:
         "Your answers are saved privately. I’ll read every single one personally.",
@@ -116,7 +117,9 @@ export const TEXT = {
         "If I find no pattern, I’ll email you and tell you why I’m not building it.",
       ],
       closing: "Either way, you’ll hear from me. Honest deal.",
-      signature: "— Dmitry",
+      signature: "— Dmitry Fenko",
+      signatureMeta: "Fellow sole trader · UK",
+      postscriptLabel: "Postscript",
       followUpPrompt:
         "Want to add something the form didn’t cover? Email me at",
       referralPrompt:

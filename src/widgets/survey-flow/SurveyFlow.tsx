@@ -350,56 +350,92 @@ function SuccessPanel() {
     <div
       role="status"
       aria-live="polite"
-      className="bg-paper border border-rule p-10 sm:p-14 text-center"
+      className="bg-paper border border-rule p-9 sm:p-12"
     >
+      {/* Masthead-style strip */}
+      <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">
+        <span
+          aria-hidden="true"
+          className="inline-block w-2 h-2 bg-rust rounded-full pulse-dot shrink-0"
+        />
+        <span>{TEXT.SurveyPage.success.kicker}</span>
+      </div>
+
       <h2
         ref={headingRef}
         tabIndex={-1}
-        className="font-serif font-medium text-[28px] sm:text-[32px] leading-[1.2] mb-6 text-rust-deep focus:outline-none"
+        className="font-serif font-medium text-[clamp(28px,5vw,40px)] leading-[1.15] tracking-[-0.01em] mb-6 text-ink focus:outline-none"
       >
         {TEXT.SurveyPage.success.title}
       </h2>
-      <p className="font-serif text-[17px] leading-[1.6] text-ink-soft mb-4">
+
+      <p className="font-serif text-[18px] leading-[1.6] text-ink-soft mb-4">
         {TEXT.SurveyPage.success.body1}
       </p>
-      <p className="font-serif text-[17px] leading-[1.6] text-ink mb-4">
+      <p className="font-serif text-[18px] leading-[1.6] text-ink mb-2">
         {TEXT.SurveyPage.success.body2}
       </p>
-      <ul className="text-left max-w-md mx-auto space-y-2 mb-8 font-serif text-[16px] text-ink-soft">
-        {TEXT.SurveyPage.success.bullets.map((bullet, idx) => (
-          <li key={idx} className="flex gap-3">
-            <span className="text-rust font-mono text-[12px] mt-1.5">▸</span>
-            <span>{bullet}</span>
-          </li>
-        ))}
-      </ul>
-      <p className="font-serif text-[17px] text-ink mb-2">
+
+      {/* Bullets in border-l callout (echoes the hero note pattern) */}
+      <div className="bg-bg border-l-[3px] border-rust px-6 py-5 my-7">
+        <ul className="space-y-3 font-serif text-[16px] leading-[1.5] text-ink-soft">
+          {TEXT.SurveyPage.success.bullets.map((bullet, idx) => (
+            <li key={idx} className="flex gap-3 items-start">
+              <span
+                aria-hidden="true"
+                className="text-rust font-mono text-[12px] mt-1.5 shrink-0"
+              >
+                ▸
+              </span>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="font-serif text-[17px] leading-[1.55] text-ink mb-7">
         {TEXT.SurveyPage.success.closing}
       </p>
-      <p className="font-handwritten text-[24px] text-rust-deep mb-8">
-        {TEXT.SurveyPage.success.signature}
-      </p>
 
-      {/* Email fallback — for follow-ups beyond what the form captured */}
-      <div className="border-t border-rule pt-6 mt-6 max-w-md mx-auto space-y-3">
-        <p className="font-serif text-[15px] text-ink-soft leading-[1.55]">
-          {TEXT.SurveyPage.success.followUpPrompt}{" "}
-          <a
-            href={`mailto:${TEXT.Footer.contact}`}
-            className="text-rust-deep underline underline-offset-2 hover:text-rust"
-          >
-            {TEXT.Footer.contact}
-          </a>
-        </p>
-        <p className="font-serif text-[15px] text-ink-soft leading-[1.55]">
-          {TEXT.SurveyPage.success.referralPrompt}{" "}
-          <a
-            href={`mailto:${TEXT.Footer.contact}?subject=${encodeURIComponent(TEXT.SurveyPage.success.referralMailSubject)}`}
-            className="text-rust-deep underline underline-offset-2 hover:text-rust"
-          >
-            {TEXT.Footer.contact}
-          </a>
-        </p>
+      {/* Letter-style signoff (mirrors hero note signature) */}
+      <div>
+        <span className="block font-handwritten text-[28px] sm:text-[30px] text-rust-deep leading-tight">
+          {TEXT.SurveyPage.success.signature}
+        </span>
+        <span className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1.5 font-medium">
+          {TEXT.SurveyPage.success.signatureMeta}
+        </span>
+      </div>
+
+      {/* Postscript — follow-up + referral */}
+      <div className="border-t border-rule mt-10 pt-8">
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-rust mb-5 font-medium">
+          <span aria-hidden="true" className="text-ink-soft">
+            §{" "}
+          </span>
+          {TEXT.SurveyPage.success.postscriptLabel}
+        </div>
+
+        <div className="space-y-4">
+          <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
+            {TEXT.SurveyPage.success.followUpPrompt}{" "}
+            <a
+              href={`mailto:${TEXT.Footer.contact}`}
+              className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+            >
+              {TEXT.Footer.contact}
+            </a>
+          </p>
+          <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
+            {TEXT.SurveyPage.success.referralPrompt}{" "}
+            <a
+              href={`mailto:${TEXT.Footer.contact}?subject=${encodeURIComponent(TEXT.SurveyPage.success.referralMailSubject)}`}
+              className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+            >
+              {TEXT.Footer.contact}
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
