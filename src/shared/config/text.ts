@@ -185,7 +185,7 @@ export const TEXT = {
     sections: [
       {
         heading: "Who runs this",
-        body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to hello@fenko.dev and I’ll reply personally.",
+        body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to support@fenko.dev and I’ll reply personally.",
       },
       {
         heading: "ICO registration",
