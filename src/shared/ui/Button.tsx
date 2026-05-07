@@ -12,7 +12,7 @@ type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center font-mono uppercase tracking-[0.18em] font-medium transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-50 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust";
+  "inline-flex items-center justify-center font-mono uppercase tracking-[0.18em] font-medium transition-colors duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust";
 
 const variantClasses: Record<TButtonVariant, string> = {
   primary:
