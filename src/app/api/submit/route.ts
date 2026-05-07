@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
         "[submit] validation failed:",
         err.flatten().fieldErrors,
         "payload:",
-        truncate(payload, 2000)
+        truncate(payload, 1000)
       );
       return NextResponse.json(
         { error: "Validation failed" },

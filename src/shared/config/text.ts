@@ -7,9 +7,9 @@ export const TEXT = {
 
   Footer: {
     issue: "Discovery № 001 · UK · 2026",
-    contact: "[PLACEHOLDER: contact email]",
+    contact: "hello@fenko.dev",
     legal:
-      "Sole Trader Discovery is a trading name of Dmytro Fenko, a UK sole trader · [PLACEHOLDER: business address]",
+      "Fenko Team is a trading name of Dmytro Fenko, a UK sole trader · Weston-S-Mare, UK",
   },
 
   HomePage: {
@@ -181,15 +181,15 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Privacy notice",
     headline: "What happens to your answers.",
-    lastUpdated: "Last updated: May 2026",
+    lastUpdated: "Last updated: 7 May 2026",
     sections: [
       {
         heading: "Who runs this",
-        body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to [PLACEHOLDER: contact email] and I’ll reply personally.",
+        body: "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to hello@fenko.dev and I’ll reply personally.",
       },
       {
         heading: "ICO registration",
-        body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is [PLACEHOLDER: ICO registration number]. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
+        body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is [PLACEHOLDER: ICO public registration number]. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
       },
       {
         heading: "What I collect",
@@ -201,7 +201,7 @@ export const TEXT = {
       },
       {
         heading: "Where it’s stored",
-        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the UK International Data Transfer Agreement (IDTA) and standard contractual clauses, which provide appropriate safeguards under UK GDPR Article 46. The website itself is served by Vercel Inc. (US). Their edge network may route your form submission through servers outside the UK or EU on its way to the database. Vercel processes the data under their own Data Processing Agreement (DPA), which uses the IDTA and standard contractual clauses as the transfer mechanism. If a server-side validation error occurs while you submit the form, a small fragment of your submitted answer (up to about 1,000 characters) may transiently appear in Vercel’s function logs for up to one hour before being auto-deleted; these logs are accessible only to me. Beyond the platform staff at Supabase and Vercel (who have administrative access to their infrastructure under their respective DPAs), I’m the only person who reads and analyses the data.",
+        body: "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the standard contractual clauses and the UK International Data Transfer Agreement (IDTA) included in Supabase’s published Data Processing Agreement (supabase.com/legal/dpa), which provide appropriate safeguards under UK GDPR Article 46. The website is served by Vercel Inc. (US), and the serverless function that receives and validates your form submission is configured to run in Vercel’s Frankfurt region (eu-central) — so the form data is processed inside the EU before it reaches the database. Vercel publishes a Data Processing Agreement at vercel.com/legal/dpa that incorporates the standard contractual clauses and the UK IDTA as transfer mechanisms. Both Supabase’s and Vercel’s DPAs apply to this project through incorporation by reference in their standard terms — they have not been separately countersigned. If a server-side validation error occurs while you submit the form, a small fragment of your submitted answer (up to about 1,000 characters) may transiently appear in Vercel’s function logs for up to one hour before being auto-deleted; these logs are accessible only to me. Beyond the platform staff at Supabase and Vercel (who have administrative access to their infrastructure under their respective DPAs), I’m the only person who reads and analyses the data.",
       },
       {
         heading: "How long I keep it",
@@ -209,7 +209,7 @@ export const TEXT = {
       },
       {
         heading: "Your rights (UK GDPR)",
-        body: "Under UK GDPR you have the right to: access a copy of your data; correct anything inaccurate; have your data deleted; restrict how I use it; receive your data in a portable format (e.g. a CSV); object to processing; and withdraw your consent at any time. To exercise any of these, email [PLACEHOLDER: contact email]. I’ll respond within one month — usually much faster.",
+        body: "Under UK GDPR you have the right to: access a copy of your data; correct anything inaccurate; have your data deleted; restrict how I use it; receive your data in a portable format (e.g. a CSV); object to processing; and withdraw your consent at any time. To exercise any of these, email support@fenko.dev. I’ll respond within one month — usually much faster.",
       },
       {
         heading: "Lawful basis",
@@ -235,11 +235,11 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Terms of use",
     headline: "How this site works and what you’re agreeing to.",
-    lastUpdated: "Last updated: May 2026",
+    lastUpdated: "Last updated: 7 May 2026",
     sections: [
       {
         heading: "Who runs this site",
-        body: "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Sole Trader Discovery. It is not a company. It is not a startup. It is one person running a research project to understand what’s genuinely painful about running a UK sole trader business. The address for service of any document under these terms is [PLACEHOLDER: business address]. You can reach me at [PLACEHOLDER: contact email].",
+        body: "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. It is not a company. It is not a startup. It is one person running a research project to understand what’s genuinely painful about running a UK sole trader business. The address for service of any document under these terms is Weston-super-mare, UK, BS23 1RH. You can reach me at hello@fenko.dev.",
       },
       {
         heading: "What this site is",
@@ -251,7 +251,7 @@ export const TEXT = {
       },
       {
         heading: "Acceptable use",
-        body: "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person’s personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form.",
+        body: "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person’s personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form. Knowingly submitting fabricated data wastes the research and is a breach of these terms; abusive, threatening, harassing, or defamatory content may also amount to civil or criminal offences under UK law (including the Communications Act 2003 s.127, the Malicious Communications Act 1988, the Defamation Act 2013, and the Online Safety Act 2023), and I reserve the right to delete the submission, ban the sender, and refer the material to the police or the relevant regulator. You will be solely responsible for any fines, penalties, or damages awarded against you as a result.",
       },
       {
         heading: "Ownership of content",
@@ -275,7 +275,7 @@ export const TEXT = {
       },
       {
         heading: "Contact",
-        body: "Questions about these terms? Email [PLACEHOLDER: contact email]. I’ll reply personally.",
+        body: "Questions about these terms? Email support@fenko.dev. I’ll reply personally.",
       },
     ],
   },
@@ -289,7 +289,7 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Cookie notice",
     headline: "No cookies. No tracking. Nothing.",
-    lastUpdated: "Last updated: May 2026",
+    lastUpdated: "Last updated: 7 May 2026",
     sections: [
       {
         heading: "The short version",
@@ -309,7 +309,7 @@ export const TEXT = {
       },
       {
         heading: "Contact",
-        body: "If you have questions about this or notice something that looks like tracking behaviour, please email [PLACEHOLDER: contact email].",
+        body: "If you have questions about this or notice something that looks like tracking behaviour, please email support@fenko.dev.",
       },
     ],
   },
@@ -323,7 +323,7 @@ export const TEXT = {
     backLink: "← Back to home",
     label: "Disclaimer",
     headline: "Research, not advice.",
-    lastUpdated: "Last updated: May 2026",
+    lastUpdated: "Last updated: 7 May 2026",
     sections: [
       {
         heading: "This is not professional advice",
@@ -343,7 +343,7 @@ export const TEXT = {
       },
       {
         heading: "Contact",
-        body: "If something on this site has caused genuine concern, email [PLACEHOLDER: contact email] and I will look at it.",
+        body: "If something on this site has caused genuine concern, email support@fenko.dev and I will look at it.",
       },
     ],
   },
@@ -377,4 +377,4 @@ export const TEXT = {
   },
 } as const;
 
-export const PRIVACY_NOTICE_VERSION = "2026-05";
+export const PRIVACY_NOTICE_VERSION = "2026-05-07";
