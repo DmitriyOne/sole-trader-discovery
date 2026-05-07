@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Fraunces, JetBrains_Mono, Caveat } from "next/font/google";
+import { env } from "@/shared/config/env";
 import { TEXT } from "@/shared/config/text";
 import { SurveyDraftProvider } from "@/features/multi-step-form";
 import "./globals.css";
@@ -27,6 +28,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   title: TEXT.GlobalMeta.title,
   description: TEXT.GlobalMeta.description,
   openGraph: {
