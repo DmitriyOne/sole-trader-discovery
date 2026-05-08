@@ -189,7 +189,7 @@ export const TEXT = {
       },
       {
         heading: "ICO registration",
-        body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is [PLACEHOLDER: ICO public registration number]. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
+        body: "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is ZC141876. You can verify it on the public register at ico.org.uk/ESDWebPages/Search.",
       },
       {
         heading: "What I collect",
