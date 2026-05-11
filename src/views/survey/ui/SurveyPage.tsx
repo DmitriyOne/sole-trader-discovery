@@ -18,7 +18,7 @@ export function SurveyPage() {
       </SiteHeader>
 
       <main id="main">
-        <div className="py-12">
+        <div className="py-8 md:py-12">
           <SurveyFlow />
         </div>
       </main>

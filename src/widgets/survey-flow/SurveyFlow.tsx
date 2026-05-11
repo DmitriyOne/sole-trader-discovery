@@ -113,7 +113,7 @@ export function SurveyFlow() {
   }
 
   return (
-    <div className="bg-paper border border-rule p-9 sm:p-10">
+    <div className="bg-paper border border-rule p-6 sm:p-10">
       <aside
         role="note"
         className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
@@ -350,7 +350,7 @@ function SuccessPanel() {
     <div
       role="status"
       aria-live="polite"
-      className="bg-paper border border-rule p-9 sm:p-12"
+      className="bg-paper border border-rule p-6 sm:p-12"
     >
       {/* Masthead-style strip */}
       <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">

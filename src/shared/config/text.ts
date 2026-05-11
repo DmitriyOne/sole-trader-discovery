@@ -8,8 +8,6 @@ export const TEXT = {
   Footer: {
     issue: "Discovery № 001 · UK · 2026",
     contact: "hello@fenko.dev",
-    legal:
-      "Fenko Team is a trading name of Dmytro Fenko, a UK sole trader · Weston-S-Mare, UK",
   },
 
   HomePage: {
