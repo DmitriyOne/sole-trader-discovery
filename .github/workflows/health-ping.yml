@@ -1,0 +1,70 @@
+name: Health ping
+
+# Pings /api/health every 3 days to keep Supabase free-tier active
+# (project pauses after 7 days of inactivity). The endpoint runs a
+# `select count(*)` against `responses` — that counts as DB activity
+# and resets the inactivity timer.
+#
+# This replaces the equivalent Vercel Cron entry in vercel.json.
+# Running it from GitHub Actions removes the Vercel-cron dependency
+# and gives us a visible run history in the Actions tab.
+#
+# Auth: /api/health requires `Authorization: Bearer <CRON_SECRET>`.
+# Store the SAME value as the Vercel `CRON_SECRET` env var in repo
+# secrets as `HEALTH_TOKEN`. Store the deployed site URL (no trailing
+# slash) in repo variables as `SITE_URL`.
+#
+# Security: this workflow uses NO untrusted user input. Only
+# secrets.HEALTH_TOKEN and vars.SITE_URL are referenced — both are
+# repo-owner-controlled. No github.event.* fields touch run: blocks,
+# so workflow-injection vectors are nil.
+#
+# Cron caveat: `*/3` in day-of-month fires on 1, 4, 7, 10, 13, 16,
+# 19, 22, 25, 28, 31 — interval resets at month boundaries (Jan 31
+# → Feb 1 = 1 day). Fine for a 7-day inactivity timer.
+#
+# GitHub Actions schedules can be delayed 15+ minutes under load and
+# pause after 60 days without repo activity. Both tolerable for
+# keep-alive; if either becomes a problem, fall back to vercel.json.
+
+on:
+  schedule:
+    # 06:27 UTC every 3rd day-of-month. Offset minute keeps us out
+    # of the :00 rush. Distinct hour from supabase-backup.yml (09:17)
+    # so the two jobs don't pile up on the same runner pool.
+    - cron: "27 6 */3 * *"
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Curl /api/health
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          HEALTH_TOKEN: ${{ secrets.HEALTH_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SITE_URL:-}" ]; then
+            echo "SITE_URL repo variable is not set." >&2
+            exit 1
+          fi
+          if [ -z "${HEALTH_TOKEN:-}" ]; then
+            echo "HEALTH_TOKEN repo secret is not set." >&2
+            exit 1
+          fi
+
+          # -f  fail on HTTP >= 400 (so the job fails on 401/500)
+          # -sS silent but show errors
+          # --max-time 15 hard cap; the endpoint is one count query
+          # -w  print status code on a new line for the run log
+          curl -fsS --max-time 15 \
+            -H "Authorization: Bearer ${HEALTH_TOKEN}" \
+            -w "\nHTTP %{http_code} in %{time_total}s\n" \
+            "${SITE_URL}/api/health"
