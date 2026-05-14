@@ -374,5 +374,3 @@ export const TEXT = {
     digestLabel: "Reference:",
   },
 } as const;
-
-export const PRIVACY_NOTICE_VERSION = "2026-05-07";
