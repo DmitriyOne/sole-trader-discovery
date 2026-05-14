@@ -53,7 +53,12 @@
         "part3": "after launch. No payment ever requested."
       },
       "closing": "If I build nothing, you’ve lost 15 minutes. If I build something good, you’ve helped shape it and you use it free for 3 months. That’s the entire deal.",
-      "cta": "Open the survey →"
+      "cta": "Open the survey →",
+      "emailFallback": {
+        "before": "Forms not your thing? Just",
+        "linkLabel": "email me directly",
+        "after": ". Same person reads both."
+      }
     }
   },
   "SurveyPage": {

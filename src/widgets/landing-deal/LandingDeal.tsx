@@ -66,14 +66,14 @@ export function LandingDeal() {
 
       {/* Email fallback for those who'd rather write freely */}
       <p className="mt-6 font-serif text-[15px] text-ink-soft leading-[1.55]">
-        Forms not your thing? Just{" "}
+        {t("emailFallback.before")}{" "}
         <a
           href={`mailto:${tFooter("contact")}?subject=Discovery%20%E2%80%94%20my%20take`}
           className="text-rust-deep underline underline-offset-2 hover:text-rust"
         >
-          email me directly
+          {t("emailFallback.linkLabel")}
         </a>
-        . Same person reads both.
+        {t("emailFallback.after")}
       </p>
     </section>
   );
