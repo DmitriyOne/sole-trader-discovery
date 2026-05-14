@@ -156,6 +156,20 @@
       "q1": "Admin that ate the time",
       "q2": "Current spending",
       "q3": "Magic wand"
+    },
+    "errors": {
+      "email_required": "Email is required",
+      "email_invalid": "That doesn't look like a valid email",
+      "business_too_short": "One line is enough",
+      "business_too_long": "Keep it short",
+      "tenure_required": "Pick one",
+      "q1_too_short": "Give me a real answer — at least a sentence or two",
+      "q1_too_long": "Try to keep it under 2000 characters",
+      "q2_too_short": "Even one line works — what tools / who do you pay",
+      "q2_too_long": "Try to keep it under 2000 characters",
+      "q3_too_short": "This is the most important question — give me something real",
+      "q3_too_long": "Try to keep it under 2000 characters",
+      "consent_required": "Please confirm you've read the privacy notice"
     }
   },
   "PrivacyPage": {

@@ -23,20 +23,20 @@ export const responseSchema = z.object({
   // lookups stay deterministic regardless of input casing/whitespace.
   email: z
     .string()
-    .min(1, "Email is required")
+    .min(1, "email_required")
     .transform((v) => v.trim().toLowerCase())
-    .pipe(z.string().email("That doesn't look like a valid email")),
+    .pipe(z.string().email("email_invalid")),
   business: z
     .string()
     .transform((v) => v.trim())
     .pipe(
       z
         .string()
-        .min(2, "One line is enough")
-        .max(200, "Keep it short")
+        .min(2, "business_too_short")
+        .max(200, "business_too_long")
     ),
   tenure: z.enum(TENURE_VALUES, {
-    errorMap: () => ({ message: "Pick one" }),
+    errorMap: () => ({ message: "tenure_required" }),
   }),
 
   // Mom Test questions — open-ended, demand specifics
@@ -46,8 +46,8 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(20, "Give me a real answer — at least a sentence or two")
-        .max(2000)
+        .min(20, "q1_too_short")
+        .max(2000, "q1_too_long")
     ),
   q2_currently_paying: z
     .string()
@@ -55,8 +55,8 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(10, "Even one line works — what tools / who do you pay")
-        .max(2000)
+        .min(10, "q2_too_short")
+        .max(2000, "q2_too_long")
     ),
   q3_magic_wand: z
     .string()
@@ -64,14 +64,14 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(15, "This is the most important question — give me something real")
-        .max(2000)
+        .min(15, "q3_too_short")
+        .max(2000, "q3_too_long")
     ),
 
   // GDPR consent — must be true to submit
   consent: z.literal(true, {
     errorMap: () => ({
-      message: "Please confirm you've read the privacy notice",
+      message: "consent_required",
     }),
   }),
 });

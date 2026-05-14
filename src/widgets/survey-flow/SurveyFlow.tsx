@@ -50,9 +50,19 @@ export function SurveyFlow() {
   const tQ = useTranslations("SurveyPage.questions");
   const tNav = useTranslations("SurveyPage.nav");
   const tError = useTranslations("SurveyPage.error");
+  const tErrors = useTranslations("SurveyPage.errors");
   const tFooter = useTranslations("Footer");
   const tTenure = useTranslations("SurveyPage.tenure");
   const tSteps = useTranslations("SurveyPage.steps");
+
+  function te(msg: string | undefined): string | undefined {
+    if (!msg) return undefined;
+    try {
+      return tErrors(msg as Parameters<typeof tErrors>[0]);
+    } catch {
+      return msg;
+    }
+  }
 
   const tenureOptions = TENURE_VALUES.map((value) => ({
     value,
@@ -171,7 +181,7 @@ export function SurveyFlow() {
               label={tQ("email.label")}
               required
               help={tQ("email.help")}
-              error={errors.email?.message}
+              error={te(errors.email?.message)}
             >
               <TextInput
                 type="email"
@@ -186,7 +196,7 @@ export function SurveyFlow() {
               label={tQ("business.label")}
               required
               help={tQ("business.help")}
-              error={errors.business?.message}
+              error={te(errors.business?.message)}
             >
               <TextInput
                 type="text"
@@ -200,7 +210,7 @@ export function SurveyFlow() {
               number={tQ("tenure.number")}
               label={tQ("tenure.label")}
               required
-              error={errors.tenure?.message}
+              error={te(errors.tenure?.message)}
               asFieldset
             >
               <Controller
@@ -224,7 +234,7 @@ export function SurveyFlow() {
             label={tQ("q1_admin_task.label")}
             required
             help={tQ("q1_admin_task.help")}
-            error={errors.q1_admin_task?.message}
+            error={te(errors.q1_admin_task?.message)}
           >
             <TextArea {...register("q1_admin_task")} />
             <DictationHint />
@@ -236,7 +246,7 @@ export function SurveyFlow() {
             label={tQ("q2_currently_paying.label")}
             required
             help={tQ("q2_currently_paying.help")}
-            error={errors.q2_currently_paying?.message}
+            error={te(errors.q2_currently_paying?.message)}
           >
             <TextArea {...register("q2_currently_paying")} />
             <DictationHint />
@@ -249,7 +259,7 @@ export function SurveyFlow() {
               label={tQ("q3_magic_wand.label")}
               required
               help={tQ("q3_magic_wand.help")}
-              error={errors.q3_magic_wand?.message}
+              error={te(errors.q3_magic_wand?.message)}
             >
               <TextArea {...register("q3_magic_wand")} />
               <DictationHint />
@@ -258,7 +268,7 @@ export function SurveyFlow() {
             <Field
               label={tQ("consent.label")}
               required
-              error={errors.consent?.message}
+              error={te(errors.consent?.message)}
               asFieldset
             >
               <Controller
