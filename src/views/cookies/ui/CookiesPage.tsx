@@ -36,6 +36,7 @@ export async function CookiesPage() {
           headline={t("headline")}
           lastUpdated={t("lastUpdated")}
           sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 

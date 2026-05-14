@@ -13,7 +13,7 @@ type TLegalArticleProps = {
   headline: string;
   lastUpdated: string;
   sections: readonly TLegalSection[];
-  ctaLabel?: string;
+  ctaLabel: string;
 };
 
 export function LegalArticle({
@@ -21,7 +21,7 @@ export function LegalArticle({
   headline,
   lastUpdated,
   sections,
-  ctaLabel = "Back to the survey →",
+  ctaLabel,
 }: TLegalArticleProps) {
   return (
     <article className="pt-8 pb-10 md:pb-16 max-w-[640px]">

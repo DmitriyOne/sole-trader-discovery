@@ -12,7 +12,8 @@
       "cookies": "Куки",
       "disclaimer": "Дисклеймер"
     },
-    "backLink": "← На головну"
+    "backLink": "← На головну",
+    "backToSurvey": "← Назад до опитування"
   },
   "HomePage": {
     "meta": {

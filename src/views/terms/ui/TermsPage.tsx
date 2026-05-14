@@ -36,6 +36,7 @@ export async function TermsPage() {
           headline={t("headline")}
           lastUpdated={t("lastUpdated")}
           sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 

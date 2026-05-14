@@ -37,6 +37,7 @@ export async function PrivacyPage() {
           headline={t("headline")}
           lastUpdated={t("lastUpdated")}
           sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 

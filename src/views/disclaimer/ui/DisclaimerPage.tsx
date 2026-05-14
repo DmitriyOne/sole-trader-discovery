@@ -36,6 +36,7 @@ export async function DisclaimerPage() {
           headline={t("headline")}
           lastUpdated={t("lastUpdated")}
           sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 
