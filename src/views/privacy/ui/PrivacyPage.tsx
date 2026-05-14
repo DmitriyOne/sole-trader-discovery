@@ -11,6 +11,7 @@ export async function PrivacyPage() {
   // Always EN content for legal pages — UK law applies regardless of viewer locale
   const t = await getTranslations({ locale: "en", namespace: "PrivacyPage" });
   // Header/footer labels follow user's locale (chrome stays localised)
+  const tFooter = await getTranslations("Footer");
   const tLinks = await getTranslations("Footer.links");
   const sections = t.raw("sections") as { heading: string; body: string }[];
 
@@ -21,7 +22,7 @@ export async function PrivacyPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {t("backLink")}
+          {tFooter("backLink")}
         </Link>
         <span className="flex items-center gap-4">
           <span>{tLinks("privacy")}</span>

@@ -10,6 +10,7 @@ import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 export async function DisclaimerPage() {
   // Always EN content for legal pages — UK law applies regardless of viewer locale
   const t = await getTranslations({ locale: "en", namespace: "DisclaimerPage" });
+  const tFooter = await getTranslations("Footer");
   const tLinks = await getTranslations("Footer.links");
   const sections = t.raw("sections") as { heading: string; body: string }[];
 
@@ -20,7 +21,7 @@ export async function DisclaimerPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {t("backLink")}
+          {tFooter("backLink")}
         </Link>
         <span className="flex items-center gap-4">
           <span>{tLinks("disclaimer")}</span>
