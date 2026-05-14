@@ -2,13 +2,13 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 
 export function LandingDeal() {
   const t = useTranslations("HomePage.deal");
   const tYouGive = useTranslations("HomePage.deal.youGive");
   const tYouGet = useTranslations("HomePage.deal.youGet");
+  const tFooter = useTranslations("Footer");
 
   return (
     <section className="py-16 border-b border-rule">
@@ -68,7 +68,7 @@ export function LandingDeal() {
       <p className="mt-6 font-serif text-[15px] text-ink-soft leading-[1.55]">
         Forms not your thing? Just{" "}
         <a
-          href={`mailto:${TEXT.Footer.contact}?subject=Discovery%20%E2%80%94%20my%20take`}
+          href={`mailto:${tFooter("contact")}?subject=Discovery%20%E2%80%94%20my%20take`}
           className="text-rust-deep underline underline-offset-2 hover:text-rust"
         >
           email me directly
