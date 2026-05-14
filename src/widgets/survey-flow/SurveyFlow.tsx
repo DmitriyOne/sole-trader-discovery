@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Controller } from "react-hook-form";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { Button } from "@/shared/ui/Button";
 import { Field } from "@/shared/ui/Field";
 import { TextInput } from "@/shared/ui/TextInput";
@@ -26,6 +26,7 @@ import { scrollToTop } from "@/shared/lib/scrollToTop";
 type TSubmissionState = "idle" | "submitting" | "success" | "error";
 
 function DictationHint() {
+  const t = useTranslations("SurveyPage");
   return (
     <aside
       role="note"
@@ -35,16 +36,22 @@ function DictationHint() {
         aria-hidden="true"
         className="font-mono text-[10px] uppercase tracking-[0.18em] font-semibold text-gold pt-[3px] shrink-0"
       >
-        {TEXT.SurveyPage.dictationHintLabel}
+        {t("dictationHintLabel")}
       </span>
       <p className="font-serif text-[13px] italic leading-[1.55] text-ink-soft">
-        {TEXT.SurveyPage.dictationHint}
+        {t("dictationHint")}
       </p>
     </aside>
   );
 }
 
 export function SurveyFlow() {
+  const t = useTranslations("SurveyPage");
+  const tQ = useTranslations("SurveyPage.questions");
+  const tNav = useTranslations("SurveyPage.nav");
+  const tError = useTranslations("SurveyPage.error");
+  const tFooter = useTranslations("Footer");
+
   const {
     form,
     currentStep,
@@ -119,22 +126,22 @@ export function SurveyFlow() {
         className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
       >
         <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft leading-[1.6]">
-          {TEXT.SurveyPage.confidentiality}
+          {t("confidentiality")}
         </p>
       </aside>
 
       <SectionLabel>
-        {TEXT.SurveyPage.progress(currentStep + 1, totalSteps)}
+        {t("progress", { current: currentStep + 1, total: totalSteps })}
       </SectionLabel>
 
       <StepIndicator current={currentStep} total={totalSteps} />
 
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
-        {TEXT.SurveyPage.stepAnnouncement(
-          currentStep + 1,
-          totalSteps,
-          currentStepData.title
-        )}
+        {t("stepAnnouncement", {
+          current: currentStep + 1,
+          total: totalSteps,
+          title: currentStepData.title,
+        })}
       </div>
 
       <h2
@@ -153,38 +160,38 @@ export function SurveyFlow() {
         {currentStepData.id === "intro" && (
           <>
             <Field
-              number={TEXT.SurveyPage.questions.email.number}
-              label={TEXT.SurveyPage.questions.email.label}
+              number={tQ("email.number")}
+              label={tQ("email.label")}
               required
-              help={TEXT.SurveyPage.questions.email.help}
+              help={tQ("email.help")}
               error={errors.email?.message}
             >
               <TextInput
                 type="email"
-                placeholder={TEXT.SurveyPage.questions.email.placeholder}
+                placeholder={tQ("email.placeholder")}
                 autoComplete="email"
                 {...register("email")}
               />
             </Field>
 
             <Field
-              number={TEXT.SurveyPage.questions.business.number}
-              label={TEXT.SurveyPage.questions.business.label}
+              number={tQ("business.number")}
+              label={tQ("business.label")}
               required
-              help={TEXT.SurveyPage.questions.business.help}
+              help={tQ("business.help")}
               error={errors.business?.message}
             >
               <TextInput
                 type="text"
-                placeholder={TEXT.SurveyPage.questions.business.placeholder}
+                placeholder={tQ("business.placeholder")}
                 autoComplete="organization"
                 {...register("business")}
               />
             </Field>
 
             <Field
-              number={TEXT.SurveyPage.questions.tenure.number}
-              label={TEXT.SurveyPage.questions.tenure.label}
+              number={tQ("tenure.number")}
+              label={tQ("tenure.label")}
               required
               error={errors.tenure?.message}
               asFieldset
@@ -207,9 +214,9 @@ export function SurveyFlow() {
 
         {currentStepData.id === "q1" && (
           <Field
-            label={TEXT.SurveyPage.questions.q1_admin_task.label}
+            label={tQ("q1_admin_task.label")}
             required
-            help={TEXT.SurveyPage.questions.q1_admin_task.help}
+            help={tQ("q1_admin_task.help")}
             error={errors.q1_admin_task?.message}
           >
             <TextArea {...register("q1_admin_task")} />
@@ -219,9 +226,9 @@ export function SurveyFlow() {
 
         {currentStepData.id === "q2" && (
           <Field
-            label={TEXT.SurveyPage.questions.q2_currently_paying.label}
+            label={tQ("q2_currently_paying.label")}
             required
-            help={TEXT.SurveyPage.questions.q2_currently_paying.help}
+            help={tQ("q2_currently_paying.help")}
             error={errors.q2_currently_paying?.message}
           >
             <TextArea {...register("q2_currently_paying")} />
@@ -232,9 +239,9 @@ export function SurveyFlow() {
         {currentStepData.id === "q3" && (
           <>
             <Field
-              label={TEXT.SurveyPage.questions.q3_magic_wand.label}
+              label={tQ("q3_magic_wand.label")}
               required
-              help={TEXT.SurveyPage.questions.q3_magic_wand.help}
+              help={tQ("q3_magic_wand.help")}
               error={errors.q3_magic_wand?.message}
             >
               <TextArea {...register("q3_magic_wand")} />
@@ -242,7 +249,7 @@ export function SurveyFlow() {
             </Field>
 
             <Field
-              label={TEXT.SurveyPage.questions.consent.label}
+              label={tQ("consent.label")}
               required
               error={errors.consent?.message}
               asFieldset
@@ -255,14 +262,14 @@ export function SurveyFlow() {
                     checked={field.value === true}
                     onChange={(e) => field.onChange(e.target.checked)}
                   >
-                    {TEXT.SurveyPage.consentLabel}
+                    {t("consentLabel")}
                     <Link
                       href={PATHS.PRIVACY}
                       target="_blank"
                       rel="noopener"
                       className="block mt-2 text-rust-deep underline underline-offset-2 hover:text-rust"
                     >
-                      {TEXT.SurveyPage.privacyLinkText}
+                      {t("privacyLinkText")}
                     </Link>
                   </Checkbox>
                 )}
@@ -279,14 +286,14 @@ export function SurveyFlow() {
             className="mt-6 px-4 py-3.5 border-l-4 border-rust-deep bg-rust/15 font-mono text-[12px] uppercase tracking-[0.12em] text-rust-deep font-semibold"
           >
             <span aria-hidden="true">✗ </span>
-            {TEXT.SurveyPage.error.before}
+            {tError("before")}
             <a
-              href={`mailto:${TEXT.Footer.contact}`}
+              href={`mailto:${tFooter("contact")}`}
               className="underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
             >
-              {TEXT.Footer.contact}
+              {tFooter("contact")}
             </a>
-            {TEXT.SurveyPage.error.after}
+            {tError("after")}
           </div>
         )}
 
@@ -298,9 +305,9 @@ export function SurveyFlow() {
               variant="ghost"
               onClick={goBack}
               disabled={submissionState === "submitting"}
-              aria-label={TEXT.SurveyPage.nav.backAria}
+              aria-label={tNav("backAria")}
             >
-              {TEXT.SurveyPage.nav.back}
+              {tNav("back")}
             </Button>
           )}
 
@@ -310,9 +317,9 @@ export function SurveyFlow() {
               variant="primary"
               onClick={goNext}
               className="sm:ml-auto"
-              aria-label={TEXT.SurveyPage.nav.nextAria}
+              aria-label={tNav("nextAria")}
             >
-              {TEXT.SurveyPage.nav.next}
+              {tNav("next")}
             </Button>
           )}
 
@@ -324,13 +331,13 @@ export function SurveyFlow() {
               className="sm:ml-auto"
               aria-label={
                 submissionState === "submitting"
-                  ? TEXT.SurveyPage.nav.submittingAria
-                  : TEXT.SurveyPage.nav.submitAria
+                  ? tNav("submittingAria")
+                  : tNav("submitAria")
               }
             >
               {submissionState === "submitting"
-                ? TEXT.SurveyPage.nav.submitting
-                : TEXT.SurveyPage.nav.submit}
+                ? tNav("submitting")
+                : tNav("submit")}
             </Button>
           )}
         </div>
@@ -340,6 +347,8 @@ export function SurveyFlow() {
 }
 
 function SuccessPanel() {
+  const t = useTranslations("SurveyPage.success");
+  const tFooter = useTranslations("Footer");
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -358,7 +367,7 @@ function SuccessPanel() {
           aria-hidden="true"
           className="inline-block w-2 h-2 bg-rust rounded-full pulse-dot shrink-0"
         />
-        <span>{TEXT.SurveyPage.success.kicker}</span>
+        <span>{t("kicker")}</span>
       </div>
 
       <h2
@@ -366,20 +375,20 @@ function SuccessPanel() {
         tabIndex={-1}
         className="font-serif font-medium text-[clamp(28px,5vw,40px)] leading-[1.15] tracking-[-0.01em] mb-6 text-ink focus:outline-none"
       >
-        {TEXT.SurveyPage.success.title}
+        {t("title")}
       </h2>
 
       <p className="font-serif text-[18px] leading-[1.6] text-ink-soft mb-4">
-        {TEXT.SurveyPage.success.body1}
+        {t("body1")}
       </p>
       <p className="font-serif text-[18px] leading-[1.6] text-ink mb-2">
-        {TEXT.SurveyPage.success.body2}
+        {t("body2")}
       </p>
 
       {/* Bullets in border-l callout (echoes the hero note pattern) */}
       <div className="bg-bg border-l-[3px] border-rust px-6 py-5 my-7">
         <ul className="space-y-3 font-serif text-[16px] leading-[1.5] text-ink-soft">
-          {TEXT.SurveyPage.success.bullets.map((bullet, idx) => (
+          {(t.raw("bullets") as string[]).map((bullet, idx) => (
             <li key={idx} className="flex gap-3 items-start">
               <span
                 aria-hidden="true"
@@ -394,16 +403,16 @@ function SuccessPanel() {
       </div>
 
       <p className="font-serif text-[17px] leading-[1.55] text-ink mb-7">
-        {TEXT.SurveyPage.success.closing}
+        {t("closing")}
       </p>
 
       {/* Letter-style signoff (mirrors hero note signature) */}
       <div>
         <span className="block font-handwritten text-[28px] sm:text-[30px] text-rust-deep leading-tight">
-          {TEXT.SurveyPage.success.signature}
+          {t("signature")}
         </span>
         <span className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1.5 font-medium">
-          {TEXT.SurveyPage.success.signatureMeta}
+          {t("signatureMeta")}
         </span>
       </div>
 
@@ -413,26 +422,26 @@ function SuccessPanel() {
           <span aria-hidden="true" className="text-ink-soft">
             §{" "}
           </span>
-          {TEXT.SurveyPage.success.postscriptLabel}
+          {t("postscriptLabel")}
         </div>
 
         <div className="space-y-4">
           <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
-            {TEXT.SurveyPage.success.followUpPrompt}{" "}
+            {t("followUpPrompt")}{" "}
             <a
-              href={`mailto:${TEXT.Footer.contact}`}
+              href={`mailto:${tFooter("contact")}`}
               className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
             >
-              {TEXT.Footer.contact}
+              {tFooter("contact")}
             </a>
           </p>
           <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
-            {TEXT.SurveyPage.success.referralPrompt}{" "}
+            {t("referralPrompt")}{" "}
             <a
-              href={`mailto:${TEXT.Footer.contact}?subject=${encodeURIComponent(TEXT.SurveyPage.success.referralMailSubject)}`}
+              href={`mailto:${tFooter("contact")}?subject=${encodeURIComponent(t("referralMailSubject"))}`}
               className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
             >
-              {TEXT.Footer.contact}
+              {tFooter("contact")}
             </a>
           </p>
         </div>
