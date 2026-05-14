@@ -1,11 +1,13 @@
+import { useTranslations } from "next-intl";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { LandingHero } from "@/widgets/landing-hero/LandingHero";
 import { LandingDeal } from "@/widgets/landing-deal/LandingDeal";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 
 export function HomePage() {
+  const t = useTranslations("HomePage.strip");
+
   return (
     <>
       <SiteHeader>
@@ -14,9 +16,9 @@ export function HomePage() {
             aria-hidden="true"
             className="inline-block w-2 h-2 bg-rust rounded-full mr-2 pulse-dot"
           />
-          {TEXT.HomePage.strip.status}
+          {t("status")}
         </span>
-        <span>{TEXT.HomePage.strip.issue}</span>
+        <span>{t("issue")}</span>
       </SiteHeader>
 
       <main id="main">
