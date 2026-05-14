@@ -32,7 +32,11 @@ create table if not exists public.responses (
   -- Privacy notice version the subject consented to (e.g. '2026-04').
   -- Lets us prove which text the user actually agreed to if the notice
   -- is later updated. Server stamps this from PRIVACY_NOTICE_VERSION.
-  notice_version      text not null default '2026-04'
+  notice_version      text not null default '2026-04',
+  -- Locale the respondent submitted under, set server-side from
+  -- x-next-intl-locale header. Default 'en' is safe for future rows.
+  language            text not null default 'en'
+    check (language in ('en', 'ru', 'uk'))
 );
 
 -- Useful indexes for analysis queries
