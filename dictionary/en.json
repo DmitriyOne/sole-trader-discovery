@@ -3,23 +3,19 @@
     "title": "What actually slows down UK sole traders",
     "description": "A short research project trying to find out which parts of running a UK sole trader business eat the most time and energy. Free 3 months of access to whatever gets built."
   },
-
   "Footer": {
     "issue": "Discovery № 001 · UK · 2026",
     "contact": "hello@fenko.dev"
   },
-
   "HomePage": {
     "meta": {
       "title": "Sole Trader Discovery — what actually slows down UK sole traders",
       "description": "A 15-minute research survey for UK sole traders. Tell me what slows you down, get free 3 months of whatever I build. No marketing, no upsell, no tracking."
     },
-
     "strip": {
       "status": "Discovery phase / open",
       "issue": "№ 001 · 2026"
     },
-
     "hero": {
       "kicker": "A research project · not a product · yet",
       "headlinePart1": "If you run a UK",
@@ -27,22 +23,21 @@
       "headlineEmphasis": "I want 15 minutes",
       "headlinePart3": "of your truth.",
       "lede": {
-        "regular1": "I'm a fullstack developer in the UK, running my own sole trader practice on the side. I keep noticing that the boring parts of running a one-person business — admin, taxes, chasing invoices, talking to HMRC — quietly eat far more hours than they should. So I'm trying to figure out what's ",
+        "regular1": "I’m a fullstack developer in the UK, running my own sole trader practice on the side. I keep noticing that the boring parts of running a one-person business — admin, taxes, chasing invoices, talking to HMRC — quietly eat far more hours than they should. So I’m trying to figure out what’s ",
         "strong": "actually painful",
         "regular2": " for other sole traders, and where AI could realistically help instead of just adding another dashboard nobody opens."
       },
       "note": {
-        "body": "I don't have a product to sell you. I have a hypothesis: that there's at least one specific repetitive task in the life of a UK sole trader that everyone hates and nobody's properly solved. I refuse to write a single line of product code until I've heard from people actually doing the work. That's where you come in.",
+        "body": "I don’t have a product to sell you. I have a hypothesis: that there’s at least one specific repetitive task in the life of a UK sole trader that everyone hates and nobody’s properly solved. I refuse to write a single line of product code until I’ve heard from people actually doing the work. That’s where you come in.",
         "signature": "— Dmitry Fenko",
         "meta": "Fellow sole trader · UK"
       },
       "skipLink": "Skip the story — open the survey →"
     },
-
     "deal": {
       "label": "The trade",
       "headline": "What you give. What you get.",
-      "intro": "This isn't a marketing funnel. There's no upsell. The exchange is direct and the terms are below.",
+      "intro": "This isn’t a marketing funnel. There’s no upsell. The exchange is direct and the terms are below.",
       "youGive": {
         "label": "You give",
         "part1": "3 honest questions in a survey.",
@@ -57,19 +52,16 @@
         "emphasis": "3 full months",
         "part3": "after launch. No payment ever requested."
       },
-      "closing": "If I build nothing, you've lost 15 minutes. If I build something good, you've helped shape it and you use it free for 3 months. That's the entire deal.",
+      "closing": "If I build nothing, you’ve lost 15 minutes. If I build something good, you’ve helped shape it and you use it free for 3 months. That’s the entire deal.",
       "cta": "Open the survey →"
     }
   },
-
   "SurveyPage": {
     "meta": {
       "title": "Take the survey — Sole Trader Discovery",
       "description": "Three honest questions about admin, tools and pain points in your UK sole trader business. About 15 minutes, fully confidential, no tracking."
     },
-
     "confidentiality": "Your answers are strictly confidential. They go directly into a private database — no third parties, no marketing lists, no sharing. Only I read them.",
-
     "questions": {
       "email": {
         "number": "01",
@@ -103,7 +95,6 @@
         "label": "Privacy & consent"
       }
     },
-
     "intro": {
       "kicker": "Discovery survey · 3 questions",
       "title": "Tell me what actually slows you down.",
@@ -150,7 +141,6 @@
       "after": " directly."
     }
   },
-
   "PrivacyPage": {
     "meta": {
       "title": "Privacy notice — Sole Trader Discovery",
@@ -203,7 +193,6 @@
       }
     ]
   },
-
   "TermsPage": {
     "meta": {
       "title": "Terms of use — Sole Trader Discovery",
@@ -256,7 +245,6 @@
       }
     ]
   },
-
   "CookiesPage": {
     "meta": {
       "title": "Cookie notice — Sole Trader Discovery",
@@ -289,7 +277,6 @@
       }
     ]
   },
-
   "DisclaimerPage": {
     "meta": {
       "title": "Disclaimer — Sole Trader Discovery",
@@ -322,7 +309,6 @@
       }
     ]
   },
-
   "NotFoundPage": {
     "meta": {
       "title": "Page not found — Sole Trader Discovery",
@@ -334,7 +320,6 @@
     "ctaPrimary": "Back to home",
     "ctaSecondary": "Open the survey"
   },
-
   "ErrorPage": {
     "meta": {
       "title": "Something broke — Sole Trader Discovery",
@@ -348,12 +333,10 @@
     "contactPrompt": "Or email ",
     "digestLabel": "Reference:"
   },
-
   "LegalBanner": {
     "headline": "Legal text in English",
     "body": "For legal accuracy, this notice is published in English only. UK law applies. Contact support@fenko.dev with questions."
   },
-
   "LocaleSwitcher": {
     "label": "Language",
     "en": "English",
