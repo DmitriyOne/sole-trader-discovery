@@ -4,6 +4,7 @@ import { PATHS } from "@/shared/config/paths";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
+import { LegalBanner } from "@/widgets/legal-banner";
 
 export async function CookiesPage() {
   // Always EN content for legal pages — UK law applies regardless of viewer locale
@@ -23,6 +24,7 @@ export async function CookiesPage() {
       </SiteHeader>
 
       <main id="main">
+        <LegalBanner />
         <LegalArticle
           label={t("label")}
           headline={t("headline")}
