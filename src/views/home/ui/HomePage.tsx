@@ -4,6 +4,7 @@ import { LandingHero } from "@/widgets/landing-hero/LandingHero";
 import { LandingDeal } from "@/widgets/landing-deal/LandingDeal";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export function HomePage() {
   const t = useTranslations("HomePage.strip");
@@ -18,7 +19,10 @@ export function HomePage() {
           />
           {t("status")}
         </span>
-        <span>{t("issue")}</span>
+        <span className="flex items-center gap-4">
+          {t("issue")}
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">

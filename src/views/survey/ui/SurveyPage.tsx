@@ -4,6 +4,7 @@ import { PATHS } from "@/shared/config/paths";
 import { SurveyFlow } from "@/widgets/survey-flow/SurveyFlow";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export function SurveyPage() {
   const tFooter = useTranslations("Footer");
@@ -18,7 +19,10 @@ export function SurveyPage() {
         >
           ← {tFooter("issue")}
         </Link>
-        <span>Survey</span>
+        <span className="flex items-center gap-4">
+          Survey
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">
