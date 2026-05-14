@@ -11,11 +11,8 @@ export function LegalBanner() {
   return (
     <aside
       role="note"
-      className="bg-bg-deep/50 px-4 py-3 mb-0 font-serif text-sm text-ink-soft"
+      className="border-l-2 border-rust pl-4 mb-0 font-serif italic text-sm leading-relaxed text-ink-soft"
     >
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-rust mb-2">
-        {t("headline")}
-      </p>
       <p>{t("body")}</p>
     </aside>
   );
