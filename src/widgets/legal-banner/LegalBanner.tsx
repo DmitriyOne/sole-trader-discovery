@@ -11,7 +11,7 @@ export function LegalBanner() {
   return (
     <aside
       role="note"
-      className="border border-rule bg-bg-deep p-4 mb-6 font-serif text-sm text-ink-soft"
+      className="border border-rule bg-bg-deep p-4 mb-4 font-serif text-sm text-ink-soft"
     >
       <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-rust mb-2">
         {t("headline")}

@@ -5,6 +5,7 @@ import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
 import { LegalBanner } from "@/widgets/legal-banner";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export async function DisclaimerPage() {
   // Always EN content for legal pages — UK law applies regardless of viewer locale
@@ -20,7 +21,10 @@ export async function DisclaimerPage() {
         >
           {t("backLink")}
         </Link>
-        <span>Disclaimer</span>
+        <span className="flex items-center gap-4">
+          <span>Disclaimer</span>
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">
