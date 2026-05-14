@@ -335,7 +335,8 @@
     "headline": "This page doesn’t exist.",
     "body": "Maybe you mistyped the URL. Maybe I deleted the page. Either way, sorry for the dead end.",
     "ctaPrimary": "Back to home",
-    "ctaSecondary": "Open the survey"
+    "ctaSecondary": "Open the survey",
+    "backLink": "← Back to home"
   },
   "ErrorPage": {
     "meta": {
@@ -348,7 +349,8 @@
     "ctaPrimary": "Try again",
     "ctaSecondary": "Back to home",
     "contactPrompt": "Or email ",
-    "digestLabel": "Reference:"
+    "digestLabel": "Reference:",
+    "backLink": "← Back to home"
   },
   "LegalBanner": {
     "headline": "Legal text in English",

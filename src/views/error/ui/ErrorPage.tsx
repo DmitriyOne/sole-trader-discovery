@@ -34,7 +34,7 @@ export function ErrorPage({ error, reset }: TErrorPageProps) {
             href={PATHS.HOME}
             className="text-ink-soft hover:text-rust transition-colors"
           >
-            ← Back to home
+            {t('backLink')}
           </Link>
           <span>500</span>
         </div>

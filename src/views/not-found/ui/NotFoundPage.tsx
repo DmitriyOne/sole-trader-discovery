@@ -15,7 +15,7 @@ export function NotFoundPage() {
             href={PATHS.HOME}
             className="text-ink-soft hover:text-rust transition-colors"
           >
-            ← Back to home
+            {t('backLink')}
           </Link>
           <span>404</span>
         </div>
