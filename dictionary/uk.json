@@ -1,0 +1,346 @@
+{
+  "GlobalMeta": {
+    "title": "Що насправді гальмує одноосібний бізнес у Великій Британії",
+    "description": "Коротке дослідження: які аспекти ведення одноосібного бізнесу в Британії забирають найбільше часу і сил. Три місяці безкоштовного доступу до того, що буде створено."
+  },
+  "Footer": {
+    "issue": "Дослідження № 001 · UK · 2026 [REVIEW: або залишити «Discovery № 001»?]",
+    "contact": "hello@fenko.dev"
+  },
+  "HomePage": {
+    "meta": {
+      "title": "Sole Trader Discovery — що насправді гальмує одноосібний бізнес у Великій Британії",
+      "description": "15-хвилинне опитування для одноосібних підприємців у Великій Британії. Розкажіть, що вас гальмує — отримайте три місяці безкоштовного доступу до того, що я створю. Жодного маркетингу, жодних допродажів, жодного стеження."
+    },
+    "strip": {
+      "status": "Фаза дослідження / відкрито",
+      "issue": "№ 001 · 2026"
+    },
+    "hero": {
+      "kicker": "Дослідницький проєкт · не продукт · поки що",
+      "headlinePart1": "Якщо ви ведете",
+      "headlinePart2": "одноосібний бізнес у Великій Британії —",
+      "headlineEmphasis": "хочу 15 хвилин",
+      "headlinePart3": "вашої правди.",
+      "lede": {
+        "regular1": "Я фулстек-розробник у Великій Британії, паралельно веду власну практику як одноосібний підприємець. Давно помічаю: рутинна метушня в одноосібному бізнесі — звітність, податки, погоня за неоплаченими рахунками, розмови з HMRC — непомітно з'їдає набагато більше часу, ніж мала б. Тому я намагаюся зрозуміти, що ",
+        "strong": "справді болить",
+        "regular2": " в інших одноосібних підприємців — і де ШІ міг би реально допомогти, а не просто додати ще один дашборд, який ніхто не відкриває."
+      },
+      "note": {
+        "body": "Мені нічого вам продавати. Є гіпотеза: у житті кожного одноосібного підприємця у Великій Британії є хоча б одне конкретне завдання, яке повторюється, яке всі ненавидять і яке ніхто нормально не вирішив. Я відмовляюся написати хоча б рядок продуктового коду, доки не почую від людей, які реально цим займаються. Ось тут з'являєтеся ви.",
+        "signature": "— Dmitry Fenko",
+        "meta": "Такий самий підприємець · Велика Британія [REVIEW: або «Веду такий самий бізнес»?]"
+      },
+      "skipLink": "Пропустити передмову — відкрити опитування →"
+    },
+    "deal": {
+      "label": "Умови обміну",
+      "headline": "Що ви даєте. Що отримуєте.",
+      "intro": "Це не маркетингова воронка. Жодних допродажів. Обмін прямий, умови — нижче.",
+      "youGive": {
+        "label": "Ви даєте",
+        "part1": "Чесні відповіді на запитання опитування.",
+        "part2": "Близько",
+        "emphasis": "15 хвилин",
+        "part3": "вашого часу. Більше нічого."
+      },
+      "youGet": {
+        "label": "Ви отримуєте",
+        "part1": "Безкоштовний доступ до того, що я створю —",
+        "part2": "на",
+        "emphasis": "3 повні місяці",
+        "part3": "після запуску. Жодних платежів."
+      },
+      "closing": "Якщо я нічого не створю — ви витратите 15 хвилин. Якщо створю щось варте уваги — ви допомогли його сформувати й користуєтеся ним безкоштовно три місяці. Ось і вся угода.",
+      "cta": "Відкрити опитування →"
+    }
+  },
+  "SurveyPage": {
+    "meta": {
+      "title": "Пройти опитування — Sole Trader Discovery",
+      "description": "Кілька чесних запитань про адміністративну рутину, інструменти та болі у вашому одноосібному бізнесі у Великій Британії. Близько 15 хвилин, повністю конфіденційно, без стеження."
+    },
+    "confidentiality": "Ваші відповіді суворо конфіденційні. Вони потрапляють безпосередньо до закритої бази даних — жодних третіх сторін, жодних маркетингових списків, жодної передачі. Читаю лише я.",
+    "questions": {
+      "email": {
+        "number": "01",
+        "label": "Email",
+        "help": "Використовується один раз: щоб написати вам, якщо продукт буде створено.",
+        "placeholder": "you@example.co.uk"
+      },
+      "business": {
+        "number": "02",
+        "label": "Чим займається ваш одноосібний бізнес?",
+        "help": "Достатньо одного рядка. «Фриланс-дизайнер.» «Фотостудія.» «Репетитор онлайн.»",
+        "placeholder": "напр. Фриланс-дизайнер"
+      },
+      "tenure": {
+        "number": "03",
+        "label": "Як давно ви його ведете?"
+      },
+      "q1_admin_task": {
+        "label": "Яка остання паперова морока [REVIEW: «паперова морока» vs «адміністративне завдання» — яке природніше?] зайняла у вас більше часу, ніж мала б?",
+        "help": "Податки, виставлення рахунків, банк, бухгалтер, планування — щось нудне, але неминуче. Що це було і скільки часу реально зайняло?"
+      },
+      "q2_currently_paying": {
+        "label": "За які інструменти, сервіси або послуги ви зараз платите, щоб бізнес працював?",
+        "help": "Бухгалтер, Xero, Wise, віртуальний асистент, ChatGPT Plus тощо. Приблизно скільки на місяць загалом?"
+      },
+      "q3_magic_wand": {
+        "label": "Якби ви могли завтра одним помахом чарівної палички позбутися однієї проблеми у своєму діловому житті — що б це було?",
+        "help": "Ось це запитання найважливіше. Не фільтруйте за принципом «реалістично чи ні». Просто те, від чого ви справді втомилися."
+      },
+      "consent": {
+        "label": "Конфіденційність та згода"
+      }
+    },
+    "intro": {
+      "kicker": "Опитування · 3 запитання [REVIEW: «3 запитання» чи просто «відкриті запитання»?]",
+      "title": "Розкажіть, що вас насправді гальмує.",
+      "lede": "Кожне запитання відкрите — будь ласка, пишіть реальні відповіді, а не «все добре» чи «залежить від ситуації». Суть саме в деталях. Близько 15 хвилин.",
+      "cta": "Почати →"
+    },
+    "progress": "Питання {current} з {total}",
+    "stepAnnouncement": "Крок {current} з {total}: {title}",
+    "consentLabel": "Мені 18 років або більше. Я прочитав/-ла повідомлення про конфіденційність і погоджуюся на зберігання моїх відповідей та на те, щоб зі мною зв'язалися, якщо продукт буде створено. Я можу відкликати згоду й вимагати видалення даних у будь-який момент. [REVIEW: «прочитав/-ла» — нейтральний варіант для гендеру; або «ознайомився/-лась»?]",
+    "privacyLinkText": "Читати повідомлення про конфіденційність",
+    "dictationHintLabel": "Порада",
+    "dictationHint": "Краще говорити, ніж друкувати? Натисніть на мікрофон на клавіатурі та надиктуйте відповідь. Неточна розшифровка — не проблема, я читаю кожне слово однаково.",
+    "nav": {
+      "back": "← Назад",
+      "next": "Далі →",
+      "submit": "Надіслати",
+      "submitting": "Надсилаємо…",
+      "backAria": "Перейти до попереднього запитання",
+      "nextAria": "Перейти до наступного запитання",
+      "submitAria": "Надіслати опитування",
+      "submittingAria": "Опитування надсилається, будь ласка, зачекайте"
+    },
+    "success": {
+      "kicker": "Відповідь отримано · Discovery № 001",
+      "title": "Усе. Дякую — щиро.",
+      "body1": "Ваші відповіді збережено в закритій базі. Я прочитаю кожну з них особисто.",
+      "body2": "Що буде далі:",
+      "bullets": [
+        "Я збиратиму відповіді ще близько двох тижнів.",
+        "Якщо знайду реальну закономірність — створю щось конкретне і вузьке під неї.",
+        "Коли буде готово, ви отримаєте 3 місяці безкоштовно — без картки, без зайвих запитань.",
+        "Якщо закономірності не знайдеться — напишу вам і поясню, чому вирішив не будувати."
+      ],
+      "closing": "У будь-якому разі ви від мене почуєте. Чесна угода.",
+      "signature": "— Dmitry Fenko",
+      "signatureMeta": "Такий самий підприємець · Велика Британія",
+      "postscriptLabel": "P.S.",
+      "followUpPrompt": "Хочете додати щось, про що не запитувала форма? Напишіть мені на",
+      "referralPrompt": "Знаєте іншого одноосібного підприємця у Великій Британії, якого мені варто послухати? Надішліть ім'я або нік на [REVIEW: «нік» vs «псевдонім» — «нік» природніше для UK контексту?]",
+      "referralMailSubject": "Ще один підприємець, з яким варто поговорити"
+    },
+    "error": {
+      "before": "Щось пішло не так. Спробуйте ще раз — або напишіть безпосередньо на ",
+      "after": "."
+    }
+  },
+  "PrivacyPage": {
+    "meta": {
+      "title": "Privacy notice — Sole Trader Discovery",
+      "description": "How I collect, store and use the answers you share through the discovery survey."
+    },
+    "backLink": "← Back to home",
+    "label": "Privacy notice",
+    "headline": "What happens to your answers.",
+    "lastUpdated": "Last updated: 7 May 2026",
+    "sections": [
+      {
+        "heading": "Who runs this",
+        "body": "This research project is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. I’m the data controller for everything described below. The project doesn’t meet the conditions in UK GDPR Article 37 that require a Data Protection Officer, so I haven’t appointed one — I handle every data protection matter personally. If you need to reach me about your data, write to support@fenko.dev and I’ll reply personally."
+      },
+      {
+        "heading": "ICO registration",
+        "body": "I’m registered with the UK Information Commissioner’s Office as a data controller and pay the annual data protection fee. My ICO registration number is ZC141876. You can verify it on the public register at ico.org.uk/ESDWebPages/Search."
+      },
+      {
+        "heading": "What I collect",
+        "body": "Only what you type into the survey: your email address, a short description of your business, how long you’ve been running it, your free-text answers to three open-ended questions, and a server-stamped timestamp recording when you ticked the consent box and which version of this notice was in force at that moment. All of it is collected directly from you when you submit the form; nothing is bought, scraped, or inferred from other sources. I don’t use analytics, cookies, fingerprinting, or session recording, and there’s no tracking script on this site. Providing this information is entirely voluntary — there’s no contract or legal obligation to participate. If you’d rather not, just don’t submit the survey."
+      },
+      {
+        "heading": "Why I collect it",
+        "body": "To understand whether there’s a useful product to build for UK sole traders, and to contact you if I do build one. That’s the entire purpose. Your email won’t be sold, shared, or used for marketing of unrelated products."
+      },
+      {
+        "heading": "Where it’s stored",
+        "body": "Your responses are stored in a Supabase Postgres database hosted in the EU (Frankfurt), encrypted at rest by the platform and transmitted over TLS. Supabase Inc. — the company behind the platform — is incorporated in the United States, so the transfer to them is covered by the standard contractual clauses and the UK International Data Transfer Agreement (IDTA) included in Supabase’s published Data Processing Agreement (supabase.com/legal/dpa), which provide appropriate safeguards under UK GDPR Article 46. The website is served by Vercel Inc. (US), and the serverless function that receives and validates your form submission is configured to run in Vercel’s Frankfurt region (eu-central) — so the form data is processed inside the EU before it reaches the database. Vercel publishes a Data Processing Agreement at vercel.com/legal/dpa that incorporates the standard contractual clauses and the UK IDTA as transfer mechanisms. Both Supabase’s and Vercel’s DPAs apply to this project through incorporation by reference in their standard terms — they have not been separately countersigned. If a server-side validation error occurs while you submit the form, a small fragment of your submitted answer (up to about 1,000 characters) may transiently appear in Vercel’s function logs for up to one hour before being auto-deleted; these logs are accessible only to me. Beyond the platform staff at Supabase and Vercel (who have administrative access to their infrastructure under their respective DPAs), I’m the only person who reads and analyses the data."
+      },
+      {
+        "heading": "How long I keep it",
+        "body": "I keep your responses for as long as the project is active, plus up to 12 months after, to allow follow-up analysis and any final write-up of findings. After that, or whenever you ask, I delete your record permanently."
+      },
+      {
+        "heading": "Your rights (UK GDPR)",
+        "body": "Under UK GDPR you have the right to: access a copy of your data; correct anything inaccurate; have your data deleted; restrict how I use it; receive your data in a portable format (e.g. a CSV); object to processing; and withdraw your consent at any time. To exercise any of these, email support@fenko.dev. I’ll respond within one month — usually much faster."
+      },
+      {
+        "heading": "Lawful basis",
+        "body": "Consent. By ticking the box on the final step of the survey, you agree to this notice. You can withdraw consent at any time by emailing me — that triggers deletion."
+      },
+      {
+        "heading": "What I don’t do",
+        "body": "I don’t sell data. I don’t share it with third parties beyond Supabase (the database host) and Vercel (the website host). I don’t use it to train AI models. I don’t run ads. I don’t have a marketing funnel. There’s also no automated decision-making or profiling — no algorithm makes any decision about you based on your answers."
+      },
+      {
+        "heading": "Complaints",
+        "body": "If you think I’ve handled your data unlawfully, you have the right to lodge a complaint with the UK’s data protection regulator — the Information Commissioner’s Office (ICO). You can reach them at ico.org.uk or 0303 123 1113. I’d appreciate the chance to fix things first if you email me, but you’re not obliged to."
+      }
+    ]
+  },
+  "TermsPage": {
+    "meta": {
+      "title": "Terms of use — Sole Trader Discovery",
+      "description": "The terms that govern your use of this research website, run by Dmitry Fenko, UK sole trader."
+    },
+    "backLink": "← Back to home",
+    "label": "Terms of use",
+    "headline": "How this site works and what you’re agreeing to.",
+    "lastUpdated": "Last updated: 7 May 2026",
+    "sections": [
+      {
+        "heading": "Who runs this site",
+        "body": "This website is operated by Dmytro Fenko (publishing as Dmitry Fenko), a UK sole trader trading as Fenko Team. It is not a company. It is not a startup. It is one person running a research project to understand what’s genuinely painful about running a UK sole trader business. The address for service of any document under these terms is Weston-super-mare, UK, BS23 1RH. You can reach me at hello@fenko.dev."
+      },
+      {
+        "heading": "What this site is",
+        "body": "This is a research and discovery project, not a commercial product or paid service. There is no subscription, no paywall, no purchase involved. By using the site and completing the survey, you are participating in voluntary research."
+      },
+      {
+        "heading": "The free access offer",
+        "body": "If you complete the survey, I intend in good faith to give you free access to whatever product I build — for 3 months after it launches. This is a genuine intention, not a binding contractual promise. It is contingent on a product actually being built. If the research finds no clear problem worth solving, I may not build anything, and no obligation to provide access will arise. If something is built, I will honour the offer. I won’t charge you without asking first."
+      },
+      {
+        "heading": "Acceptable use",
+        "body": "This site is intended for adults aged 18 or over only — by completing the survey, you confirm you are at least 18. You may use the site only for its intended purpose: reading about the project and completing the survey honestly. You must not submit another person’s personal data without their knowledge or consent. You must not attempt to interfere with, scrape, overload, or reverse-engineer any part of the site. You must not submit false, harmful, or offensive content through the survey form. Knowingly submitting fabricated data wastes the research and is a breach of these terms; abusive, threatening, harassing, or defamatory content may also amount to civil or criminal offences under UK law (including the Communications Act 2003 s.127, the Malicious Communications Act 1988, the Defamation Act 2013, and the Online Safety Act 2023), and I reserve the right to delete the submission, ban the sender, and refer the material to the police or the relevant regulator. You will be solely responsible for any fines, penalties, or damages awarded against you as a result."
+      },
+      {
+        "heading": "Ownership of content",
+        "body": "The text, design, layout, and source code of this website are mine, copyright © Dmytro Fenko 2026, and may not be copied, republished, or reused without written permission. Short quotation for the purpose of criticism, review, or commentary remains permitted under UK fair dealing rules (Copyright, Designs and Patents Act 1988, ss.29–30). You retain full ownership of the answers you submit through the survey. By submitting them, you grant me a non-exclusive, royalty-free, worldwide licence to use them for the research purposes described in the privacy notice — analysing patterns in the responses, summarising findings in any public write-up of the project, and informing the design of any product I subsequently build. If I quote your words publicly, I will do so anonymously unless you have explicitly told me you are happy to be named. You can withdraw this licence at any time by emailing me to request deletion of your record."
+      },
+      {
+        "heading": "No warranties",
+        "body": "This site is provided as-is. I do not warrant that it will be uninterrupted, error-free, or fit for any particular purpose beyond what is described here. I am not a law firm, accountant, or regulated adviser. Nothing on this site constitutes legal, tax, or financial advice."
+      },
+      {
+        "heading": "Limitation of liability",
+        "body": "To the extent permitted by law, my liability for any loss or damage arising from your use of this site is excluded. This exclusion does not apply to liability for death or personal injury caused by negligence, fraud or fraudulent misrepresentation, or any other liability that cannot be excluded under UK law. Because this project is free and non-commercial, any recoverable loss is in any event likely to be nil."
+      },
+      {
+        "heading": "Governing law",
+        "body": "These terms are governed by the law of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales."
+      },
+      {
+        "heading": "Changes to these terms",
+        "body": "I may update these terms if the project changes materially. If I do, I will update the date at the top of this page. Continued use of the site after a change constitutes acceptance. If you disagree with a change, you are free to stop using the site."
+      },
+      {
+        "heading": "Contact",
+        "body": "Questions about these terms? Email support@fenko.dev. I’ll reply personally."
+      }
+    ]
+  },
+  "CookiesPage": {
+    "meta": {
+      "title": "Cookie notice — Sole Trader Discovery",
+      "description": "This site uses no cookies, no tracking, and no analytics. Here’s what that means."
+    },
+    "backLink": "← Back to home",
+    "label": "Cookie notice",
+    "headline": "No cookies. No tracking. Nothing.",
+    "lastUpdated": "Last updated: 7 May 2026",
+    "sections": [
+      {
+        "heading": "The short version",
+        "body": "This website does not use cookies. It also does not store anything in your browser through localStorage, sessionStorage, IndexedDB, the Cache API, or any other client-side storage technology. It does not track you. It does not run analytics. It does not fingerprint your browser or device. There is no third-party script of any kind loaded on these pages."
+      },
+      {
+        "heading": "What cookies are",
+        "body": "Cookies are small text files that a website stores in your browser to remember information about you — your preferences, session state, or behaviour across pages and visits. Many sites use them for analytics, advertising, login sessions, and A/B testing. This site does none of those things."
+      },
+      {
+        "heading": "What this site actually does",
+        "body": "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site — no entries in localStorage, no entries in sessionStorage, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), consent is required for any storage of information on a user’s terminal equipment beyond what is strictly necessary for a service the user has requested — this site avoids that situation entirely by storing nothing on your device."
+      },
+      {
+        "heading": "If that ever changes",
+        "body": "If I ever add anything that sets a cookie or loads a tracking script — for example, a login feature or basic analytics — I will update this notice first, implement a proper consent mechanism, and tell you clearly what is being used and why. Until then, this page stays exactly as it is."
+      },
+      {
+        "heading": "Contact",
+        "body": "If you have questions about this or notice something that looks like tracking behaviour, please email support@fenko.dev."
+      }
+    ]
+  },
+  "DisclaimerPage": {
+    "meta": {
+      "title": "Disclaimer — Sole Trader Discovery",
+      "description": "This site is a research project, not professional advice. It does not provide legal, tax, or financial guidance."
+    },
+    "backLink": "← Back to home",
+    "label": "Disclaimer",
+    "headline": "Research, not advice.",
+    "lastUpdated": "Last updated: 7 May 2026",
+    "sections": [
+      {
+        "heading": "This is not professional advice",
+        "body": "Nothing on this website constitutes legal, tax, accounting, or financial advice. The site is a research project aimed at understanding the lived experience of UK sole traders. Any information or opinion expressed here is the personal view of one developer — not a qualified solicitor, accountant, or regulated financial adviser."
+      },
+      {
+        "heading": "Tax and HMRC matters",
+        "body": "If you have questions about Self Assessment, VAT, National Insurance, allowable expenses, or any other tax matter as a sole trader, please consult HMRC directly at gov.uk/hmrc or speak to a qualified accountant. HMRC’s guidance is free and authoritative. This site is not a substitute for it."
+      },
+      {
+        "heading": "Legal matters",
+        "body": "If you need legal advice — on contracts, intellectual property, employment, or anything else — please consult a qualified solicitor. The Law Society’s ‘Find a Solicitor’ tool at solicitors.lawsociety.org.uk is a good starting point."
+      },
+      {
+        "heading": "No liability for decisions",
+        "body": "I accept no responsibility for any action you take or do not take based on anything you read on this site. The research findings, when published, will reflect patterns in survey responses — they are not recommendations. Always take independent professional advice before making business decisions."
+      },
+      {
+        "heading": "Contact",
+        "body": "If something on this site has caused genuine concern, email support@fenko.dev and I will look at it."
+      }
+    ]
+  },
+  "NotFoundPage": {
+    "meta": {
+      "title": "Сторінку не знайдено — Sole Trader Discovery",
+      "description": "Такої сторінки не існує. Можливо, ви помилилися в адресі, або я її видалив. Вибачте за глухий кут."
+    },
+    "label": "404 · Не знайдено",
+    "headline": "Такої сторінки не існує.",
+    "body": "Можливо, ви помилилися в адресі. Можливо, я видалив сторінку. Так чи інакше — вибачте за глухий кут.",
+    "ctaPrimary": "На головну",
+    "ctaSecondary": "Відкрити опитування"
+  },
+  "ErrorPage": {
+    "meta": {
+      "title": "Щось пішло не так — Sole Trader Discovery",
+      "description": "Сторінка зіткнулася з несподіваною помилкою. Спробуйте ще раз або напишіть мені безпосередньо, якщо проблема повторюється."
+    },
+    "label": "500 · Щось зламалося",
+    "headline": "Щось зламалося на моєму боці.",
+    "body": "Вибачте. Сторінка зіткнулася з несподіваною помилкою. Спробуйте ще раз — і якщо проблема повторюється, напишіть мені безпосередньо, щоб я міг розібратися.",
+    "ctaPrimary": "Спробувати знову",
+    "ctaSecondary": "На головну",
+    "contactPrompt": "Або напишіть на ",
+    "digestLabel": "Код помилки:"
+  },
+  "LegalBanner": {
+    "headline": "Юридичний текст англійською",
+    "body": "Для юридичної точності це повідомлення опубліковано лише англійською. Застосовується право Великої Британії. З питань — support@fenko.dev."
+  },
+  "LocaleSwitcher": {
+    "label": "Мова",
+    "en": "English",
+    "ru": "Русский",
+    "uk": "Українська"
+  }
+}
