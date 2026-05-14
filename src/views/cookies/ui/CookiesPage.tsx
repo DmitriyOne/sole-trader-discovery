@@ -1,11 +1,15 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
 
-export function CookiesPage() {
+export async function CookiesPage() {
+  // Always EN content for legal pages — UK law applies regardless of viewer locale
+  const t = await getTranslations({ locale: "en", namespace: "CookiesPage" });
+  const sections = t.raw("sections") as { heading: string; body: string }[];
+
   return (
     <>
       <SiteHeader>
@@ -13,17 +17,17 @@ export function CookiesPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {TEXT.CookiesPage.backLink}
+          {t("backLink")}
         </Link>
         <span>Cookies</span>
       </SiteHeader>
 
       <main id="main">
         <LegalArticle
-          label={TEXT.CookiesPage.label}
-          headline={TEXT.CookiesPage.headline}
-          lastUpdated={TEXT.CookiesPage.lastUpdated}
-          sections={TEXT.CookiesPage.sections}
+          label={t("label")}
+          headline={t("headline")}
+          lastUpdated={t("lastUpdated")}
+          sections={sections}
         />
       </main>
 

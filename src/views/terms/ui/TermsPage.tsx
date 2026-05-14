@@ -1,11 +1,15 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
 
-export function TermsPage() {
+export async function TermsPage() {
+  // Always EN content for legal pages — UK law applies regardless of viewer locale
+  const t = await getTranslations({ locale: "en", namespace: "TermsPage" });
+  const sections = t.raw("sections") as { heading: string; body: string }[];
+
   return (
     <>
       <SiteHeader>
@@ -13,17 +17,17 @@ export function TermsPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {TEXT.TermsPage.backLink}
+          {t("backLink")}
         </Link>
         <span>Terms</span>
       </SiteHeader>
 
       <main id="main">
         <LegalArticle
-          label={TEXT.TermsPage.label}
-          headline={TEXT.TermsPage.headline}
-          lastUpdated={TEXT.TermsPage.lastUpdated}
-          sections={TEXT.TermsPage.sections}
+          label={t("label")}
+          headline={t("headline")}
+          lastUpdated={t("lastUpdated")}
+          sections={sections}
         />
       </main>
 
