@@ -24,7 +24,7 @@ export function LegalArticle({
   ctaLabel = "Back to the survey →",
 }: TLegalArticleProps) {
   return (
-    <article className="py-10 md:py-16 max-w-[640px]">
+    <article className="pt-[30px] pb-10 md:pb-16 max-w-[640px]">
       <SectionLabel>{label}</SectionLabel>
 
       <h1 className="font-serif font-medium text-[clamp(32px,5vw,44px)] leading-[1.1] tracking-[-0.02em] mb-4 text-ink">
