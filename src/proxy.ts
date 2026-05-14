@@ -6,7 +6,7 @@ export default createMiddleware(routing);
 
 export const config = {
   matcher: [
-    // Match everything except api, _next internals, files with a dot
-    "/((?!api|_next|_vercel|.*\\..*).*)",
+    // Match everything except api, _next internals, icon routes, and files with a dot
+    "/((?!api|_next|_vercel|icon|apple-icon|opengraph-image|.*\\..*).*)",
   ],
 };
