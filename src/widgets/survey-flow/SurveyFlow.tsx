@@ -13,7 +13,7 @@ import { RadioGroup } from "@/shared/ui/RadioGroup";
 import { Checkbox } from "@/shared/ui/Checkbox";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 import {
-  TENURE_OPTIONS,
+  TENURE_VALUES,
   type TResponseInput,
 } from "@/entities/response";
 import {
@@ -51,6 +51,13 @@ export function SurveyFlow() {
   const tNav = useTranslations("SurveyPage.nav");
   const tError = useTranslations("SurveyPage.error");
   const tFooter = useTranslations("Footer");
+  const tTenure = useTranslations("SurveyPage.tenure");
+  const tSteps = useTranslations("SurveyPage.steps");
+
+  const tenureOptions = TENURE_VALUES.map((value) => ({
+    value,
+    label: tTenure(value),
+  }));
 
   const {
     form,
@@ -140,7 +147,7 @@ export function SurveyFlow() {
         {t("stepAnnouncement", {
           current: currentStep + 1,
           total: totalSteps,
-          title: currentStepData.title,
+          title: tSteps(currentStepData.id),
         })}
       </div>
 
@@ -149,7 +156,7 @@ export function SurveyFlow() {
         tabIndex={-1}
         className="font-serif font-medium text-[28px] leading-[1.2] tracking-[-0.01em] mb-8 text-ink focus:outline-none"
       >
-        {currentStepData.title}
+        {tSteps(currentStepData.id)}
       </h2>
 
       <form
@@ -202,7 +209,7 @@ export function SurveyFlow() {
                 render={({ field }) => (
                   <RadioGroup
                     name="tenure"
-                    options={TENURE_OPTIONS}
+                    options={tenureOptions}
                     value={field.value}
                     onChange={field.onChange}
                   />

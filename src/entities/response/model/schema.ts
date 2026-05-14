@@ -8,14 +8,14 @@ import { z } from "zod";
  *   - Supabase insert payload
  */
 
-export const TENURE_OPTIONS = [
-  { value: "under-1y", label: "Less than a year" },
-  { value: "1-3y", label: "1–3 years" },
-  { value: "3-5y", label: "3–5 years" },
-  { value: "5y-plus", label: "5+ years" },
+export const TENURE_VALUES = [
+  "under-1y",
+  "1-3y",
+  "3-5y",
+  "5y-plus",
 ] as const;
 
-export type TTenure = (typeof TENURE_OPTIONS)[number]["value"];
+export type TTenure = (typeof TENURE_VALUES)[number];
 
 export const responseSchema = z.object({
   // Contact + context (asked first as easy warm-up)
@@ -35,7 +35,7 @@ export const responseSchema = z.object({
         .min(2, "One line is enough")
         .max(200, "Keep it short")
     ),
-  tenure: z.enum(["under-1y", "1-3y", "3-5y", "5y-plus"], {
+  tenure: z.enum(TENURE_VALUES, {
     errorMap: () => ({ message: "Pick one" }),
   }),
 
@@ -79,34 +79,30 @@ export const responseSchema = z.object({
 export type TResponseInput = z.infer<typeof responseSchema>;
 
 /**
- * Step definitions — order, fields, presentation metadata.
+ * Step definitions — order and fields only.
+ * Step titles live in the dictionary under SurveyPage.steps.<id>.
  * Survey-flow widget reads this to render multi-step UI.
  */
 export type TStep = {
   id: string;
-  title: string;
   fields: ReadonlyArray<keyof TResponseInput>;
 };
 
 export const SURVEY_STEPS: ReadonlyArray<TStep> = [
   {
     id: "intro",
-    title: "About you",
     fields: ["email", "business", "tenure"],
   },
   {
     id: "q1",
-    title: "Admin that ate the time",
     fields: ["q1_admin_task"],
   },
   {
     id: "q2",
-    title: "Current spending",
     fields: ["q2_currently_paying"],
   },
   {
     id: "q3",
-    title: "Magic wand",
     fields: ["q3_magic_wand", "consent"],
   },
 ] as const;
