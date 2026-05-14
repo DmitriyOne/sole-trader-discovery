@@ -5,7 +5,13 @@
   },
   "Footer": {
     "issue": "Discovery № 001 · UK · 2026",
-    "contact": "hello@fenko.dev"
+    "contact": "hello@fenko.dev",
+    "links": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookies": "Cookies",
+      "disclaimer": "Disclaimer"
+    }
   },
   "HomePage": {
     "meta": {
@@ -106,7 +112,7 @@
       "lede": "Each question is open-ended — please type real answers, not ‘all good’ or ‘depends’. The whole point is the specifics. About 15 minutes.",
       "cta": "Begin →"
     },
-    "progress": "Question {current} of {total}",
+    "progress": "Step {current} of {total}",
     "stepAnnouncement": "Step {current} of {total}: {title}",
     "consentLabel": "I’m 18 or over. I’ve read the privacy notice and I agree to my answers being stored and used to contact me if a product is built. I can withdraw consent and request deletion at any time.",
     "privacyLinkText": "Read the privacy notice",
@@ -170,7 +176,8 @@
       "q3_too_short": "This is the most important question — give me something real",
       "q3_too_long": "Try to keep it under 2000 characters",
       "consent_required": "Please confirm you've read the privacy notice"
-    }
+    },
+    "headerLabel": "Survey"
   },
   "PrivacyPage": {
     "meta": {

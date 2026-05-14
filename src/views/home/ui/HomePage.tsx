@@ -8,6 +8,7 @@ import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export function HomePage() {
   const t = useTranslations("HomePage.strip");
+  const tLinks = useTranslations("Footer.links");
 
   return (
     <>
@@ -31,10 +32,10 @@ export function HomePage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
-        <FooterLink href={PATHS.TERMS}>Terms</FooterLink>
-        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
-        <FooterLink href={PATHS.DISCLAIMER}>Disclaimer</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>{tLinks("privacy")}</FooterLink>
+        <FooterLink href={PATHS.TERMS}>{tLinks("terms")}</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>{tLinks("cookies")}</FooterLink>
+        <FooterLink href={PATHS.DISCLAIMER}>{tLinks("disclaimer")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

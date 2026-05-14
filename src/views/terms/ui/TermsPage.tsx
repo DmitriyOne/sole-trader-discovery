@@ -10,6 +10,7 @@ import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 export async function TermsPage() {
   // Always EN content for legal pages — UK law applies regardless of viewer locale
   const t = await getTranslations({ locale: "en", namespace: "TermsPage" });
+  const tLinks = await getTranslations("Footer.links");
   const sections = t.raw("sections") as { heading: string; body: string }[];
 
   return (
@@ -22,7 +23,7 @@ export async function TermsPage() {
           {t("backLink")}
         </Link>
         <span className="flex items-center gap-4">
-          <span>Terms</span>
+          <span>{tLinks("terms")}</span>
           <LocaleSwitcher />
         </span>
       </SiteHeader>
@@ -38,9 +39,9 @@ export async function TermsPage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
-        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
-        <FooterLink href={PATHS.DISCLAIMER}>Disclaimer</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>{tLinks("privacy")}</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>{tLinks("cookies")}</FooterLink>
+        <FooterLink href={PATHS.DISCLAIMER}>{tLinks("disclaimer")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

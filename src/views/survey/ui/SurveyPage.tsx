@@ -8,7 +8,8 @@ import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export function SurveyPage() {
   const tFooter = useTranslations("Footer");
-  const tPrivacy = useTranslations("PrivacyPage");
+  const tSurvey = useTranslations("SurveyPage");
+  const tLinks = useTranslations("Footer.links");
 
   return (
     <>
@@ -20,7 +21,7 @@ export function SurveyPage() {
           ← {tFooter("issue")}
         </Link>
         <span className="flex items-center gap-4">
-          Survey
+          {tSurvey("headerLabel")}
           <LocaleSwitcher />
         </span>
       </SiteHeader>
@@ -32,7 +33,7 @@ export function SurveyPage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.PRIVACY}>{tPrivacy("label")}</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>{tLinks("privacy")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>
