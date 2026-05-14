@@ -1,12 +1,14 @@
-import { TEXT } from "@/shared/config/text";
+import { useTranslations } from "next-intl";
 
 export function FooterEmail() {
+  const t = useTranslations("Footer");
+
   return (
     <a
-      href={`mailto:${TEXT.Footer.contact}`}
+      href={`mailto:${t('contact')}`}
       className="text-ink-soft border-b border-rule pb-px hover:text-rust transition-colors"
     >
-      {TEXT.Footer.contact}
+      {t('contact')}
     </a>
   );
 }
