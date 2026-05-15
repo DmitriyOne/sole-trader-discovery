@@ -377,5 +377,8 @@
   },
   "LocaleSwitcher": {
     "label": "Язык"
+  },
+  "Common": {
+    "skipToContent": "Перейти к содержимому"
   }
 }

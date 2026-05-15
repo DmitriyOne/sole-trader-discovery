@@ -377,5 +377,8 @@
   },
   "LocaleSwitcher": {
     "label": "Мова"
+  },
+  "Common": {
+    "skipToContent": "Перейти до вмісту"
   }
 }

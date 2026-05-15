@@ -104,6 +104,8 @@ export default async function RootLayout({
 
   setRequestLocale(locale);
 
+  const tCommon = await getTranslations("Common");
+
   return (
     <html
       lang={locale}
@@ -114,7 +116,7 @@ export default async function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-[0.18em]"
         >
-          Skip to content
+          {tCommon("skipToContent")}
         </a>
         <NextIntlClientProvider>
           <SurveyDraftProvider>
