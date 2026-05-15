@@ -42,7 +42,7 @@ export function LegalArticle({
             <section key={section.heading}>
               <h2
                 id={id}
-                className="font-serif font-medium text-[22px] leading-[1.3] mb-3 text-ink scroll-mt-24"
+                className="font-serif font-semibold text-[22px] leading-[1.3] mb-3 text-ink scroll-mt-24"
               >
                 {section.heading}
               </h2>
