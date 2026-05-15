@@ -46,7 +46,7 @@ export function LandingHero() {
       <div className="mt-6 animate-reveal opacity-0 [animation-delay:0.55s]">
         <Link
           href={PATHS.SURVEY}
-          className="inline-block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-soft hover:text-rust-deep underline underline-offset-[6px] decoration-ink-soft/40 hover:decoration-rust-deep transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rust"
+          className="block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] sm:tracking-[0.14em] text-ink-soft hover:text-rust-deep underline underline-offset-[6px] decoration-ink-soft/40 hover:decoration-rust-deep transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-rust"
         >
           {t("skipLink")}
         </Link>
