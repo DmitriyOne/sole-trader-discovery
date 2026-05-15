@@ -14,19 +14,20 @@ import { SurveyDraftProvider } from "@/features/multi-step-form";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-// Fraunces (Google Fonts via next/font) ships only latin, latin-ext, and vietnamese
-// subsets — cyrillic is not available in the distributed font-data. RU/UK pages fall
-// back to system serif (Georgia) for headlines, which is acceptable for this MVP.
+// Fraunces' next/font/google TypeScript types omit `cyrillic`, but the actual
+// Google Fonts file ships Cyrillic glyphs and works at runtime. ts-expect-error
+// documents the type-vs-runtime divergence so RU/UK headlines render in Fraunces
+// instead of the system serif fallback.
 const fraunces = Fraunces({
-  subsets: ["latin"],
+  // @ts-expect-error next/font types omit cyrillic for Fraunces; runtime supports it
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-fraunces",
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
-  // JetBrains Mono default subsets already include cyrillic.
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500"],
   variable: "--font-jetbrains-mono",
   display: "swap",
