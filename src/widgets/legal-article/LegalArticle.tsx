@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 import { slugify } from "@/shared/lib/slugify";
