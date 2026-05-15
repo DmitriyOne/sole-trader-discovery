@@ -5,6 +5,13 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 
+// Self-reflective names: same value in all locales, no translation needed.
+const LOCALE_LABEL = {
+  en: "English",
+  ru: "Русский",
+  uk: "Українська",
+} as const;
+
 export function LocaleSwitcher() {
   const active = useLocale();
   const pathname = usePathname();
@@ -13,19 +20,20 @@ export function LocaleSwitcher() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!open) return;
     const onClick = (e: MouseEvent) => {
       if (!ref.current?.contains(e.target as Node)) setOpen(false);
     };
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    document.addEventListener("click", onClick);
+    document.addEventListener("mousedown", onClick);
     document.addEventListener("keydown", onEsc);
     return () => {
-      document.removeEventListener("click", onClick);
+      document.removeEventListener("mousedown", onClick);
       document.removeEventListener("keydown", onEsc);
     };
-  }, []);
+  }, [open]);
 
   return (
     <div ref={ref} className="relative">
@@ -54,7 +62,7 @@ export function LocaleSwitcher() {
                   className="block px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:text-rust hover:bg-bg transition-colors"
                   onClick={() => setOpen(false)}
                 >
-                  {t(l as "en" | "ru" | "uk")}
+                  {LOCALE_LABEL[l]}
                 </Link>
               </li>
             ))}

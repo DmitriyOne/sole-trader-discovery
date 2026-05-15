@@ -376,9 +376,6 @@
     "body": "For legal accuracy, this notice is published in English only. UK law applies. Contact support@fenko.dev with questions."
   },
   "LocaleSwitcher": {
-    "label": "Language",
-    "en": "English",
-    "ru": "Русский",
-    "uk": "Українська"
+    "label": "Language"
   }
 }

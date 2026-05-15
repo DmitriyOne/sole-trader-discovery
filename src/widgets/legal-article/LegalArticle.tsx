@@ -24,7 +24,7 @@ export function LegalArticle({
   ctaLabel,
 }: TLegalArticleProps) {
   return (
-    <article className="pt-8 pb-10 md:pb-16 max-w-[640px]">
+    <article lang="en" className="pt-8 pb-10 md:pb-16 max-w-[640px]">
       <SectionLabel>{label}</SectionLabel>
 
       <h1 className="font-serif font-medium text-[clamp(32px,5vw,44px)] leading-[1.1] tracking-[-0.02em] mb-4 text-ink">
