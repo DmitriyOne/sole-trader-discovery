@@ -40,7 +40,7 @@ export function LocaleSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:text-rust transition-colors"
+        className="inline-flex items-center min-h-[44px] px-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:text-rust transition-colors"
         aria-label={t("label")}
         aria-expanded={open}
         aria-haspopup="listbox"
@@ -59,7 +59,7 @@ export function LocaleSwitcher() {
                 <Link
                   href={pathname}
                   locale={l}
-                  className="block px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:text-rust hover:bg-bg transition-colors"
+                  className="flex items-center min-h-[44px] px-3 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft hover:text-rust hover:bg-bg transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   {LOCALE_LABEL[l]}
