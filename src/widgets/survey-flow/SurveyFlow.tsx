@@ -143,7 +143,7 @@ export function SurveyFlow() {
         role="note"
         className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
       >
-        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft leading-[1.6]">
+        <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.08em] sm:tracking-[0.12em] text-ink-soft leading-[1.6] break-words">
           {t("confidentiality")}
         </p>
       </aside>
