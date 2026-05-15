@@ -9,7 +9,7 @@ export function LandingHero() {
 
   return (
     <section className="relative pt-10 md:pt-15 pb-15 border-b border-rule">
-      <div className="font-mono text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-rust mb-8 font-medium animate-reveal opacity-0 [animation-delay:0.05s]">
+      <div className="font-mono text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.18em] text-rust-deep mb-8 font-medium animate-reveal opacity-0 [animation-delay:0.05s]">
         {t("kicker")}
       </div>
 
