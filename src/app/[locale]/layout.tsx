@@ -129,6 +129,7 @@ export default async function RootLayout({
             </div>
           </SurveyDraftProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
