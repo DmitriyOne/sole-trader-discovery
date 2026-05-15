@@ -1,11 +1,21 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
+import { LegalBanner } from "@/widgets/legal-banner";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
-export function PrivacyPage() {
+export async function PrivacyPage() {
+  // Always EN content for legal pages — UK law applies regardless of viewer locale.
+  // Note: forces both en and user-locale dictionaries to load on this request.
+  const t = await getTranslations({ locale: "en", namespace: "PrivacyPage" });
+  // Header/footer labels follow user's locale (chrome stays localised)
+  const tFooter = await getTranslations("Footer");
+  const tLinks = await getTranslations("Footer.links");
+  const sections = t.raw("sections") as { heading: string; body: string }[];
+
   return (
     <>
       <SiteHeader>
@@ -13,24 +23,29 @@ export function PrivacyPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {TEXT.PrivacyPage.backLink}
+          {tFooter("backLink")}
         </Link>
-        <span>Privacy</span>
+        <span className="flex items-center gap-2 sm:gap-4">
+          <span>{tLinks("privacy")}</span>
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">
+        <LegalBanner />
         <LegalArticle
-          label={TEXT.PrivacyPage.label}
-          headline={TEXT.PrivacyPage.headline}
-          lastUpdated={TEXT.PrivacyPage.lastUpdated}
-          sections={TEXT.PrivacyPage.sections}
+          label={t("label")}
+          headline={t("headline")}
+          lastUpdated={t("lastUpdated")}
+          sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.TERMS}>Terms</FooterLink>
-        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
-        <FooterLink href={PATHS.DISCLAIMER}>Disclaimer</FooterLink>
+        <FooterLink href={PATHS.TERMS}>{tLinks("terms")}</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>{tLinks("cookies")}</FooterLink>
+        <FooterLink href={PATHS.DISCLAIMER}>{tLinks("disclaimer")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

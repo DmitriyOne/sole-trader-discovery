@@ -9,3 +9,12 @@ dist
 *.log
 .vercel
 next-env.d.ts
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# Working notes
+text.md
+
+# Local Claude settings
+.claude/settings.local.json

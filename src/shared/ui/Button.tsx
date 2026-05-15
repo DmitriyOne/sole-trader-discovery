@@ -22,7 +22,7 @@ const variantClasses: Record<TButtonVariant, string> = {
 };
 
 const sizeClasses: Record<TButtonSize, string> = {
-  md: "px-6 py-3 text-[11px]",
+  md: "px-6 py-3.5 text-[11px]",
   lg: "px-7 py-[18px] text-xs w-full",
 };
 

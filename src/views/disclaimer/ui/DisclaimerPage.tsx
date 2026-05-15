@@ -1,11 +1,20 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
-import { TEXT } from "@/shared/config/text";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
 import { LegalArticle } from "@/widgets/legal-article";
+import { LegalBanner } from "@/widgets/legal-banner";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
-export function DisclaimerPage() {
+export async function DisclaimerPage() {
+  // Always EN content for legal pages — UK law applies regardless of viewer locale.
+  // Note: forces both en and user-locale dictionaries to load on this request.
+  const t = await getTranslations({ locale: "en", namespace: "DisclaimerPage" });
+  const tFooter = await getTranslations("Footer");
+  const tLinks = await getTranslations("Footer.links");
+  const sections = t.raw("sections") as { heading: string; body: string }[];
+
   return (
     <>
       <SiteHeader>
@@ -13,24 +22,29 @@ export function DisclaimerPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          {TEXT.DisclaimerPage.backLink}
+          {tFooter("backLink")}
         </Link>
-        <span>Disclaimer</span>
+        <span className="flex items-center gap-2 sm:gap-4">
+          <span>{tLinks("disclaimer")}</span>
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">
+        <LegalBanner />
         <LegalArticle
-          label={TEXT.DisclaimerPage.label}
-          headline={TEXT.DisclaimerPage.headline}
-          lastUpdated={TEXT.DisclaimerPage.lastUpdated}
-          sections={TEXT.DisclaimerPage.sections}
+          label={t("label")}
+          headline={t("headline")}
+          lastUpdated={t("lastUpdated")}
+          sections={sections}
+          ctaLabel={tFooter("backToSurvey")}
         />
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
-        <FooterLink href={PATHS.TERMS}>Terms</FooterLink>
-        <FooterLink href={PATHS.COOKIES}>Cookies</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>{tLinks("privacy")}</FooterLink>
+        <FooterLink href={PATHS.TERMS}>{tLinks("terms")}</FooterLink>
+        <FooterLink href={PATHS.COOKIES}>{tLinks("cookies")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

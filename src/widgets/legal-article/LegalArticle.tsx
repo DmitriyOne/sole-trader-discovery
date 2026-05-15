@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
 import { slugify } from "@/shared/lib/slugify";
@@ -13,7 +13,7 @@ type TLegalArticleProps = {
   headline: string;
   lastUpdated: string;
   sections: readonly TLegalSection[];
-  ctaLabel?: string;
+  ctaLabel: string;
 };
 
 export function LegalArticle({
@@ -21,10 +21,10 @@ export function LegalArticle({
   headline,
   lastUpdated,
   sections,
-  ctaLabel = "Back to the survey →",
+  ctaLabel,
 }: TLegalArticleProps) {
   return (
-    <article className="py-10 md:py-16 max-w-[640px]">
+    <article lang="en" className="pt-8 pb-10 md:pb-16 max-w-[640px]">
       <SectionLabel>{label}</SectionLabel>
 
       <h1 className="font-serif font-medium text-[clamp(32px,5vw,44px)] leading-[1.1] tracking-[-0.02em] mb-4 text-ink">
@@ -42,7 +42,7 @@ export function LegalArticle({
             <section key={section.heading}>
               <h2
                 id={id}
-                className="font-serif font-medium text-[22px] leading-[1.3] mb-3 text-ink scroll-mt-24"
+                className="font-serif font-semibold text-[22px] leading-[1.3] mb-3 text-ink scroll-mt-24"
               >
                 {section.heading}
               </h2>

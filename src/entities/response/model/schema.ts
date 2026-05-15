@@ -8,14 +8,14 @@ import { z } from "zod";
  *   - Supabase insert payload
  */
 
-export const TENURE_OPTIONS = [
-  { value: "under-1y", label: "Less than a year" },
-  { value: "1-3y", label: "1–3 years" },
-  { value: "3-5y", label: "3–5 years" },
-  { value: "5y-plus", label: "5+ years" },
+export const TENURE_VALUES = [
+  "under-1y",
+  "1-3y",
+  "3-5y",
+  "5y-plus",
 ] as const;
 
-export type TTenure = (typeof TENURE_OPTIONS)[number]["value"];
+export type TTenure = (typeof TENURE_VALUES)[number];
 
 export const responseSchema = z.object({
   // Contact + context (asked first as easy warm-up)
@@ -23,20 +23,20 @@ export const responseSchema = z.object({
   // lookups stay deterministic regardless of input casing/whitespace.
   email: z
     .string()
-    .min(1, "Email is required")
+    .min(1, "email_required")
     .transform((v) => v.trim().toLowerCase())
-    .pipe(z.string().email("That doesn't look like a valid email")),
+    .pipe(z.string().email("email_invalid")),
   business: z
     .string()
     .transform((v) => v.trim())
     .pipe(
       z
         .string()
-        .min(2, "One line is enough")
-        .max(200, "Keep it short")
+        .min(2, "business_too_short")
+        .max(200, "business_too_long")
     ),
-  tenure: z.enum(["under-1y", "1-3y", "3-5y", "5y-plus"], {
-    errorMap: () => ({ message: "Pick one" }),
+  tenure: z.enum(TENURE_VALUES, {
+    errorMap: () => ({ message: "tenure_required" }),
   }),
 
   // Mom Test questions — open-ended, demand specifics
@@ -46,8 +46,8 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(20, "Give me a real answer — at least a sentence or two")
-        .max(2000)
+        .min(20, "q1_too_short")
+        .max(2000, "q1_too_long")
     ),
   q2_currently_paying: z
     .string()
@@ -55,8 +55,8 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(10, "Even one line works — what tools / who do you pay")
-        .max(2000)
+        .min(10, "q2_too_short")
+        .max(2000, "q2_too_long")
     ),
   q3_magic_wand: z
     .string()
@@ -64,14 +64,14 @@ export const responseSchema = z.object({
     .pipe(
       z
         .string()
-        .min(15, "This is the most important question — give me something real")
-        .max(2000)
+        .min(15, "q3_too_short")
+        .max(2000, "q3_too_long")
     ),
 
   // GDPR consent — must be true to submit
   consent: z.literal(true, {
     errorMap: () => ({
-      message: "Please confirm you've read the privacy notice",
+      message: "consent_required",
     }),
   }),
 });
@@ -79,34 +79,30 @@ export const responseSchema = z.object({
 export type TResponseInput = z.infer<typeof responseSchema>;
 
 /**
- * Step definitions — order, fields, presentation metadata.
+ * Step definitions — order and fields only.
+ * Step titles live in the dictionary under SurveyPage.steps.<id>.
  * Survey-flow widget reads this to render multi-step UI.
  */
 export type TStep = {
   id: string;
-  title: string;
   fields: ReadonlyArray<keyof TResponseInput>;
 };
 
 export const SURVEY_STEPS: ReadonlyArray<TStep> = [
   {
     id: "intro",
-    title: "About you",
     fields: ["email", "business", "tenure"],
   },
   {
     id: "q1",
-    title: "Admin that ate the time",
     fields: ["q1_admin_task"],
   },
   {
     id: "q2",
-    title: "Current spending",
     fields: ["q2_currently_paying"],
   },
   {
     id: "q3",
-    title: "Magic wand",
     fields: ["q3_magic_wand", "consent"],
   },
 ] as const;

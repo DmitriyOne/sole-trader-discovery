@@ -1,31 +1,36 @@
+// src/app/sitemap.ts
 import type { MetadataRoute } from "next";
 import { env } from "@/shared/config/env";
-import { PATHS } from "@/shared/config/paths";
+import { routing } from "@/i18n/routing";
 
-const baseUrl = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-
-type TSitemapEntry = {
-  path: string;
-  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
-  priority: number;
-};
-
-const ENTRIES: ReadonlyArray<TSitemapEntry> = [
-  { path: PATHS.HOME, changeFrequency: "weekly", priority: 1.0 },
-  { path: PATHS.SURVEY, changeFrequency: "weekly", priority: 0.9 },
-  { path: PATHS.PRIVACY, changeFrequency: "monthly", priority: 0.5 },
-  { path: PATHS.TERMS, changeFrequency: "monthly", priority: 0.5 },
-  { path: PATHS.COOKIES, changeFrequency: "monthly", priority: 0.5 },
-  { path: PATHS.DISCLAIMER, changeFrequency: "monthly", priority: 0.5 },
-];
+const SITE = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const localised = ["", "/survey"];
+  const legal = ["/privacy", "/terms", "/cookies", "/disclaimer"];
 
-  return ENTRIES.map(({ path, changeFrequency, priority }) => ({
-    url: `${baseUrl}${path}`,
-    lastModified,
-    changeFrequency,
-    priority,
-  }));
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const path of localised) {
+    for (const locale of routing.locales) {
+      const prefix = locale === routing.defaultLocale ? "" : `/${locale}`;
+      entries.push({
+        url: `${SITE}${prefix}${path}`,
+        alternates: {
+          languages: Object.fromEntries(
+            routing.locales.map((l) => [
+              l,
+              `${SITE}${l === routing.defaultLocale ? "" : `/${l}`}${path}`,
+            ])
+          ),
+        },
+      });
+    }
+  }
+
+  for (const path of legal) {
+    entries.push({ url: `${SITE}${path}` });
+  }
+
+  return entries;
 }

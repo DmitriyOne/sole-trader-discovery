@@ -1,10 +1,16 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/shared/config/paths";
 import { SurveyFlow } from "@/widgets/survey-flow/SurveyFlow";
 import { SiteHeader } from "@/widgets/site-header";
 import { SiteFooter, FooterLink, FooterEmail } from "@/widgets/site-footer";
+import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export function SurveyPage() {
+  const tFooter = useTranslations("Footer");
+  const tSurvey = useTranslations("SurveyPage");
+  const tLinks = useTranslations("Footer.links");
+
   return (
     <>
       <SiteHeader>
@@ -12,9 +18,13 @@ export function SurveyPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          ← Discovery № 001
+          <span className="sm:hidden">←</span>
+          <span className="hidden sm:inline">← {tFooter("issue")}</span>
         </Link>
-        <span>Survey</span>
+        <span className="flex items-center gap-2 sm:gap-4">
+          {tSurvey("headerLabel")}
+          <LocaleSwitcher />
+        </span>
       </SiteHeader>
 
       <main id="main">
@@ -24,7 +34,7 @@ export function SurveyPage() {
       </main>
 
       <SiteFooter>
-        <FooterLink href={PATHS.PRIVACY}>Privacy</FooterLink>
+        <FooterLink href={PATHS.PRIVACY}>{tLinks("privacy")}</FooterLink>
         <FooterEmail />
       </SiteFooter>
     </>

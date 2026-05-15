@@ -2,7 +2,7 @@
 // directly from "@/entities/response/api/insertResponse" in server code.
 export {
   responseSchema,
-  TENURE_OPTIONS,
+  TENURE_VALUES,
   SURVEY_STEPS,
   type TResponseInput,
   type TStep,
