@@ -380,7 +380,7 @@ function SuccessPanel() {
       className="bg-paper border border-rule p-6 sm:p-12"
     >
       {/* Masthead-style strip */}
-      <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">
+      <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">
         <span
           aria-hidden="true"
           className="inline-block w-2 h-2 bg-rust rounded-full pulse-dot shrink-0"
