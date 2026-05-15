@@ -165,7 +165,7 @@ export function SurveyFlow() {
       <h2
         ref={headingRef}
         tabIndex={-1}
-        className="font-serif font-medium text-[28px] leading-[1.2] tracking-[-0.01em] mb-8 text-ink focus:outline-none"
+        className="font-serif font-medium text-[clamp(22px,5vw,28px)] leading-[1.2] tracking-[-0.01em] mb-8 text-ink focus:outline-none"
       >
         {tSteps(currentStepData.id)}
       </h2>
