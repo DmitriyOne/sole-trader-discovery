@@ -14,8 +14,11 @@ import { SurveyDraftProvider } from "@/features/multi-step-form";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
+// Fraunces (Google Fonts via next/font) ships only latin, latin-ext, and vietnamese
+// subsets — cyrillic is not available in the distributed font-data. RU/UK pages fall
+// back to system serif (Georgia) for headlines, which is acceptable for this MVP.
 const fraunces = Fraunces({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-fraunces",
   display: "swap",
