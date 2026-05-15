@@ -8,7 +8,8 @@ import { LegalBanner } from "@/widgets/legal-banner";
 import { LocaleSwitcher } from "@/shared/ui/locale-switcher";
 
 export async function PrivacyPage() {
-  // Always EN content for legal pages — UK law applies regardless of viewer locale
+  // Always EN content for legal pages — UK law applies regardless of viewer locale.
+  // Note: forces both en and user-locale dictionaries to load on this request.
   const t = await getTranslations({ locale: "en", namespace: "PrivacyPage" });
   // Header/footer labels follow user's locale (chrome stays localised)
   const tFooter = await getTranslations("Footer");
