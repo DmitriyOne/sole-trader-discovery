@@ -20,8 +20,8 @@ export function HomePage() {
           />
           {t("status")}
         </span>
-        <span className="flex items-center gap-4">
-          {t("issue")}
+        <span className="flex items-center gap-2 sm:gap-4">
+          <span className="hidden sm:inline">{t("issue")}</span>
           <LocaleSwitcher />
         </span>
       </SiteHeader>

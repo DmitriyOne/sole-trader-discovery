@@ -24,7 +24,7 @@ export async function CookiesPage() {
         >
           {tFooter("backLink")}
         </Link>
-        <span className="flex items-center gap-4">
+        <span className="flex items-center gap-2 sm:gap-4">
           <span>{tLinks("cookies")}</span>
           <LocaleSwitcher />
         </span>

@@ -18,9 +18,10 @@ export function SurveyPage() {
           href={PATHS.HOME}
           className="text-ink-soft hover:text-rust transition-colors"
         >
-          ← {tFooter("issue")}
+          <span className="sm:hidden">←</span>
+          <span className="hidden sm:inline">← {tFooter("issue")}</span>
         </Link>
-        <span className="flex items-center gap-4">
+        <span className="flex items-center gap-2 sm:gap-4">
           {tSurvey("headerLabel")}
           <LocaleSwitcher />
         </span>
