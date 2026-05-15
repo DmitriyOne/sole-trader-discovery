@@ -1,8 +1,9 @@
 // src/app/sitemap.ts
 import type { MetadataRoute } from "next";
+import { env } from "@/shared/config/env";
 import { routing } from "@/i18n/routing";
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://[PLACEHOLDER: site URL]";
+const SITE = env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localised = ["", "/survey"];
