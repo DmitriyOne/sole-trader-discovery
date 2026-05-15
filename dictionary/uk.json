@@ -288,28 +288,27 @@
   "CookiesPage": {
     "meta": {
       "title": "Cookie notice — Sole Trader Discovery",
-      "description": "This site uses no cookies, no tracking, and no analytics. Here’s what that means."
+      "description": "This site sets one cookie: NEXT_LOCALE, which remembers your chosen language. No analytics, no tracking, no fingerprinting."
     },
-    "backLink": "← Back to home",
     "label": "Cookie notice",
-    "headline": "No cookies. No tracking. Nothing.",
-    "lastUpdated": "Last updated: 7 May 2026",
+    "headline": "One cookie. No tracking. Nothing else.",
+    "lastUpdated": "Last updated: 15 May 2026",
     "sections": [
       {
         "heading": "The short version",
-        "body": "This website does not use cookies. It also does not store anything in your browser through localStorage, sessionStorage, IndexedDB, the Cache API, or any other client-side storage technology. It does not track you. It does not run analytics. It does not fingerprint your browser or device. There is no third-party script of any kind loaded on these pages."
+        "body": "This website sets one cookie: NEXT_LOCALE, which stores the language you've chosen (English, Russian, or Ukrainian) so the site can remember your choice on your next visit. That's the only cookie. There's no analytics, no tracking, no fingerprinting, no advertising. No third-party scripts of any kind. Nothing is stored in localStorage, sessionStorage, IndexedDB, the Cache API, or any other client-side storage technology."
       },
       {
         "heading": "What cookies are",
-        "body": "Cookies are small text files that a website stores in your browser to remember information about you — your preferences, session state, or behaviour across pages and visits. Many sites use them for analytics, advertising, login sessions, and A/B testing. This site does none of those things."
+        "body": "Cookies are small text files that a website stores in your browser to remember information about you — your preferences, session state, or behaviour across pages and visits. Many sites use them for analytics, advertising, login sessions, and A/B testing. This site does none of those things. The only cookie it sets is NEXT_LOCALE, which stores a single value: the language code you selected."
       },
       {
         "heading": "What this site actually does",
-        "body": "When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve cookies. Your browser does not store anything locally from this site — no entries in localStorage, no entries in sessionStorage, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), consent is required for any storage of information on a user’s terminal equipment beyond what is strictly necessary for a service the user has requested — this site avoids that situation entirely by storing nothing on your device."
+        "body": "When you click the language switcher in the header, the site sets a NEXT_LOCALE cookie containing one of three values: 'en', 'ru', or 'uk'. The cookie is read on subsequent visits to remember your preference and show the site in your chosen language. Under the Privacy and Electronic Communications Regulations 2003 (regulation 6), this is permitted without prior consent because it is strictly necessary to provide the language preference you explicitly requested. The cookie has no other purpose, contains no personal data beyond the locale code, and is not shared with anyone. When you submit the survey, your answers are sent directly to a database (Supabase, hosted in the EU). That request does not involve any additional cookies. Beyond NEXT_LOCALE, your browser does not store anything locally from this site — no other cookies, no localStorage entries, no IndexedDB databases, no service worker caches. There is no session token, no persistent identifier, and no tracking pixel."
       },
       {
         "heading": "If that ever changes",
-        "body": "If I ever add anything that sets a cookie or loads a tracking script — for example, a login feature or basic analytics — I will update this notice first, implement a proper consent mechanism, and tell you clearly what is being used and why. Until then, this page stays exactly as it is."
+        "body": "If I ever add anything beyond NEXT_LOCALE — for example, analytics or A/B testing — I will update this notice first, implement a proper consent mechanism, and tell you clearly what is being used and why. Until then, NEXT_LOCALE is the only cookie this site sets."
       },
       {
         "heading": "Contact",
