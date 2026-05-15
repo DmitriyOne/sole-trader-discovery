@@ -5,7 +5,7 @@ import { Fraunces, JetBrains_Mono, Caveat } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { env } from "@/shared/config/env";
+import { SITE_METADATA_BASE } from "@/shared/config/metadata";
 import { SurveyDraftProvider } from "@/features/multi-step-form";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -40,7 +40,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "GlobalMeta" });
 
   return {
-    metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+    metadataBase: SITE_METADATA_BASE,
     title: t("title"),
     description: t("description"),
     openGraph: {
