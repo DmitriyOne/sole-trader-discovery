@@ -15,13 +15,14 @@ import { routing } from "@/i18n/routing";
 import "../globals.css";
 
 const fraunces = Fraunces({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-fraunces",
   display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
+  // JetBrains Mono default subsets already include cyrillic.
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-jetbrains-mono",
@@ -29,6 +30,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const caveat = Caveat({
+  // Caveat is used only for the handwritten signature in en locale;
+  // no Cyrillic usage is planned, so latin-only is intentional.
   subsets: ["latin"],
   weight: ["500", "600"],
   variable: "--font-caveat",
