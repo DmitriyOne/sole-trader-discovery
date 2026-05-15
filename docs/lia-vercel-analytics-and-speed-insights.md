@@ -1,9 +1,12 @@
-# Legitimate Interests Assessment — Vercel Web Analytics
+# Legitimate Interests Assessment — Vercel Web Analytics & Speed Insights
 
 **Date:** 2026-05-15
 **Controller:** Dmytro Fenko (publishing as Dmitry Fenko), UK sole trader trading as Fenko Team
-**Processing activity:** Anonymous page-view tracking via `@vercel/analytics`
-**Lawful basis claimed:** Legitimate Interests, UK GDPR Art. 6(1)(f)
+**Processing activities:**
+1. Anonymous page-view tracking via `@vercel/analytics`
+2. Real-user Web Vitals measurement via `@vercel/speed-insights`
+
+**Lawful basis claimed (both):** Legitimate Interests, UK GDPR Art. 6(1)(f)
 
 ---
 
@@ -139,11 +142,69 @@ On receipt of an opt-out request I will:
 
 ---
 
+## Activity 2 — Vercel Speed Insights (`@vercel/speed-insights`)
+
+The same three-part LIA applies. The differences from Activity 1 are tabulated
+below; everything else (purpose framing, balancing logic, mitigations, right to
+object) is identical.
+
+### Purpose Test
+
+**Interest:** Detecting and prioritising real-user performance regressions.
+
+**Why pursued:** Lab-only metrics (Lighthouse, synthetic tests) do not reflect
+the experience of actual visitors on slow networks, low-end devices, or in
+distant regions. Without real-user data I cannot tell whether a Friday deploy
+shifted INP from 180 ms to 380 ms for half the audience until I happen to
+notice. For a research site asking visitors for 15 minutes of their time, a
+laggy survey is a real conversion killer.
+
+### Necessity Test
+
+**What Vercel Speed Insights collects (per its documentation):**
+
+| Field | Used for | Necessary? |
+|---|---|---|
+| Route + URL | Pinpointing which page a regression hit | Yes |
+| Country (ISO 3166-1 alpha-2) | Identifying region-specific issues | Yes |
+| Device type, browser, OS | Reproducing the affected configuration | Yes |
+| Network speed bucket (4g / 3g / etc.) | Diagnosing low-bandwidth performance | Yes |
+| Web Vital reading (LCP, CLS, INP, FCP, TTFB) + selector attribution | The actual measurement | Yes |
+| Server-Received Event Time | Correlating with deploys | Yes |
+
+**Data NOT collected:**
+
+- Any visitor identifier (Speed Insights does not generate a hash; readings are
+  not associated with a visitor at all)
+- IP address (not stored)
+- Cookies or any client-side storage
+- Cross-page session reconstruction
+- Any PII
+
+**Could the purpose be achieved with less?** No. Real-user Web Vitals require
+the readings themselves, plus enough context (route, country, device class) to
+diagnose regressions. Without route attribution, a regression spike is
+unactionable.
+
+### Balancing Test
+
+The data is even more anonymous than analytics — there is no visitor hash at
+all. Speed Insights cannot link two readings to the same person; each
+measurement is a standalone data point. Subject impact is effectively zero.
+
+The same balancing factors as Activity 1 apply (no profiling, no marketing,
+no third-party disclosure beyond Vercel as processor under DPA + SCCs/IDTA).
+
+**Conclusion:** Legitimate interests is the appropriate lawful basis. Consent
+is not required.
+
+---
+
 ## Review
 
 This LIA should be reviewed:
 
-- Before adding any new analytics tool
+- Before adding any new analytics or telemetry tool
 - Before changing the lawful basis claim
 - If Vercel changes its data collection materially
 - Annually as part of the project's privacy posture review
