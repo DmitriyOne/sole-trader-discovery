@@ -8,12 +8,16 @@ export type TSubmitResult =
   | { ok: false; error: string };
 
 export async function submitSurvey(
-  payload: TResponseInput
+  payload: TResponseInput,
+  locale: string
 ): Promise<TSubmitResult> {
   try {
     const response = await fetch(API.SUBMIT, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "x-next-intl-locale": locale,
+      },
       body: JSON.stringify(payload),
     });
 

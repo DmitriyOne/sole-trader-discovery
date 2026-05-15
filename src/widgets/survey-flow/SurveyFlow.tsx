@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Controller } from "react-hook-form";
 import { PATHS } from "@/shared/config/paths";
@@ -46,6 +46,7 @@ function DictationHint() {
 }
 
 export function SurveyFlow() {
+  const locale = useLocale();
   const t = useTranslations("SurveyPage");
   const tQ = useTranslations("SurveyPage.questions");
   const tNav = useTranslations("SurveyPage.nav");
@@ -119,7 +120,7 @@ export function SurveyFlow() {
     setSubmissionState("submitting");
     setSubmissionError(null);
 
-    const result = await submitSurvey(payload);
+    const result = await submitSurvey(payload, locale);
 
     if (result.ok) {
       setSubmissionState("success");
