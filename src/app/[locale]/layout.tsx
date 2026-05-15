@@ -5,7 +5,11 @@ import { Fraunces, JetBrains_Mono, Caveat } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { SITE_METADATA_BASE } from "@/shared/config/metadata";
+import {
+  SITE_METADATA_BASE,
+  buildOgLocale,
+  buildAlternates,
+} from "@/shared/config/metadata";
 import { SurveyDraftProvider } from "@/features/multi-step-form";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -39,6 +43,16 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "GlobalMeta" });
 
+  const { locale: ogLocale, alternateLocale } = buildOgLocale(locale);
+  // Use the root path ("") to derive the locale-specific home URL for og:url.
+  // Per-page og:url is handled by each page's generateMetadata if needed.
+  const { canonical: localeRootUrl } = buildAlternates(locale, "");
+  // opengraph-image.tsx lives in [locale]/ so its route is /<locale>/opengraph-image.
+  // For the default locale (en, no prefix on site) we still use /en/opengraph-image
+  // because that's where Next.js serves the file — the middleware excludes it from i18n
+  // redirect. We use a relative URL so metadataBase resolves it correctly.
+  const ogImagePath = `/${locale}/opengraph-image`;
+
   return {
     metadataBase: SITE_METADATA_BASE,
     title: t("title"),
@@ -47,11 +61,16 @@ export async function generateMetadata({
       title: t("title"),
       description: t("description"),
       type: "website",
+      url: localeRootUrl,
+      locale: ogLocale,
+      alternateLocale,
+      images: [{ url: ogImagePath, width: 1200, height: 630, alt: "What actually slows down UK sole traders." }],
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
+      images: [ogImagePath],
     },
     robots: { index: true, follow: true },
   };

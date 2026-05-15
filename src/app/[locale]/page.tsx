@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { HomePage } from "@/pages/home";
-import { SITE_METADATA_BASE } from "@/shared/config/metadata";
+import { SITE_METADATA_BASE, buildAlternates } from "@/shared/config/metadata";
 
 type TPageProps = { params: Promise<{ locale: string }> };
 
@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: TPageProps): Promise<Metadata
     metadataBase: SITE_METADATA_BASE,
     title: t("title"),
     description: t("description"),
+    alternates: buildAlternates(locale, ""),
   };
 }
 
