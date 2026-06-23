@@ -21,7 +21,7 @@
       "description": "A 15-minute research survey for UK sole traders. Tell me what slows you down, get free 3 months of whatever I build. No marketing, no upsell, no tracking."
     },
     "strip": {
-      "status": "Discovery phase / open",
+      "status": "Discovery phase / closed",
       "issue": "№ 001 · 2026"
     },
     "hero": {
@@ -75,6 +75,13 @@
       "description": "Three honest questions about admin, tools and pain points in your UK sole trader business. About 15 minutes, fully confidential, no tracking."
     },
     "confidentiality": "Your answers are strictly confidential. They go directly into a private database — no third parties, no marketing lists, no sharing. Only I read them.",
+    "closed": {
+      "bannerBefore": "Note: the research phase is now closed, so anything you enter here won’t be sent or saved. If you’d still like to reach me personally, email ",
+      "bannerAfter": ".",
+      "noticeTitle": "Sorry — the research phase is closed.",
+      "noticeBefore": "Your message wasn’t sent. The discovery survey has wrapped up. To reach me directly, email ",
+      "noticeAfter": "."
+    },
     "questions": {
       "email": {
         "number": "01",

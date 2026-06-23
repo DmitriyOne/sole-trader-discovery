@@ -28,11 +28,14 @@ name: Health ping
 # keep-alive; if either becomes a problem, fall back to vercel.json.
 
 on:
-  schedule:
-    # 06:27 UTC every 3rd day-of-month. Offset minute keeps us out
-    # of the :00 rush. Distinct hour from supabase-backup.yml (09:17)
-    # so the two jobs don't pile up on the same runner pool.
-    - cron: "27 6 */3 * *"
+  # DISABLED: research phase is closed. The scheduled keep-alive ping is
+  # switched off so this workflow no longer runs automatically. Re-enable by
+  # uncommenting the `schedule` block below. Manual runs stay available.
+  # schedule:
+  #   # 06:27 UTC every 3rd day-of-month. Offset minute keeps us out
+  #   # of the :00 rush. Distinct hour from supabase-backup.yml (09:17)
+  #   # so the two jobs don't pile up on the same runner pool.
+  #   - cron: "27 6 */3 * *"
   workflow_dispatch:
 
 env:
