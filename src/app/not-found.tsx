@@ -48,31 +48,38 @@ export default async function RootNotFound() {
   const locale = await detectLocale();
   const t = await getTranslations({ locale, namespace: "NotFoundPage" });
 
+  // The root layout is a pass-through (no <html>/<body>), so this fallback
+  // 404 renders its own document shell. Real routes get the locale-aware 404
+  // via [locale]/[...rest]/page.tsx inside [locale]/layout.tsx's shell.
   return (
-    <main className="container max-w-[720px] mx-auto px-6 py-20 font-serif">
-      <p className="font-mono text-xs uppercase tracking-[0.18em] text-rust-deep mb-4">
-        {t("label")}
-      </p>
-      <h1 className="text-[clamp(28px,5vw,40px)] font-medium leading-[1.15] tracking-[-0.01em] mb-4 text-ink">
-        {t("headline")}
-      </h1>
-      <p className="text-[17px] leading-[1.6] text-ink-soft mb-8">
-        {t("body")}
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4">
-        <Link
-          href={localeHref(locale, "/")}
-          className="inline-flex items-center justify-center bg-ink text-paper px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium hover:bg-rust-deep transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
-        >
-          {t("ctaPrimary")}
-        </Link>
-        <Link
-          href={localeHref(locale, "/survey")}
-          className="inline-flex items-center justify-center border border-rule px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium text-ink-soft hover:text-rust hover:border-rust transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
-        >
-          {t("ctaSecondary")}
-        </Link>
-      </div>
-    </main>
+    <html lang={locale}>
+      <body>
+        <main className="container max-w-[720px] mx-auto px-6 py-20 font-serif">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-rust-deep mb-4">
+            {t("label")}
+          </p>
+          <h1 className="text-[clamp(28px,5vw,40px)] font-medium leading-[1.15] tracking-[-0.01em] mb-4 text-ink">
+            {t("headline")}
+          </h1>
+          <p className="text-[17px] leading-[1.6] text-ink-soft mb-8">
+            {t("body")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link
+              href={localeHref(locale, "/")}
+              className="inline-flex items-center justify-center bg-ink text-paper px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium hover:bg-rust-deep transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+            >
+              {t("ctaPrimary")}
+            </Link>
+            <Link
+              href={localeHref(locale, "/survey")}
+              className="inline-flex items-center justify-center border border-rule px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] font-medium text-ink-soft hover:text-rust hover:border-rust transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+            >
+              {t("ctaSecondary")}
+            </Link>
+          </div>
+        </main>
+      </body>
+    </html>
   );
 }
