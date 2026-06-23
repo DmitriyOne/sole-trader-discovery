@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
+// import { useLocale } from "next-intl"; // PHASE CLOSED: re-enable with submission
 import { Link } from "@/i18n/navigation";
 import { Controller } from "react-hook-form";
 import { PATHS } from "@/shared/config/paths";
@@ -12,18 +13,26 @@ import { TextArea } from "@/shared/ui/TextArea";
 import { RadioGroup } from "@/shared/ui/RadioGroup";
 import { Checkbox } from "@/shared/ui/Checkbox";
 import { SectionLabel } from "@/shared/ui/SectionLabel";
-import {
-  TENURE_VALUES,
-  type TResponseInput,
-} from "@/entities/response";
+import { TENURE_VALUES } from "@/entities/response";
+// import type { TResponseInput } from "@/entities/response"; // PHASE CLOSED: re-enable with submission
 import {
   useMultiStepForm,
   StepIndicator,
 } from "@/features/multi-step-form";
-import { submitSurvey } from "@/features/submit-survey";
+// import { submitSurvey } from "@/features/submit-survey"; // PHASE CLOSED: re-enable with submission
 import { scrollToTop } from "@/shared/lib/scrollToTop";
 
-type TSubmissionState = "idle" | "submitting" | "success" | "error";
+// Research phase is CLOSED. Submission to the backend is disabled: the form
+// stays interactive, but the final action only shows a "closed" notice and
+// points people to email. The original submission flow is preserved as
+// commented blocks marked "PHASE CLOSED" below. To re-open the survey:
+//   1. restore the imports commented above,
+//   2. restore the type union and submission state below,
+//   3. uncomment onSubmit / the success early-return / the error block /
+//      SuccessPanel, and wire the submit button back to handleSubmit(onSubmit).
+// See dictionary `SurveyPage.closed`.
+type TSubmissionState = "idle" | "closed";
+// type TSubmissionState = "idle" | "submitting" | "success" | "error";
 
 function DictationHint() {
   const t = useTranslations("SurveyPage");
@@ -46,11 +55,12 @@ function DictationHint() {
 }
 
 export function SurveyFlow() {
-  const locale = useLocale();
+  // const locale = useLocale(); // PHASE CLOSED: re-enable with submission
   const t = useTranslations("SurveyPage");
   const tQ = useTranslations("SurveyPage.questions");
   const tNav = useTranslations("SurveyPage.nav");
-  const tError = useTranslations("SurveyPage.error");
+  const tClosed = useTranslations("SurveyPage.closed");
+  // const tError = useTranslations("SurveyPage.error"); // PHASE CLOSED: re-enable with submission
   const tErrors = useTranslations("SurveyPage.errors");
   const tFooter = useTranslations("Footer");
   const tTenure = useTranslations("SurveyPage.tenure");
@@ -79,12 +89,12 @@ export function SurveyFlow() {
     goNext,
     goBack,
     currentStepData,
-    resetDraft,
+    // resetDraft, // PHASE CLOSED: re-enable with submission
   } = useMultiStepForm();
 
   const [submissionState, setSubmissionState] =
     useState<TSubmissionState>("idle");
-  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  // const [submissionError, setSubmissionError] = useState<string | null>(null); // PHASE CLOSED
 
   const headingRef = useRef<HTMLHeadingElement>(null);
   const isInitialStep = useRef(true);
@@ -101,11 +111,11 @@ export function SurveyFlow() {
     register,
     control,
     formState: { errors, isDirty },
-    handleSubmit,
+    // handleSubmit, // PHASE CLOSED: re-enable with submission
   } = form;
 
   useEffect(() => {
-    if (submissionState === "success" || !isDirty) return;
+    if (submissionState === "closed" || !isDirty) return;
 
     const handler = (event: BeforeUnloadEvent) => {
       event.preventDefault();
@@ -116,29 +126,63 @@ export function SurveyFlow() {
     return () => window.removeEventListener("beforeunload", handler);
   }, [submissionState, isDirty]);
 
-  async function onSubmit(payload: TResponseInput) {
-    setSubmissionState("submitting");
-    setSubmissionError(null);
+  // --- PHASE CLOSED: backend submission disabled ---
+  // async function onSubmit(payload: TResponseInput) {
+  //   setSubmissionState("submitting");
+  //   setSubmissionError(null);
+  //
+  //   const result = await submitSurvey(payload, locale);
+  //
+  //   if (result.ok) {
+  //     setSubmissionState("success");
+  //     resetDraft();
+  //     form.reset();
+  //     scrollToTop();
+  //   } else {
+  //     setSubmissionState("error");
+  //     setSubmissionError(result.error);
+  //   }
+  // }
+  //
+  // if (submissionState === "success") {
+  //   return <SuccessPanel />;
+  // }
 
-    const result = await submitSurvey(payload, locale);
-
-    if (result.ok) {
-      setSubmissionState("success");
-      resetDraft();
-      form.reset();
-      scrollToTop();
-    } else {
-      setSubmissionState("error");
-      setSubmissionError(result.error);
-    }
+  // Phase closed: show the closed notice instead of submitting.
+  function showClosedNotice() {
+    setSubmissionState("closed");
+    scrollToTop();
   }
 
-  if (submissionState === "success") {
-    return <SuccessPanel />;
+  if (submissionState === "closed") {
+    return <ClosedPanel />;
   }
 
   return (
     <div className="bg-paper border border-rule p-6 sm:p-10">
+      {/* Phase-closed banner — shown on every step */}
+      <aside
+        role="note"
+        className="flex gap-3 items-start border-l-4 border-rust-deep bg-rust/10 px-4 py-3 mb-6"
+      >
+        <span
+          aria-hidden="true"
+          className="font-mono text-[12px] font-semibold text-rust-deep pt-[2px] shrink-0"
+        >
+          ✕
+        </span>
+        <p className="font-serif text-[13px] leading-[1.55] text-ink-soft">
+          {tClosed("bannerBefore")}
+          <a
+            href={`mailto:${tFooter("contact")}`}
+            className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+          >
+            {tFooter("contact")}
+          </a>
+          {tClosed("bannerAfter")}
+        </p>
+      </aside>
+
       <aside
         role="note"
         className="flex gap-3 items-start bg-ink/[0.04] border border-rule px-4 py-3 mb-8"
@@ -171,9 +215,11 @@ export function SurveyFlow() {
       </h2>
 
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={(event) => {
+          event.preventDefault();
+          showClosedNotice();
+        }}
         noValidate
-        aria-busy={submissionState === "submitting"}
       >
         {currentStepData.id === "intro" && (
           <>
@@ -296,8 +342,8 @@ export function SurveyFlow() {
           </>
         )}
 
-        {/* Submission error */}
-        {submissionState === "error" && submissionError && (
+        {/* --- PHASE CLOSED: submission error block disabled --- */}
+        {/* {submissionState === "error" && submissionError && (
           <div
             role="alert"
             aria-live="assertive"
@@ -313,7 +359,7 @@ export function SurveyFlow() {
             </a>
             {tError("after")}
           </div>
-        )}
+        )} */}
 
         {/* Navigation */}
         <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-rule">
@@ -322,7 +368,6 @@ export function SurveyFlow() {
               type="button"
               variant="ghost"
               onClick={goBack}
-              disabled={submissionState === "submitting"}
               aria-label={tNav("backAria")}
             >
               {tNav("back")}
@@ -345,17 +390,10 @@ export function SurveyFlow() {
             <Button
               type="submit"
               variant="primary"
-              disabled={submissionState === "submitting"}
               className="sm:ml-auto"
-              aria-label={
-                submissionState === "submitting"
-                  ? tNav("submittingAria")
-                  : tNav("submitAria")
-              }
+              aria-label={tNav("submitAria")}
             >
-              {submissionState === "submitting"
-                ? tNav("submitting")
-                : tNav("submit")}
+              {tNav("submit")}
             </Button>
           )}
         </div>
@@ -364,8 +402,10 @@ export function SurveyFlow() {
   );
 }
 
-function SuccessPanel() {
-  const t = useTranslations("SurveyPage.success");
+// Closed notice — replaces the form once the user tries to submit while the
+// research phase is closed.
+function ClosedPanel() {
+  const tClosed = useTranslations("SurveyPage.closed");
   const tFooter = useTranslations("Footer");
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -379,91 +419,134 @@ function SuccessPanel() {
       aria-live="polite"
       className="bg-paper border border-rule p-6 sm:p-12"
     >
-      {/* Masthead-style strip */}
-      <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">
-        <span
-          aria-hidden="true"
-          className="inline-block w-2 h-2 bg-rust rounded-full pulse-dot shrink-0"
-        />
-        <span>{t("kicker")}</span>
+      <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-rust-deep font-medium">
+        <span aria-hidden="true">✕</span>
+        <span>{tClosed("noticeTitle")}</span>
       </div>
 
       <h2
         ref={headingRef}
         tabIndex={-1}
-        className="font-serif font-medium text-[clamp(28px,5vw,40px)] leading-[1.15] tracking-[-0.01em] mb-6 text-ink focus:outline-none"
+        className="font-serif font-medium text-[clamp(24px,5vw,34px)] leading-[1.18] tracking-[-0.01em] mb-6 text-ink focus:outline-none"
       >
-        {t("title")}
+        {tClosed("noticeTitle")}
       </h2>
 
-      <p className="font-serif text-[18px] leading-[1.6] text-ink-soft mb-4">
-        {t("body1")}
+      <p className="font-serif text-[18px] leading-[1.6] text-ink-soft">
+        {tClosed("noticeBefore")}
+        <a
+          href={`mailto:${tFooter("contact")}`}
+          className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+        >
+          {tFooter("contact")}
+        </a>
+        {tClosed("noticeAfter")}
       </p>
-      <p className="font-serif text-[18px] leading-[1.6] text-ink mb-2">
-        {t("body2")}
-      </p>
-
-      {/* Bullets in border-l callout (echoes the hero note pattern) */}
-      <div className="bg-bg border-l-[3px] border-rust px-6 py-5 my-7">
-        <ul className="space-y-3 font-serif text-[16px] leading-[1.5] text-ink-soft">
-          {(t.raw("bullets") as string[]).map((bullet, idx) => (
-            <li key={idx} className="flex gap-3 items-start">
-              <span
-                aria-hidden="true"
-                className="text-rust font-mono text-[12px] mt-1.5 shrink-0"
-              >
-                ▸
-              </span>
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <p className="font-serif text-[17px] leading-[1.55] text-ink mb-7">
-        {t("closing")}
-      </p>
-
-      {/* Letter-style signoff (mirrors hero note signature) */}
-      <div>
-        <span className="block font-handwritten text-[28px] sm:text-[30px] text-rust-deep leading-tight">
-          {t("signature")}
-        </span>
-        <span className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1.5 font-medium">
-          {t("signatureMeta")}
-        </span>
-      </div>
-
-      {/* Postscript — follow-up + referral */}
-      <div className="border-t border-rule mt-10 pt-8">
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-rust mb-5 font-medium">
-          <span aria-hidden="true" className="text-ink-soft">
-            §{" "}
-          </span>
-          {t("postscriptLabel")}
-        </div>
-
-        <div className="space-y-4">
-          <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
-            {t("followUpPrompt")}{" "}
-            <a
-              href={`mailto:${tFooter("contact")}`}
-              className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
-            >
-              {tFooter("contact")}
-            </a>
-          </p>
-          <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
-            {t("referralPrompt")}{" "}
-            <a
-              href={`mailto:${tFooter("contact")}?subject=${encodeURIComponent(t("referralMailSubject"))}`}
-              className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
-            >
-              {tFooter("contact")}
-            </a>
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
+
+// --- PHASE CLOSED: success screen disabled (re-enable with submission) ---
+// function SuccessPanel() {
+//   const t = useTranslations("SurveyPage.success");
+//   const tFooter = useTranslations("Footer");
+//   const headingRef = useRef<HTMLHeadingElement>(null);
+//
+//   useEffect(() => {
+//     headingRef.current?.focus();
+//   }, []);
+//
+//   return (
+//     <div
+//       role="status"
+//       aria-live="polite"
+//       className="bg-paper border border-rule p-6 sm:p-12"
+//     >
+//       {/* Masthead-style strip */}
+//       <div className="flex items-center gap-3 pb-5 mb-8 border-b border-rule font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-ink-soft font-medium">
+//         <span
+//           aria-hidden="true"
+//           className="inline-block w-2 h-2 bg-rust rounded-full pulse-dot shrink-0"
+//         />
+//         <span>{t("kicker")}</span>
+//       </div>
+//
+//       <h2
+//         ref={headingRef}
+//         tabIndex={-1}
+//         className="font-serif font-medium text-[clamp(28px,5vw,40px)] leading-[1.15] tracking-[-0.01em] mb-6 text-ink focus:outline-none"
+//       >
+//         {t("title")}
+//       </h2>
+//
+//       <p className="font-serif text-[18px] leading-[1.6] text-ink-soft mb-4">
+//         {t("body1")}
+//       </p>
+//       <p className="font-serif text-[18px] leading-[1.6] text-ink mb-2">
+//         {t("body2")}
+//       </p>
+//
+//       {/* Bullets in border-l callout (echoes the hero note pattern) */}
+//       <div className="bg-bg border-l-[3px] border-rust px-6 py-5 my-7">
+//         <ul className="space-y-3 font-serif text-[16px] leading-[1.5] text-ink-soft">
+//           {(t.raw("bullets") as string[]).map((bullet, idx) => (
+//             <li key={idx} className="flex gap-3 items-start">
+//               <span
+//                 aria-hidden="true"
+//                 className="text-rust font-mono text-[12px] mt-1.5 shrink-0"
+//               >
+//                 ▸
+//               </span>
+//               <span>{bullet}</span>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//
+//       <p className="font-serif text-[17px] leading-[1.55] text-ink mb-7">
+//         {t("closing")}
+//       </p>
+//
+//       {/* Letter-style signoff (mirrors hero note signature) */}
+//       <div>
+//         <span className="block font-handwritten text-[28px] sm:text-[30px] text-rust-deep leading-tight">
+//           {t("signature")}
+//         </span>
+//         <span className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink-soft mt-1.5 font-medium">
+//           {t("signatureMeta")}
+//         </span>
+//       </div>
+//
+//       {/* Postscript — follow-up + referral */}
+//       <div className="border-t border-rule mt-10 pt-8">
+//         <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-rust mb-5 font-medium">
+//           <span aria-hidden="true" className="text-ink-soft">
+//             §{" "}
+//           </span>
+//           {t("postscriptLabel")}
+//         </div>
+//
+//         <div className="space-y-4">
+//           <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
+//             {t("followUpPrompt")}{" "}
+//             <a
+//               href={`mailto:${tFooter("contact")}`}
+//               className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+//             >
+//               {tFooter("contact")}
+//             </a>
+//           </p>
+//           <p className="font-serif text-[15px] leading-[1.6] text-ink-soft">
+//             {t("referralPrompt")}{" "}
+//             <a
+//               href={`mailto:${tFooter("contact")}?subject=${encodeURIComponent(t("referralMailSubject"))}`}
+//               className="text-rust-deep underline underline-offset-2 hover:text-rust focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust"
+//             >
+//               {tFooter("contact")}
+//             </a>
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

@@ -1,15 +1,13 @@
 import type { ReactNode } from "react";
 import "./globals.css";
 
-// Minimal root layout — required by Next.js so the root-level not-found.tsx
-// can render. The locale-aware app shell lives in [locale]/layout.tsx and
-// applies to all real routes. This root layout is hit only when a request
-// bypasses [locale] entirely (e.g. paths with file-like extensions such as
-// /kk.xt that the proxy matcher excludes from i18n middleware).
+// Pass-through root layout. A root layout file is required by Next.js because
+// a root-level not-found.tsx exists, but it must NOT render <html>/<body>:
+// the locale-aware app shell in [locale]/layout.tsx renders those (with
+// lang={locale}, fonts and providers) for every real route. Rendering them
+// here too would nest a second <html> inside that one and break hydration
+// (server lang="en" vs client lang="ru"). The root not-found.tsx therefore
+// renders its own <html>/<body>. This layout only forwards children.
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

@@ -18,9 +18,12 @@ name: Daily Supabase backup
 # commit fields touch the run: blocks, so command-injection vectors are nil.
 
 on:
-  schedule:
-    # Every day at 09:17 UTC (offset minute keeps us out of the :00 rush).
-    - cron: "17 9 * * *"
+  # DISABLED: research phase is closed. The daily backup is switched off so
+  # this workflow no longer runs automatically. Re-enable by uncommenting the
+  # `schedule` block below. Manual runs stay available via workflow_dispatch.
+  # schedule:
+  #   # Every day at 09:17 UTC (offset minute keeps us out of the :00 rush).
+  #   - cron: "17 9 * * *"
   workflow_dispatch:
 
 # Opt into Node.js 24 for upload-artifact and other JS-based actions.
